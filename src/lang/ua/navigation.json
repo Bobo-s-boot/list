@@ -1,0 +1,10 @@
+{
+  "TAB_APP": {
+    "PROJECT": "Project",
+    "SETTINGS": "Settings",
+    "ADMIN": "Admin page",
+    "ANALYTIC": "Analytics",
+    "THEME_DARK": "Dark mode",
+    "THEME_LIGHT": "Light mode"
+  }
+}

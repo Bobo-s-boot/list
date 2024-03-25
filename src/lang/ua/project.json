@@ -1,0 +1,30 @@
+{
+  "CREATE": {
+    "TITLE": "Create project",
+    "FORM": {
+      "NAME": "Name"
+    },
+    "ADD": "New project",
+    "BUTTON": "Create"
+  },
+
+  "UPDATE": {
+    "TITLE": "Edit project",
+    "FORM": {
+      "NAME": "Name"
+    },
+    "MODAL": {
+      "EDIT": "Edit",
+      "DELETE": "Delete"
+    },
+    "BUTTON": "Save changes"
+  },
+  "ITEM": {
+    "NAME": "{{value}}",
+    "WEBINAR_COUNT": "{{value}} webinars",
+    "DELETE": "Delete"
+  },
+  "LIST": {
+    "TITLE": "Project list"
+  }
+}

@@ -1,0 +1,1 @@
+export const MODULE_NAME = 'DESKTOP_MENU_APP_MODULE_NAME';

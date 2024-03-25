@@ -1,0 +1,33 @@
+import { COLOR_DATA, COLOR_ENUM } from '../../theme/color';
+import errorIcon from '../../asset/svg/alert/error.svg';
+import successIcon from '../../asset/svg/alert/success.svg';
+
+export enum ALERT_ACTION_ENUM {
+  ERROR = 'error',
+  SUCCESS = 'success',
+}
+
+export type ALERT_ACTION_TYPE = `${ALERT_ACTION_ENUM}`;
+
+export const ALERT_ACTION_COLOR_DATA = {
+  [ALERT_ACTION_ENUM.ERROR]: COLOR_DATA[COLOR_ENUM.ERROR],
+  [ALERT_ACTION_ENUM.SUCCESS]: COLOR_DATA[COLOR_ENUM.SUCCESS],
+};
+export enum ALERT_BACKGROUND_ENUM {
+  ERROR_BACKGROUND = 'error',
+  SUCCESS_BACKGROUND = 'success',
+}
+
+export type ALERT_BACKGROUND_TYPE = `${ALERT_BACKGROUND_ENUM}`;
+
+export const ALERT_BACKGROUND_COLOR_DATA = {
+  [ALERT_BACKGROUND_ENUM.ERROR_BACKGROUND]:
+    COLOR_DATA[COLOR_ENUM.ERROR_BACKGROUND],
+  [ALERT_BACKGROUND_ENUM.SUCCESS_BACKGROUND]:
+    COLOR_DATA[COLOR_ENUM.SUCCESS_BACKGROUND],
+};
+
+export const ALERT_ICON = {
+  [ALERT_BACKGROUND_ENUM.ERROR_BACKGROUND]: errorIcon,
+  [ALERT_BACKGROUND_ENUM.SUCCESS_BACKGROUND]: successIcon,
+};

@@ -1,0 +1,61 @@
+/* @font-face {
+  font-family: 'MacPaw Fixel Display';
+  src: local('MacPaw Fixel Display Light'), local('FixelDisplay-Light'),
+    url('../font/FixelDisplay-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MacPaw Fixel Display';
+  src: local('MacPaw Fixel Display Regular'), local('FixelDisplay-Regular'),
+    url('../font/FixelDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MacPaw Fixel Display';
+  src: local('MacPaw Fixel Display Medium'), local('FixelDisplay-Medium'),
+    url('../font/FixelDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MacPaw Fixel Display';
+  src: local('MacPaw Fixel Display SemiBold'), local('FixelDisplay-SemiBold'),
+    url('../font/FixelDisplay-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MacPaw Fixel Display';
+  src: local('MacPaw Fixel Display Bold'), local('FixelDisplay-Bold'),
+    url('../font/FixelDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+} */
+
+* {
+  /* font-family: 'MacPaw Fixel Display' !important; */
+}
+
+main::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Скрываем scrollbar для IE, Edge и Firefox */
+main {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important;
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+}
+
+h2 {
+  font-size: 20px;
+}

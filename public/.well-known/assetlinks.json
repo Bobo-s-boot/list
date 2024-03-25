@@ -1,0 +1,29 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.fincrm.Fincrm",
+      "sha256_cert_fingerprints": [
+        "4C:47:87:7F:9C:88:D0:58:78:1C:83:A1:95:D4:08:31:92:01:5A:56:C4:05:83:1E:17:79:11:E7:7C:9F:23:0B"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.get_login_creds"],
+    "target": {
+      "namespace": "web",
+      "site": "https://www.fincrm.net"
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.get_login_creds"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.fincrm.Fincrm",
+      "sha256_cert_fingerprints": [
+        "4C:47:87:7F:9C:88:D0:58:78:1C:83:A1:95:D4:08:31:92:01:5A:56:C4:05:83:1E:17:79:11:E7:7C:9F:23:0B"
+      ]
+    }
+  }
+]

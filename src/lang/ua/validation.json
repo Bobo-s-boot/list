@@ -1,0 +1,19 @@
+{
+  "LOGIN": "Login should consist of Latin letters and numbers",
+  "NUMBER": "Код введено не коректно",
+  "EMAIL": "Enter a valid mail address",
+  "PASSWORD": "Пароль має бути мінімум 8 символів, та містити цифри та букви",
+  "PASSWORD_REPEAT": "Those passwords didn’t match. Try again.",
+  "LENGTH": "Довжина поля має бути {{length}} символи",
+  "NUMBER_POSITIVE_MIN": "Enter a non-negative integer {{min}}",
+  "NUMBER_POSITIVE_MAX": "Enter a non-negative integer {{max}}",
+  "REQUIRED": "Поле не заповнене",
+  "FIRST_NAME": "Enter the correct name",
+  "LAST_NAME": "Enter the correct surname",
+  "PHONE": "Введить корректний номер",
+  "COMPANY_NAME": "Enter the correct name of the company ",
+  "NEW_PASSWORD_MATCH_OLD": "The new password matches the old one. Try again.",
+  "ARRAY_LENGTH_MAX": "Max length of items is {{length}}",
+  "PHONE_OPERATOR": "Введіть номер існуючого оператора",
+  "BALANCE": "Insufficient funds on balance"
+}

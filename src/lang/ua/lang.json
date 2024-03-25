@@ -1,0 +1,19 @@
+{
+  "DATA": {
+    "DATE_TIME": "MMMM D, YYYY, HH:mm",
+    "SCHEDULE": "MMM D, HH:mm",
+    "DATE": "MMMM D",
+
+    "CALENDAR_SAME_DAY": "[Today] [at] HH:mm",
+    "CALENDAR_LAST_DAY": "[Yesterday] [at] HH:mm",
+    "CALENDAR_LAST_WEEK": "[Last] dddd [at] HH:mm",
+    "CALENDAR_SAME_ELSE": "MMM D [at] HH:mm",
+
+    "DAY_AND_TIME": "D MMMM [at] HH:mm",
+    "TIME": "HH:mm",
+    "DAY": "D MMMM",
+
+    "TIME_ADN_DATE": "h:m D/M/YY",
+    "ONLY_TIME": "HH:mm"
+  }
+}

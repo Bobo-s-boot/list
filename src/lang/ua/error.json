@@ -1,0 +1,33 @@
+{
+  "CLIENT_ERROR": "Error CLIENT_ERROR",
+  "401": "Error 401",
+  "500": "Error 500",
+  "404": "Error 404",
+  "403": "Error 403",
+  "Unauthorized": "Ошибка авторизации",
+  "RECEIVER_NOT_FOUND": "Receiver not found",
+  "LOGIN_COULDNT_FOUND_USER": "User not found",
+
+  "INVALID_PINCODE": "Invalid pincode",
+  "INVALID_CODE": "Invalid code",
+
+  "LOGIN_UNCORRECT_PASSWORD_OR_LOGIN": "Веден некорректный пароль",
+  "SIGN_UP_USER_ALREADY_EXISTS": "Користувач з такою поштою вже зареєстрований",
+  "AUTH_USER_ALREADY_CONFIRM_EMAIL": "Користувач вже підтвердив пошту",
+  "AUTH_UNAUTHORIZED": "Користувач не авторизований ",
+  "USER_USER_VERIFICATION_EMAIL_ALLDREADY_CONFIRM": "Пошта вже підтверджена",
+  "USER_USER_VERIFICATION_EMAIL_UNCORRECT_CODE": "Невірний код",
+  "USER_SETTINGS_UNCORRECT_CURRENT_PASSWORD": "Невірний пароль",
+  "USER_SETTINGS_UPDATE_EMAIL": "Помилка оновлення пошти",
+  "USER_SETTINGS_UPDATE_PASSWORD": "Помилка оновлення паролю",
+  "NEWS_NOT_FOUND": "Новость не найдена",
+  "NEWS_WITH_ID_NOT_FOUND": "Такой новости не существует",
+  "NEWS_CANNOT_DO_IT_WITH_STATUS_ACTIVE": "Невозможно выполнить действие с текущим статусом новости",
+  "NEWS_CANNOT_DO_IT": "Невозможно выполнить действие",
+
+  "NOTE_NOT_FOUND": "Замітка не знайдена",
+  "NOTE_GUARD_ERROR": "Замітка не знайдена",
+  "FORBIDENT_NOTE": "Немає доступу",
+  "NOTE_OWNER_NULL": "Власник замітки не знайдений",
+  "USER_WITH_THIS_ID_NOT_FOUND": "Користувач не знайдений"
+}

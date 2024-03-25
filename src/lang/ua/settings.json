@@ -1,0 +1,39 @@
+{
+  "HEADER": "Settings",
+  "CHANGE_PASSWORD": {
+    "TITLE": "Change password",
+    "PLACEHOLDER": "Password",
+    "NEW_PASSWORD": "New Password",
+    "PASSWORD": "Old password",
+    "BUTTON": "Save Password",
+    "SUCCESS": "Password changed successfully"
+  },
+  "CHANGE_EMAIL": {
+    "TITLE": "Change mail",
+    "NEW_EMAIL": "New mail",
+    "EMAIL": "Current mail",
+    "PLACEHOLDER": "example@gmail.com",
+    "PASSWORD": "Current password",
+    "BUTTON": "Save Mail",
+    "SUCCESS": "Mail changed successfully"
+  },
+
+  "CHANGE_NAME": {
+    "TITLE": "Name",
+    "NAME": "First name",
+    "BUTTON": "Save information",
+    "SUCCESS": "Information changed successfully"
+  },
+
+  "CHANGE_PHONE": {
+    "TITLE": "Change phone",
+    "NEW_PHONE": "Phone",
+    "BUTTON": "Save phone",
+    "SUCCESS": "Phone changed successfully"
+  },
+
+  "LOGOUT": {
+    "TITLE": "Log Out with account",
+    "BUTTON": "Log Out"
+  }
+}

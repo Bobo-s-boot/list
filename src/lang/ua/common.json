@@ -1,0 +1,28 @@
+{
+  "EMPTY_LIST": "List is empty",
+
+  "ALERT": {
+    "COPY": "Link copied to clipboard"
+  },
+  "MODAL": {
+    "ACTION": {
+      "DELETE": "Delete",
+      "CANCEL": "Cancel"
+    },
+    "TITLE": {
+      "LOGOUT": "Log Out with account?",
+      "SESSION": "Delete session: {{value}}?",
+      "PROJECT": "Delete project: {{value}}?",
+      "DELETE": "Attention!"
+    },
+    "TEXT": {
+      "DELETE": {
+        "1": "Are you sure you want to delete this content?",
+        "2": "This action cannot be undone"
+      }
+    },
+
+    "BUTTON": { "CONFIRM": "Confirm", "CANCEL": "Cancel", "DELETE": "Delete" }
+  },
+  "BUTTON": { "CONFIRM": "Confirm", "CANCEL": "Cancel" }
+}
