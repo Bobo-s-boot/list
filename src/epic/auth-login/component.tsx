@@ -15,10 +15,8 @@ import { FormElem } from '../../common/form';
 import { LoaderElem } from '../../common/loader';
 import { LinkElem } from '../../common/link';
 import { AUTH_RECOVERY_PAGE_PATH } from '../../page/auth-recovery';
-import { SelectMethodAuthContainer } from '../select-method-auth';
-import { COLOR_ENUM } from '../../theme/color';
 import { AUTH_TYPE } from '../../data/auth/constant';
-import { Spacing } from '../../theme';
+import { AUTH_SIGNUP_PAGE_PATH } from '../../page/auth-signup';
 
 export const Component: React.FC<{
   formik: FormikValues;
@@ -40,42 +38,38 @@ export const Component: React.FC<{
   isLoading,
   isError,
   errorMessage,
-  method,
-  setMethod,
 }) => {
   return (
     <Form onSubmit={formik.handleSubmit}>
       {isLoading && <LoaderElem />}
-      <GridElem size="mod">
-        <TitleContainer spacing={3}>
-          <TextElem size="heading" type="bold" tid="AUTH.LOGIN.TITLE" />
-          <TextElem color="textSecondary" tid="AUTH.LOGIN.DESCRIPTION" />
-        </TitleContainer>
-        <SelectMethodAuthContainer method={method} setMethod={setMethod} />
-        <GridElem size="input">
-          {method === AUTH_TYPE.EMAIL ? (
-            <FieldTextElem
-              name={FORM_VALUE_ENUM.EMAIL}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              title="AUTH.LOGIN.EMAIL"
-              value={getFieldValue(FORM_VALUE_ENUM.EMAIL)}
-              errorMessage={getFieldError(FORM_VALUE_ENUM.EMAIL)}
-              error={isFieldError(FORM_VALUE_ENUM.EMAIL)}
-              type="email"
-            />
-          ) : (
-            <FieldTextElem
-              name={FORM_VALUE_ENUM.PHONE}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              title="AUTH.LOGIN.PHONE"
-              value={getFieldValue(FORM_VALUE_ENUM.PHONE)}
-              errorMessage={getFieldError(FORM_VALUE_ENUM.PHONE)}
-              error={isFieldError(FORM_VALUE_ENUM.PHONE)}
-              type="phone"
-            />
-          )}
+      <TitleContainer spacing={3}>
+        <TextElem
+          size="heading"
+          type="bold"
+          color="textSecondary"
+          tid="AUTH.LOGIN.TITLE"
+          isMulishFont
+        />
+        <TextElem
+          size="main"
+          color="textDefault"
+          type="medium"
+          tid="AUTH.LOGIN.DESCRIPTION"
+        />
+      </TitleContainer>
+
+      <GridStyled size="mod">
+        <GridElem>
+          <FieldTextElem
+            name={FORM_VALUE_ENUM.EMAIL}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            title="AUTH.LOGIN.EMAIL"
+            value={getFieldValue(FORM_VALUE_ENUM.EMAIL)}
+            errorMessage={getFieldError(FORM_VALUE_ENUM.EMAIL)}
+            error={isFieldError(FORM_VALUE_ENUM.EMAIL)}
+            type="email"
+          />
 
           <FieldPasswordElem
             name={FORM_VALUE_ENUM.PASSWORD}
@@ -87,40 +81,53 @@ export const Component: React.FC<{
             error={isFieldError(FORM_VALUE_ENUM.PASSWORD)}
           />
           <LinkElem
+            justifySelf="end"
+            color="textDefault"
             tid="AUTH.LOGIN.LINKS.RECOVERY.LINK"
-            prefixTid="AUTH.LOGIN.LINKS.RECOVERY.PREFIX"
             link={AUTH_RECOVERY_PAGE_PATH}
           />
         </GridElem>
         <ButtonElem
           disabled={isSubmitDisabled()}
+          color="buttonPrimary"
           type="submit"
+          fill="solid"
           tid="AUTH.LOGIN.BUTTON"
+          sizeText="input"
+        />
+        <LinkElem
+          tid="AUTH.LOGIN.LINKS.RECOVERY.PREFIX"
+          sufixTid="AUTH.LOGIN.LINKS.RECOVERY.SUFIX"
+          link={AUTH_SIGNUP_PAGE_PATH}
+          type="bold"
+          size="small"
         />
 
         {isError && <AlertActionElem text={errorMessage} type="error" />}
-      </GridElem>
+      </GridStyled>
     </Form>
   );
 };
 
-const Grid = styled(GridElem)`
-  margin-top: ${Spacing(3)};
+const GridStyled = styled(GridElem)`
+  background-color: #ffffff;
+  padding: 50px 85px;
+  gap: 40px;
+  border-radius: 35px;
+  box-shadow: 0px 0px 50px 0px #24231e0d;
 `;
 
 const TitleContainer = styled(GridElem)`
   justify-items: center;
+  text-align: center;
+  max-width: 546px;
 `;
 
 const Form = styled(FormElem)`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-`;
-
-const Button = styled(ButtonElem)`
-  & > * > * {
-    color: ${({ theme }) => theme[COLOR_ENUM.DEFAULT]};
-  }
+  gap: 60px;
+  max-width: 628px;
+  align-items: center;
 `;

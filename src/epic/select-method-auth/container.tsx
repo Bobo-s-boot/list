@@ -24,7 +24,7 @@ export const Container: React.FC<{
         onClick={setMethod}
         type="button"
       >
-        <TextElem tid="Email" type="medium" />
+        <TextElem tid="AUTH.RECOVERY.EMAIL" type="medium" />
       </TabButton>
       <TabButton
         name={`${AUTH_TYPE.PHONE}`}
@@ -32,7 +32,7 @@ export const Container: React.FC<{
         onClick={setMethod}
         type="button"
       >
-        <TextElem tid="Phone" type="medium" />
+        <TextElem tid="AUTH.RECOVERY.PHONE" type="medium" />
       </TabButton>
     </TabBar>
   );

@@ -1,8 +1,7 @@
-import React, { ReactNode } from 'react';
-import { IonButton, IonIcon } from '@ionic/react';
+import React from 'react';
 
 import styled, { css } from 'styled-components';
-import { COLOR_ENUM, COLOR_TYPE } from '../../theme/color';
+import { COLOR_DATA, COLOR_ENUM, COLOR_TYPE } from '../../theme/color';
 import {
   SIZE_BORDER_RADIUS_DATA,
   SIZE_BORDER_RADIUS_ENUM,
@@ -44,13 +43,13 @@ export const Elem: React.FC<PROPS_TYPE> = ({
     if (onClick) onClick(e);
   };
   return (
-    <Button
+    <ButtonStyled
       onClick={handleClick}
       disabled={disabled}
-      customColor={color}
-      type={type}
-      fill={fill}
-      slot={slot}
+      // customColor={color}
+      // type={type}
+      // fill={fill}
+      // slot={slot}
       className={className}
       ref={ref}
     >
@@ -71,9 +70,47 @@ export const Elem: React.FC<PROPS_TYPE> = ({
           <Icon src={iconRight} iconSize={iconSize} color={color} />
         )}
       </Content>
-    </Button>
+    </ButtonStyled>
   );
 };
+
+const ButtonStyled = styled.button`
+  padding: 17px 20px;
+  border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
+  transition: border ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
+  border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
+  width: 100%;
+
+  ${({ theme, disabled }) =>
+    disabled &&
+    css`
+      background-color: ${theme[COLOR_ENUM.BUTTON_DISABLED]};
+      border-color: ${theme[COLOR_ENUM.BUTTON_DISABLED]};
+
+      & > * > * {
+        color: ${theme[COLOR_ENUM.TEXT_BUTTON_DISABLED]};
+      }
+    `}
+
+  &:not(:disabled) {
+    background: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
+    & > * > * {
+      color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_TEXT]};
+    }
+
+    &:hover {
+      border-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_HOVER]};
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_ACTIVE]};
+      & > * > * {
+        color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
+      }
+    }
+  }
+`;
 
 const Content = styled.div`
   display: flex;
@@ -89,6 +126,7 @@ const Button = styled.button<{
   disabled: boolean;
 }>`
   box-shadow: none;
+
   transition: all ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
   & > * > * {
     transition: all ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
@@ -218,6 +256,9 @@ const Button = styled.button<{
 
                   :hover {
                     ::after {
+                      background: ${({ theme }) =>
+                        theme[COLOR_ENUM.BUTTON_ACTIVE]};
+
                       background: #ffffff20;
                     }
                   }
@@ -228,8 +269,10 @@ const Button = styled.button<{
                   }
 
                   :active {
-                    background: ${({ theme }) =>
-                      theme[COLOR_ENUM.BUTTON_PRIMARY]};
+                    ::after {
+                      background: ${({ theme }) =>
+                        theme[COLOR_ENUM.BUTTON_ACTIVE]};
+                    }
                   }
 
                   background: ${({ theme }) =>
@@ -254,15 +297,6 @@ const Button = styled.button<{
           }
           transition: all 0.2s;
 
-          /* :hover {
-            --background: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
-          }
-          :active {
-            --background: ${({ theme }) => theme[COLOR_ENUM.BUTTON_ACTIVE]};
-          }
-
-          --background: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
- */
           border-width: 1px;
 
           border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]};

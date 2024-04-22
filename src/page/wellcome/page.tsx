@@ -1,17 +1,8 @@
 import React from 'react';
 
-import { RouteComponentProps } from 'react-router';
-import { WellcomeContainer, WELLCOME_MODULE_NAME } from '../../epic/wellcome';
-
-import { PageElem } from '../../common/page';
-import { LayoutAppElem } from '../../common/layout-app';
+import { Redirect, RouteComponentProps } from 'react-router';
+import { AUTH_LOGIN_PAGE_PATH } from '../auth-login';
 
 export const Page: React.FC<RouteComponentProps> = () => {
-  return (
-    <PageElem>
-      <LayoutAppElem oneColumn>
-        <WellcomeContainer />
-      </LayoutAppElem>
-    </PageElem>
-  );
+  return <Redirect to={AUTH_LOGIN_PAGE_PATH} />;
 };

@@ -75,7 +75,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
-  --ion-font-family: 'PT Root UI';
+  --ion-font-family: 'Public Sans';
 }
 
 /*@media (prefers-color-scheme: dark) {*/
@@ -191,7 +191,6 @@ http://ionicframework.com/docs/theming/ */
 /*    --ion-toolbar-background: var(--ion-color-step-150);*/
 /*    --ion-toolbar-border-color: var(--ion-color-step-250);*/
 /*  }*/
-
 
 /*  !**/
 /*   * Material Design Dark Theme*/

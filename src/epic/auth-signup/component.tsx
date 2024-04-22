@@ -38,76 +38,111 @@ export const Component: React.FC<{
   return (
     <Form onSubmit={formik.handleSubmit}>
       {isLoading && <LoaderElem />}
-      <GridElem size="mod">
-        <TitleContainer spacing={3}>
-          <TextElem size="heading" type="bold" tid="AUTH.SIGNUP.TITLE" />
-          <TextElem color="textSecondary" tid="AUTH.SIGNUP.DESCRIPTION" />
-        </TitleContainer>
-        <GridElem size="input">
-          <FieldTextElem
-            name={FORM_VALUE_ENUM.EMAIL}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            title="AUTH.SIGNUP.EMAIL"
-            value={getFieldValue(FORM_VALUE_ENUM.EMAIL)}
-            errorMessage={getFieldError(FORM_VALUE_ENUM.EMAIL)}
-            error={isFieldError(FORM_VALUE_ENUM.EMAIL)}
-            type="email"
-          />
-
-          <FieldTextElem
-            name={FORM_VALUE_ENUM.PHONE}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            title="AUTH.SIGNUP.PHONE"
-            value={getFieldValue(FORM_VALUE_ENUM.PHONE)}
-            errorMessage={getFieldError(FORM_VALUE_ENUM.PHONE)}
-            error={isFieldError(FORM_VALUE_ENUM.PHONE)}
-            type="phone"
-          />
-          <FieldTextElem
-            name={FORM_VALUE_ENUM.NAME}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            title="AUTH.SIGNUP.NAME"
-            value={getFieldValue(FORM_VALUE_ENUM.NAME)}
-            errorMessage={getFieldError(FORM_VALUE_ENUM.NAME)}
-            error={isFieldError(FORM_VALUE_ENUM.NAME)}
-          />
-          <FieldPasswordElem
-            name={FORM_VALUE_ENUM.PASSWORD}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            title="AUTH.SIGNUP.PASSWORD"
-            value={getFieldValue(FORM_VALUE_ENUM.PASSWORD)}
-            errorMessage={getFieldError(FORM_VALUE_ENUM.PASSWORD)}
-            error={isFieldError(FORM_VALUE_ENUM.PASSWORD)}
-          />
-
-          <LinkElem
-            tid="AUTH.SIGNUP.LINKS.SIGNUP.LINK"
-            prefixTid="AUTH.SIGNUP.LINKS.SIGNUP.PREFIX"
-            link={AUTH_LOGIN_PAGE_PATH}
-          />
-        </GridElem>
-        <ButtonElem
-          disabled={isSubmitDisabled}
-          type="submit"
-          tid="AUTH.SIGNUP.BUTTON"
+      <TitleContainer spacing={3}>
+        <TextElem
+          size="heading"
+          type="bold"
+          color="textSecondary"
+          isMulishFont
+          tid="AUTH.SIGNUP.TITLE"
         />
+        <TextElem
+          size="main"
+          color="textDefault"
+          type="medium"
+          tid="AUTH.SIGNUP.DESCRIPTION"
+        />
+      </TitleContainer>
+
+      <GridElem size="mod">
+        <GridStyled size="input">
+          <GridContainer>
+            <FieldTextElem
+              name={FORM_VALUE_ENUM.EMAIL}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              title="AUTH.SIGNUP.EMAIL"
+              value={getFieldValue(FORM_VALUE_ENUM.EMAIL)}
+              errorMessage={getFieldError(FORM_VALUE_ENUM.EMAIL)}
+              error={isFieldError(FORM_VALUE_ENUM.EMAIL)}
+              type="email"
+            />
+
+            <FieldTextElem
+              name={FORM_VALUE_ENUM.PHONE}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              title="AUTH.SIGNUP.PHONE"
+              value={getFieldValue(FORM_VALUE_ENUM.PHONE)}
+              errorMessage={getFieldError(FORM_VALUE_ENUM.PHONE)}
+              error={isFieldError(FORM_VALUE_ENUM.PHONE)}
+              type="phone"
+            />
+            <FieldTextElem
+              name={FORM_VALUE_ENUM.NAME}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              title="AUTH.SIGNUP.NAME"
+              value={getFieldValue(FORM_VALUE_ENUM.NAME)}
+              errorMessage={getFieldError(FORM_VALUE_ENUM.NAME)}
+              error={isFieldError(FORM_VALUE_ENUM.NAME)}
+            />
+            <FieldPasswordElem
+              name={FORM_VALUE_ENUM.PASSWORD}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              title="AUTH.SIGNUP.PASSWORD"
+              value={getFieldValue(FORM_VALUE_ENUM.PASSWORD)}
+              errorMessage={getFieldError(FORM_VALUE_ENUM.PASSWORD)}
+              error={isFieldError(FORM_VALUE_ENUM.PASSWORD)}
+            />
+          </GridContainer>
+
+          <ButtonElem
+            sizeText="input"
+            disabled={isSubmitDisabled}
+            color="buttonPrimary"
+            type="submit"
+            fill="solid"
+            tid="AUTH.SIGNUP.BUTTON"
+          />
+          <LinkElem
+            sufixTid="AUTH.SIGNUP.LINKS.SIGNUP.SUFIX"
+            tid="AUTH.SIGNUP.LINKS.SIGNUP.PREFIX"
+            link={AUTH_LOGIN_PAGE_PATH}
+            type="bold"
+            size="small"
+          />
+        </GridStyled>
         {isError && <AlertActionElem text={errorMessage} />}
       </GridElem>
     </Form>
   );
 };
 
+const GridContainer = styled(GridElem)`
+  gap: 16px;
+`;
+
+const GridStyled = styled(GridElem)`
+  background-color: #ffff;
+  padding: 50px 85px;
+  box-shadow: 0px 0px 50px 0px #24231e0d;
+  gap: 40px;
+  border-radius: 35px;
+`;
+
 const TitleContainer = styled(GridElem)`
   justify-items: center;
+  text-align: center;
+  max-width: 546px;
 `;
 
 const Form = styled(FormElem)`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 60px;
+  max-width: 628px;
+  align-items: center;
 `;

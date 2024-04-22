@@ -69,7 +69,6 @@ const Container = styled.div`
 const Calendar = styled(DateRangePicker)<{ iconPrev?: any; themeType?: any }>`
   text-transform: capitalize;
   font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.MAIN]}px;
-  font-family: 'Manrope';
   z-index: 1000;
 
   .rdrMonthsVertical {

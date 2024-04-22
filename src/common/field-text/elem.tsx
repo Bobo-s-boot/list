@@ -15,7 +15,11 @@ import { PROPS_TYPE } from './constant';
 import { i18n } from '../../lib/lang';
 import CalendarIcon from '../../asset/svg/common/calendar.svg';
 
+import fieldSuccessIcon from '../../asset/svg/common/field-success.svg';
+import fieldErrorIcon from '../../asset/svg/common/field-error.svg';
+
 import PhoneInput from 'react-phone-input-2';
+import { IonIcon } from '@ionic/react';
 
 export const Elem: React.FC<PROPS_TYPE> = ({
   title,
@@ -36,6 +40,10 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   errorContainer = true,
   autoFocus = false,
 }) => {
+  const isIcon = !!value;
+  const successIcon = isIcon ? fieldSuccessIcon : '';
+  const defaultIcon = error ? fieldErrorIcon : successIcon;
+
   const refIcon = useRef<HTMLDivElement>(null);
   const handleChange = (e: any) => {
     if (type === 'phone') {
@@ -70,17 +78,25 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   if (disabled) {
     return (
       <Container>
-        {title && <TextElem tid={title} color="textPrimary" />}
+        {title && <TextElem tid={title} type="bold" color="textSecondary" />}
         <FakeInput>
           <TextElem tid={value} />
-          <Icon ref={refIcon}>{icon}</Icon>
+          <Icon ref={refIcon}>
+            {icon ? (
+              icon
+            ) : (
+              <IconContainer>
+                <IconDefault icon={defaultIcon} />
+              </IconContainer>
+            )}
+          </Icon>
         </FakeInput>
       </Container>
     );
   } else {
     return (
       <Container className={className}>
-        {title && <TextElem tid={title} color="textPrimary" />}
+        {title && <TextElem tid={title} type="bold" color="textSecondary" />}
         <Content>
           {type === 'phone' ? (
             <PhoneInputCustom
@@ -102,7 +118,6 @@ export const Elem: React.FC<PROPS_TYPE> = ({
                 error={error}
                 type={type}
                 value={value}
-                // value={inputValue}
                 iconSize={iconSize}
                 placeholder={placeholder && i18n.t(placeholder)}
                 className={className}
@@ -112,7 +127,15 @@ export const Elem: React.FC<PROPS_TYPE> = ({
                 autoFocus={autoFocus}
               />
               <div id="content" />
-              <Icon ref={refIcon}>{icon}</Icon>
+              <Icon ref={refIcon}>
+                {icon ? (
+                  icon
+                ) : (
+                  <IconContainer>
+                    <IconDefault icon={defaultIcon} />
+                  </IconContainer>
+                )}
+              </Icon>
             </>
           )}
         </Content>
@@ -139,11 +162,13 @@ const CustomInput = styled.input<{
   iconSize: number;
 }>`
   cursor: pointer;
-  height: 46px;
   :focus-visible {
     outline: none;
   }
-  font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.REGULAR]};
+  font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
+
+  padding: 16px 20px;
+  min-height: 53px;
 
   padding-right: ${({ iconSize }) => iconSize}px;
 
@@ -152,7 +177,6 @@ const CustomInput = styled.input<{
   text-align: start;
   color: ${({ theme }) => theme[COLOR_ENUM.TEXT_DEFAULT]};
 
-  background: ${({ theme }) => theme[COLOR_ENUM.INPUT]};
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
   width: 100%;
   /* border: none;
@@ -176,8 +200,6 @@ const CustomInput = styled.input<{
   }
 
   &:focus-within {
-    background: ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
-    border-color: ${({ theme }) => theme[COLOR_ENUM.ACTIVE]};
     color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]};
 
     ::placeholder {
@@ -185,7 +207,6 @@ const CustomInput = styled.input<{
       color: ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
     }
   }
-  padding: 0 ${Spacing(4)};
 
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
@@ -218,7 +239,8 @@ const PhoneInputCustom = styled(PhoneInput)<{}>`
     :focus-visible {
       outline: none;
     }
-    height: 46px;
+    padding: 16px 20px;
+    min-height: 53px;
 
     font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.INPUT]}px;
     line-height: 1em;
@@ -236,11 +258,6 @@ const PhoneInputCustom = styled(PhoneInput)<{}>`
 
     &:hover {
       border-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_HOVER]};
-      color: ${({ theme }) => theme[COLOR_ENUM.TEXT_HOVER]};
-    }
-
-    &:focus-within {
-      border-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_ACTIVE]};
     }
 
     ::placeholder {
@@ -248,8 +265,6 @@ const PhoneInputCustom = styled(PhoneInput)<{}>`
     }
 
     &:focus-within {
-      background: ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
-      border-color: ${({ theme }) => theme[COLOR_ENUM.ACTIVE]};
       color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]};
 
       ::placeholder {
@@ -260,10 +275,22 @@ const PhoneInputCustom = styled(PhoneInput)<{}>`
   }
 `;
 
-const FakeInput = styled.div`
+const IconContainer = styled.div`
+  height: 53px;
+  display: flex;
   padding: 0 ${Spacing(4)};
+  align-items: center;
+`;
+
+const IconDefault = styled(IonIcon)`
+  height: 16px;
+  width: 16px;
+`;
+
+const FakeInput = styled.div`
+  padding: 16px 20px;
   position: relative;
-  height: 46px;
+  height: 53px;
   font-size: ${({ theme }) => theme[SIZE_FONT_ENUM.INPUT]}px;
   color: ${({ theme }) => theme[COLOR_ENUM.TEXT_DISABLED]};
   background: ${({ theme }) => theme[COLOR_ENUM.INPUT_DISABLED]};

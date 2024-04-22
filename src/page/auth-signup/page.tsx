@@ -4,20 +4,16 @@ import { LayoutElem } from '../../common/layout';
 import { LayoutAppElem } from '../../common/layout-app';
 import { PageElem } from '../../common/page';
 
-import {
-  AuthSignupContainer,
-  AUTH_SIGNUP_MODULE_NAME,
-} from '../../epic/auth-signup';
-import { HeaderContainer } from '../../epic/header';
-import { WELLCOME_MODULE_NAME } from '../../epic/wellcome';
+import { AuthSignupContainer } from '../../epic/auth-signup';
+import { AuthHeader } from '../../common/auth-header';
 
 export const Page: React.FC<RouteComponentProps> = () => {
   return (
     <PageElem>
       <LayoutAppElem oneColumn>
-        <HeaderContainer path={WELLCOME_MODULE_NAME} />
+        <AuthHeader />
 
-        <LayoutElem size="small" direction="column" fullHeight oneColumn>
+        <LayoutElem size="small" direction="column" oneColumn>
           <AuthSignupContainer />
         </LayoutElem>
       </LayoutAppElem>

@@ -25,6 +25,7 @@ export const Elem: React.FC<{
   oneLine?: boolean;
   className?: string;
   style?: Object;
+  isMulishFont?: boolean;
 }> = ({
   children,
   tid,
@@ -36,6 +37,7 @@ export const Elem: React.FC<{
   lineThrought,
   oneLine,
   className,
+  isMulishFont,
   style = {},
 }) => {
   return (
@@ -48,6 +50,7 @@ export const Elem: React.FC<{
       oneLine={oneLine}
       className={className}
       style={style}
+      isMulishFont={isMulishFont}
     >
       {tid ? i18n.t(tid, tvalue) : children}
     </Text>
@@ -61,8 +64,8 @@ const Text = styled.span<{
   lineHeight?: boolean;
   lineThrought?: boolean;
   oneLine?: boolean;
+  isMulishFont?: boolean;
 }>`
-  /* font-family: 'MacPaw Fixel Display' !important; */
   display: inline-block;
   text-align: top;
   ${({
@@ -72,8 +75,11 @@ const Text = styled.span<{
     lineHeight = false,
     lineThrought = false,
     oneLine = false,
-  }) =>
-    css`
+    isMulishFont,
+  }) => {
+    return css`
+      font-family: ${isMulishFont ? 'Mulish' : 'Public Sans, sans-serif'};
+
       font-size: ${SIZE_FONT_DATA[size]}px;
       color: ${({ theme }) => theme[color]};
       font-weight: ${SIZE_FONT_WEIGHT_DATA[type]};
@@ -84,5 +90,6 @@ const Text = styled.span<{
       /* max-width: ${oneLine ? '280px' : '100%'}; */
       line-height: ${lineHeight ? 1.2 : `normal`};
       /* height: ${lineHeight ? 'auto' : `${SIZE_FONT_DATA[size]}px`}; */
-    `}
+    `;
+  }}
 `;

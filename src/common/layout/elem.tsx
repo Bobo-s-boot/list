@@ -48,6 +48,7 @@ const Center = styled.div<{
   padding: ${Spacing(0)} ${Spacing(10)} ${Spacing(10)} ${Spacing(10)};
   box-sizing: border-box;
   height: ${(props) => (props.fullHeight ? '100%' : 'auto')};
+  align-items: center;
 
   @media screen and (min-width: 900px) {
     /* max-width: ${SIZE_LAYOUT_DATA[SIZE_LAYOUT_ENUM.DEFAULT]}px;

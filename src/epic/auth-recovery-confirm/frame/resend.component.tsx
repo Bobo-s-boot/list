@@ -21,11 +21,6 @@ export const ResendComponent: React.FC<{ email: string }> = ({ email }) => {
         active={active}
       />
       <Message>
-        <TextElem
-          color="textThird"
-          type="light"
-          tid="AUTH.RECOVERY_CONFIRM.RESEND_TEXT"
-        />
         <TimerElem
           setVisible={handleSetActive(true)}
           visible={active}

@@ -16,20 +16,18 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   sufixTid,
   sufixTvalue,
   link,
+  type = 'medium',
+  justifySelf = 'center',
   ...props
 }) => {
   return (
-    <Wrapper>
+    <Wrapper justifySelf={justifySelf}>
       {prefix && prefix}
       {prefixTid && (
         <TextElem {...props} tid={prefixTid} tvalue={prefixTvalue} />
       )}
       <LinkText to={link} className="ion-activatable">
-        <TextElem
-          style={{ textDecoration: 'underline' }}
-          {...props}
-          type="medium"
-        />
+        <TextElem {...props} type={type} />
       </LinkText>
       {sufix && sufix}
       {sufixTid && <TextElem {...props} tid={sufixTid} tvalue={sufixTvalue} />}
@@ -37,18 +35,19 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ justifySelf: 'center' | 'end' | 'start' }>`
   display: flex;
-  gap: 0.5em;
+  gap: 0.3em;
   align-items: center;
-  justify-self: center;
+  justify-self: ${({ justifySelf }) => justifySelf};
 `;
 
 const LinkText = styled(Link)`
   color: ${({ theme }) => theme[COLOR_ENUM.TEXT_LINK]};
-  position: relative;
   transition: all 0.2s;
-  text-decoration: underline;
+  text-decoration: none !important;
+  line-height: 0.8em;
+
   &:hover {
     opacity: ${VALUE_OPACITY_DATA[VALUE_OPACITY_ENUM.HOVER]};
   }

@@ -1,45 +1,85 @@
-/* @font-face {
-  font-family: 'MacPaw Fixel Display';
-  src: local('MacPaw Fixel Display Light'), local('FixelDisplay-Light'),
-    url('../font/FixelDisplay-Light.woff2') format('woff2');
+@font-face {
+  font-family: 'Public Sans';
+  src: local('Public Sans Light'), local('PublicSans-Light'),
+    url('../font/PublicSans-Light.ttf') format('ttf');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'MacPaw Fixel Display';
-  src: local('MacPaw Fixel Display Regular'), local('FixelDisplay-Regular'),
-    url('../font/FixelDisplay-Regular.woff2') format('woff2');
+  font-family: 'Public Sans';
+  src: local('Public Sans Regular'), local('PublicSans-Regular'),
+    url('../font/PublicSans-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'MacPaw Fixel Display';
-  src: local('MacPaw Fixel Display Medium'), local('FixelDisplay-Medium'),
-    url('../font/FixelDisplay-Medium.woff2') format('woff2');
+  font-family: 'Public Sans';
+  src: local('Public Sans Medium'), local('PublicSans-Medium'),
+    url('../font/PublicSans-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'MacPaw Fixel Display';
-  src: local('MacPaw Fixel Display SemiBold'), local('FixelDisplay-SemiBold'),
-    url('../font/FixelDisplay-SemiBold.woff2') format('woff2');
+  font-family: 'Public Sans';
+  src: local('Public Sans SemiBold'), local('PublicSans-SemiBold'),
+    url('../font/PublicSans-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'MacPaw Fixel Display';
-  src: local('MacPaw Fixel Display Bold'), local('FixelDisplay-Bold'),
-    url('../font/FixelDisplay-Bold.woff2') format('woff2');
+  font-family: 'Public Sans';
+  src: local('Public Sans Bold'), local('PublicSans-Bold'),
+    url('../font/PublicSans-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
-} */
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: local('Mulish Light'), local('Mulish-Light'),
+    url('../font/Mulish-Light.ttf') format('ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: local('Mulish Regular'), local('Mulish-Regular'),
+    url('../font/Mulish-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: local('Mulish Medium'), local('Mulish-Medium'),
+    url('../font/Mulish-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: local('Mulish SemiBold'), local('Mulish-SemiBold'),
+    url('../font/Mulish-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: local('Mulish Bold'), local('Mulish-Bold'),
+    url('../font/Mulish-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
 
 * {
-  /* font-family: 'MacPaw Fixel Display' !important; */
+  /* font-family: 'Public Sans', sans-serif; */
 }
 
 main::-webkit-scrollbar {

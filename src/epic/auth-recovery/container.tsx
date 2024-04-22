@@ -53,11 +53,14 @@ export const Container: React.FC = () => {
       [FORM_VALUE_ENUM.TYPE]: [required],
     });
 
-  const onSuccess = (_res: any, values: FORM_VALUE_INTER) =>
+  const onSuccess = (_res: any, values: FORM_VALUE_INTER) => {
     router.push(
-      AUTH_RECOVERY_CONFIRM_PAGE_PATH_DYNAMIC(values[FORM_VALUE_ENUM.EMAIL]),
+      AUTH_RECOVERY_CONFIRM_PAGE_PATH_DYNAMIC(
+        values[FORM_VALUE_ENUM.EMAIL],
+        values[FORM_VALUE_ENUM.PHONE],
+      ),
     );
-
+  };
   const action = useMutation(fetch, { onSuccess });
 
   const formik: FormikValues = useFormik({

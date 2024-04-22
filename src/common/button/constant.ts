@@ -25,6 +25,7 @@ export interface PROPS_TYPE {
   alert?: boolean;
   sizeText?: SIZE_FONT_TYPE;
   iconRight?: string;
+  textColor?: COLOR_TYPE;
 }
 
 export enum SIZE_ENUM {

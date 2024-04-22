@@ -8,7 +8,7 @@ export type VALUE_TRANSITION_TYPE = `${VALUE_TRANSITION_ENUM}`;
 
 export const VALUE_TRANSITION_DATA = {
   [VALUE_TRANSITION_ENUM.DEFAULT]: '0.5s ease-in-out',
-  [VALUE_TRANSITION_ENUM.HOVER]: '0.5s ease-in-out',
+  [VALUE_TRANSITION_ENUM.HOVER]: '0.3s ease-in-out',
   [VALUE_TRANSITION_ENUM.EASE]: 'all 0.5s ease',
 };
 

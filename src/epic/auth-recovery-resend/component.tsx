@@ -1,20 +1,63 @@
 import React from 'react';
-import { ButtonElem } from '../../common/button';
+import { TextElem } from '../../common/text';
+import styled from 'styled-components';
 
 export const Component: React.FC<{
-  onButtonAction: Function;
+  onButtonAction: () => void;
   isLoading?: boolean;
   isError?: boolean;
   errorMessage?: string;
   active?: boolean;
-}> = ({ onButtonAction, isLoading, isError, errorMessage, active }) => {
+  errorContainer?: boolean;
+}> = ({
+  onButtonAction = () => {},
+  isLoading,
+  isError,
+  errorMessage,
+  active,
+  errorContainer = true,
+}) => {
   return (
-    <ButtonElem
-      tid="AUTH.RECOVERY_CONFIRM.RESEND_CODE_BUTTON"
-      color={active ? 'textSecondary' : 'disabled'}
-      fill="outline"
-      onClick={onButtonAction}
-      disabled={!active}
-    />
+    <Container>
+      <div>
+        <TextElem
+          size="small"
+          color="textDefault"
+          tid="AUTH.RECOVERY_CONFIRM.RESEND_TEXT"
+        />{' '}
+        {'  '}
+        <Button disabled={!active || isLoading} onClick={onButtonAction}>
+          <TextElem
+            color={active ? 'buttonActive' : 'buttonDisabled'}
+            size="small"
+            type="bold"
+            tid="AUTH.RECOVERY_CONFIRM.RESEND_CODE_BUTTON"
+          />
+        </Button>
+      </div>
+      {errorContainer && (
+        <>
+          {(isError || errorMessage) && (
+            <ErrorContainer className="errorContainer">
+              <TextElem size="small" color="error">
+                {errorMessage}
+              </TextElem>
+            </ErrorContainer>
+          )}
+        </>
+      )}
+    </Container>
   );
 };
+
+const Container = styled.div`
+  text-align: center;
+`;
+
+const ErrorContainer = styled.div`
+  height: 13.19px;
+`;
+
+const Button = styled.button`
+  background-color: unset;
+`;

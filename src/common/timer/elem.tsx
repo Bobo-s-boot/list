@@ -71,7 +71,7 @@ export const Elem = ({ setVisible, visible, minutes, seconds }: props) => {
 
 const Timer = styled.div`
   font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.DEFAULT]}px;
-  color: ${({ theme }) => theme[COLOR_ENUM.TEXT_SECONDARY]};
-  font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.REGULAR]};
+  color: #000;
+  font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
   text-align: center;
 `;

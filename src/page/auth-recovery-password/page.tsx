@@ -7,6 +7,7 @@ import { PageElem } from '../../common/page';
 import queryString from 'query-string';
 
 import { AuthRecoveryPasswordContainer } from '../../epic/auth-recovery-password';
+import { AuthHeader } from '../../common/auth-header';
 
 export const Page: React.FC<RouteComponentProps> = () => {
   const location = useLocation();
@@ -16,9 +17,8 @@ export const Page: React.FC<RouteComponentProps> = () => {
   return (
     <PageElem>
       <LayoutAppElem oneColumn>
-        <HeaderContainer path title="AUTH.RECOVERY_PASSWORD.TITLE" />
-
-        <LayoutElem size="small" direction="column" fullHeight oneColumn>
+        <AuthHeader />
+        <LayoutElem size="small" direction="column" oneColumn>
           <AuthRecoveryPasswordContainer code={code} />
         </LayoutElem>
       </LayoutAppElem>

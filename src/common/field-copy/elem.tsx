@@ -57,7 +57,7 @@ const Icon = styled(IonIcon)`
   width: 24px;
 `;
 const IconContainer = styled.div`
-  height: 56px;
+  height: 53px;
   display: flex;
   padding: 0 ${Spacing(4)};
   align-items: center;

@@ -99,7 +99,7 @@ export const Page: React.FC = () => {
                 component={AuthSignupPage}
                 exact
               />
-              <Redirect to={WELLCOME_PAGE_PATH} />
+              <Redirect to={AUTH_LOGIN_PAGE_PATH} />
             </Switch>
           )}
         </IonRouterOutlet>

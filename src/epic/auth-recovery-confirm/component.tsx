@@ -20,6 +20,7 @@ export const Component: React.FC<{
   isSubmitDisabled: Function;
   getFieldValue: Function;
   email: string;
+  phone: string;
 }> = ({
   formik,
   isFieldError,
@@ -27,22 +28,37 @@ export const Component: React.FC<{
   isSubmitDisabled,
   getFieldValue,
   email,
+  phone,
 }) => {
   return (
-    <LayoutSectionElem>
-      <FormElem onSubmit={formik.handleSubmit}>
-        <GridElem size="mod">
-          <TitleContainer spacing={3}>
+    <>
+      <Form onSubmit={formik.handleSubmit}>
+        <TitleContainer spacing={3}>
+          <TextElem
+            size="heading"
+            type="bold"
+            color="textSecondary"
+            tid="AUTH.RECOVERY_CONFIRM.TITLE"
+            isMulishFont
+          />
+          <div>
             <TextElem
-              size="heading"
-              type="bold"
-              tid="AUTH.RECOVERY_CONFIRM.TITLE"
-            />
-            <TextElem
-              color="textSecondary"
+              size="main"
+              color="textDefault"
+              type="medium"
               tid="AUTH.RECOVERY_CONFIRM.DESCRIPTION"
+            />{' '}
+            <TextElem
+              size="main"
+              color="textSecondary"
+              type="bold"
+              tid="AUTH.RECOVERY_CONFIRM.DESCRIPTION_PREFIX"
+              tvalue={{ email: email || phone }}
             />
-          </TitleContainer>
+          </div>
+        </TitleContainer>
+
+        <GridStyled size="mod">
           <GridElem size="input">
             <FieldTextElem
               name={FORM_VALUE_ENUM.CODE}
@@ -53,19 +69,38 @@ export const Component: React.FC<{
               errorMessage={getFieldError(FORM_VALUE_ENUM.CODE)}
               error={isFieldError(FORM_VALUE_ENUM.CODE)}
             />
+            <ResendComponent email={email} />
           </GridElem>
           <ButtonElem
             disabled={isSubmitDisabled()}
             type="submit"
             tid="AUTH.RECOVERY_CONFIRM.BUTTON"
           />
-        </GridElem>
-      </FormElem>
-      <ResendComponent email={email} />
-    </LayoutSectionElem>
+        </GridStyled>
+      </Form>
+    </>
   );
 };
 
+const GridStyled = styled(GridElem)`
+  background-color: #ffffff;
+  box-shadow: 0px 0px 50px 0px #24231e0d;
+  padding: 50px 85px;
+  gap: 40px;
+  border-radius: 35px;
+`;
+
 const TitleContainer = styled(GridElem)`
   justify-items: center;
+  text-align: center;
+  max-width: 546px;
+`;
+
+const Form = styled(FormElem)`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  max-width: 628px;
+  align-items: center;
 `;

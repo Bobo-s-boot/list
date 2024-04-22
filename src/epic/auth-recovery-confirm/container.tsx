@@ -21,7 +21,7 @@ const initialValues = {
 
 const validate = (values: FormikValues) => validation(values, config);
 
-export const Container: React.FC<{ email: any }> = ({ email }) => {
+export const Container: React.FC<{ email: any, phone: any }> = ({ email, phone }) => {
   const history = useHistory();
 
   const formik: FormikValues = useFormik({
@@ -60,6 +60,7 @@ export const Container: React.FC<{ email: any }> = ({ email }) => {
       getFieldValue={getFieldValue}
       formik={formik}
       email={email}
+      phone={phone}
     />
   );
 };
