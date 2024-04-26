@@ -10,18 +10,15 @@ import { HeaderContainer } from '../../epic/header';
 import { AuthVerificationContainer } from '../../epic/auth-verification';
 import { LayoutCenterElem } from '../../common/layout-center';
 import { AUTH_TYPE } from '../../data/auth/constant';
+import { AuthHeader } from '../../common/auth-header';
 
 export const Page: React.FC<RouteComponentProps> = () => {
   return (
     <PageElem>
       <LayoutAppElem oneColumn>
-        <HeaderContainer path />
-        <LayoutElem size="small" direction="column" fullHeight oneColumn>
-          <LayoutCenterElem>
-            <GridElem spacing={6}>
-              <AuthVerificationContainer type={AUTH_TYPE.EMAIL} />
-            </GridElem>
-          </LayoutCenterElem>
+        <AuthHeader />
+        <LayoutElem size="small" direction="column" oneColumn>
+          <AuthVerificationContainer type={AUTH_TYPE.EMAIL} />
         </LayoutElem>
       </LayoutAppElem>
     </PageElem>

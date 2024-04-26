@@ -1,29 +1,28 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import { GridElem } from '../../../common/grid';
-import { COLOR_DATA, COLOR_ENUM } from '../../../theme/color';
+import { AuthRecoveryResendContainer } from '../../auth-recovery-resend';
 import { TimerElem } from '../../../common/timer';
 import { TIMER_CONFIG } from '../constant';
-import { AuthVerificationResendContainer } from '../../auth-verification-resend';
-import { TextElem } from '../../../common/text';
 
-export const ResendComponent: React.FC = ({}) => {
-  const [active, setActive] = useState<boolean | null>(false);
+export const ResendComponent: React.FC<{ email?: string }> = ({
+  email = '',
+}) => {
+  const [active, setActive] = useState<boolean | null>(null);
+
   const handleSetActive = (status: boolean) => () => {
     setActive(status);
   };
+
   return (
     <GridElem size="mod">
-      <AuthVerificationResendContainer
+      <AuthRecoveryResendContainer
         actionCb={handleSetActive(false)}
+        email={email}
         active={active}
       />
       <Message>
-        <TextElem
-          tid="AUTH.VERIFICATION.RESEND_TEXT"
-          color="textThird"
-          type="light"
-        />
         <TimerElem
           setVisible={handleSetActive(true)}
           visible={active}
@@ -34,11 +33,9 @@ export const ResendComponent: React.FC = ({}) => {
     </GridElem>
   );
 };
-
 const Message = styled.div`
   text-align: center;
   & > * {
     display: inline;
-    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_SECONDARY]};
   }
 `;

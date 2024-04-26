@@ -17,6 +17,7 @@ import { LinkElem } from '../../common/link';
 import { AUTH_RECOVERY_PAGE_PATH } from '../../page/auth-recovery';
 import { AUTH_TYPE } from '../../data/auth/constant';
 import { AUTH_SIGNUP_PAGE_PATH } from '../../page/auth-signup';
+import { SelectMethodAuthContainer } from '../select-method-auth';
 
 export const Component: React.FC<{
   formik: FormikValues;
@@ -38,6 +39,8 @@ export const Component: React.FC<{
   isLoading,
   isError,
   errorMessage,
+  method,
+  setMethod,
 }) => {
   return (
     <Form onSubmit={formik.handleSubmit}>
@@ -59,17 +62,32 @@ export const Component: React.FC<{
       </TitleContainer>
 
       <GridStyled size="mod">
+        <SelectMethodAuthContainer method={method} setMethod={setMethod} />
+
         <GridElem>
-          <FieldTextElem
-            name={FORM_VALUE_ENUM.EMAIL}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            title="AUTH.LOGIN.EMAIL"
-            value={getFieldValue(FORM_VALUE_ENUM.EMAIL)}
-            errorMessage={getFieldError(FORM_VALUE_ENUM.EMAIL)}
-            error={isFieldError(FORM_VALUE_ENUM.EMAIL)}
-            type="email"
-          />
+          {method === AUTH_TYPE.EMAIL ? (
+            <FieldTextElem
+              name={FORM_VALUE_ENUM.EMAIL}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              title="AUTH.LOGIN.EMAIL"
+              value={getFieldValue(FORM_VALUE_ENUM.EMAIL)}
+              errorMessage={getFieldError(FORM_VALUE_ENUM.EMAIL)}
+              error={isFieldError(FORM_VALUE_ENUM.EMAIL)}
+              type="email"
+            />
+          ) : (
+            <FieldTextElem
+              name={FORM_VALUE_ENUM.PHONE}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              title="AUTH.LOGIN.PHONE"
+              value={getFieldValue(FORM_VALUE_ENUM.PHONE)}
+              errorMessage={getFieldError(FORM_VALUE_ENUM.PHONE)}
+              error={isFieldError(FORM_VALUE_ENUM.PHONE)}
+              type="phone"
+            />
+          )}
 
           <FieldPasswordElem
             name={FORM_VALUE_ENUM.PASSWORD}

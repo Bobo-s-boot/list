@@ -13,6 +13,7 @@ import { CODE_VALUE_ENUM } from './constant';
 import { ResendComponent } from './frame/resend.component.tsx';
 import { LayoutSectionElem } from '../../common/layout-section';
 import { AUTH_TYPE } from '../../data/auth/constant';
+import { FormElem } from '../../common/form';
 
 export const Component: React.FC<{
   formik: FormikValues;
@@ -38,48 +39,69 @@ export const Component: React.FC<{
   type,
 }) => {
   return (
-    <LayoutSectionElem>
-      <Form onSubmit={formik.handleSubmit}>
-        {isLoading && <LoaderElem />}
-        <GridElem size="mod">
-          <TextElem
-            color="textPrimary"
-            size="heading"
-            type="bold"
-            tid="AUTH.VERIFICATION.TITLE"
-            tvalue={{ type }}
+    <Form onSubmit={formik.handleSubmit}>
+      {isLoading && <LoaderElem />}
+      <TitleContainer>
+        <TextElem
+          size="heading"
+          type="bold"
+          color="textSecondary"
+          isMulishFont
+          tid="AUTH.SIGNUP.TITLE"
+          tvalue={{ type }}
+        />
+        <TextElem
+          size="main"
+          color="textDefault"
+          type="medium"
+          tid="AUTH.VERIFICATION.TEXT"
+          tvalue={{ type, login }}
+        />
+      </TitleContainer>
+      <GridStyled size="mod">
+        <GridElem size="input">
+          <FieldTextElem
+            name={CODE_VALUE_ENUM.CODE}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            title="AUTH.VERIFICATION.CODE"
+            value={getFieldValue(CODE_VALUE_ENUM.CODE)}
+            errorMessage={getFieldError(CODE_VALUE_ENUM.CODE)}
+            error={isFieldError(CODE_VALUE_ENUM.CODE)}
           />
-          <TextElem
-            color="textSecondary"
-            size="label"
-            // type="default"
-            tid="AUTH.VERIFICATION.TEXT"
-            tvalue={{ type, login }}
-          />
-          <GridElem size="input">
-            <FieldTextElem
-              name={CODE_VALUE_ENUM.CODE}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              title="AUTH.VERIFICATION.CODE"
-              value={getFieldValue(CODE_VALUE_ENUM.CODE)}
-              errorMessage={getFieldError(CODE_VALUE_ENUM.CODE)}
-              error={isFieldError(CODE_VALUE_ENUM.CODE)}
-            />
-          </GridElem>
-          <ButtonElem
-            disabled={isSubmitDisabled()}
-            type="submit"
-            tid="AUTH.VERIFICATION.BUTTON"
-          />
-          {isError && <AlertActionElem text={errorMessage} />}
+          <ResendComponent />
         </GridElem>
-      </Form>
-      <ResendComponent />
-    </LayoutSectionElem>
+
+        <ButtonElem
+          disabled={isSubmitDisabled()}
+          type="submit"
+          tid="AUTH.VERIFICATION.BUTTON"
+        />
+        {isError && <AlertActionElem text={errorMessage} />}
+      </GridStyled>
+    </Form>
   );
 };
 
-const Form = styled.form`
-  width: 100%;
+const GridStyled = styled(GridElem)`
+  background-color: #ffffff;
+  box-shadow: 0px 0px 50px 0px #24231e0d;
+  padding: 50px 85px;
+  gap: 40px;
+  border-radius: 35px;
+`;
+
+const TitleContainer = styled(GridElem)`
+  justify-items: center;
+  text-align: center;
+  max-width: 546px;
+`;
+
+const Form = styled(FormElem)`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  max-width: 628px;
+  align-items: center;
 `;
