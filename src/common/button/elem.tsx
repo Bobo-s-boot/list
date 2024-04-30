@@ -1,14 +1,10 @@
 import React from 'react';
 
 import styled, { css } from 'styled-components';
-import { COLOR_DATA, COLOR_ENUM, COLOR_TYPE } from '../../theme/color';
+import { COLOR_ENUM, COLOR_TYPE } from '../../theme/color';
 import {
   SIZE_BORDER_RADIUS_DATA,
   SIZE_BORDER_RADIUS_ENUM,
-  SIZE_FONT_DATA,
-  SIZE_FONT_ENUM,
-  SIZE_FONT_WEIGHT_DATA,
-  SIZE_FONT_WEIGHT_ENUM,
   SIZE_ICON_DATA,
   SIZE_ICON_TYPE,
 } from '../../theme/size';
@@ -25,15 +21,11 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   tid,
   tvalue,
   color = 'buttonPrimary',
-  size,
-  type,
   disabled = false,
   onClick,
-  fill = 'solid',
   iconSize = 'small',
   iconLeft,
   textType = 'semi-bold',
-  slot = '',
   ref,
   className,
   sizeText = 'default',
@@ -46,10 +38,6 @@ export const Elem: React.FC<PROPS_TYPE> = ({
     <ButtonStyled
       onClick={handleClick}
       disabled={disabled}
-      // customColor={color}
-      // type={type}
-      // fill={fill}
-      // slot={slot}
       className={className}
       ref={ref}
     >
@@ -67,7 +55,12 @@ export const Elem: React.FC<PROPS_TYPE> = ({
           children
         )}
         {iconRight && (
-          <Icon src={iconRight} iconSize={iconSize} color={color} />
+          <Icon
+            disabled={disabled}
+            src={iconRight}
+            iconSize={iconSize}
+            color={color}
+          />
         )}
       </Content>
     </ButtonStyled>
@@ -77,15 +70,14 @@ export const Elem: React.FC<PROPS_TYPE> = ({
 const ButtonStyled = styled.button`
   padding: 17px 20px;
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
-  transition: border ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
-  border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
+  transition: background-color
+    ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
   width: 100%;
 
   ${({ theme, disabled }) =>
     disabled &&
     css`
       background-color: ${theme[COLOR_ENUM.BUTTON_DISABLED]};
-      border-color: ${theme[COLOR_ENUM.BUTTON_DISABLED]};
 
       & > * > * {
         color: ${theme[COLOR_ENUM.TEXT_BUTTON_DISABLED]};
@@ -93,21 +85,15 @@ const ButtonStyled = styled.button`
     `}
 
   &:not(:disabled) {
-    background: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
+    background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
     & > * > * {
       color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_TEXT]};
     }
 
     &:hover {
-      border-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_HOVER]};
+      background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_HOVER]};
       cursor: pointer;
-    }
-
-    &:active {
-      background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_ACTIVE]};
-      & > * > * {
-        color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
-      }
+      opacity: 0.8;
     }
   }
 `;
@@ -120,215 +106,22 @@ const Content = styled.div`
   width: fit-content;
 `;
 
-const Button = styled.button<{
-  fill: any;
-  customColor?: COLOR_TYPE;
-  disabled: boolean;
-}>`
-  box-shadow: none;
-
-  transition: all ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
-  & > * > * {
-    transition: all ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
-    /* height: 15px; */
-  }
-
-  height: 46px;
-  text-transform: none;
-  letter-spacing: 0;
-
-  border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
-  background: transparent;
-  text-align: center;
-
-  ${({ fill }) => {
-    switch (fill) {
-      case 'solid':
-        return css`
-          position: relative;
-          & > * > * {
-            font-weight: ${SIZE_FONT_WEIGHT_DATA[
-              SIZE_FONT_WEIGHT_ENUM.SEMI_BOLD
-            ]};
-            line-height: 1em;
-            /* color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_TEXT]}; */
-          }
-          width: 100%;
-
-          opacity: 1;
-
-          :focus-visible {
-            outline: none;
-          }
-
-          ::after {
-            content: '';
-            width: 100%;
-            height: 100%;
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: ${SIZE_BORDER_RADIUS_DATA[
-              SIZE_BORDER_RADIUS_ENUM.DEFAULT
-            ]}px;
-          }
-
-          border-width: 1px;
-          ${({ customColor }) => {
-            switch (customColor) {
-              case 'border':
-                return css`
-                  & > * > * {
-                    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_FOURTH]};
-                  }
-                  transition: all 0.2s;
-                  :hover {
-                    ::after {
-                      background: #ffffff10;
-                    }
-                  }
-                  :disabled {
-                    ::after {
-                      background: #ffffff15;
-                    }
-                  }
-                  :active {
-                    background: ${({ theme }) => theme[COLOR_ENUM.BORDER]};
-                  }
-
-                  background: ${({ theme }) => theme[COLOR_ENUM.BORDER]};
-                `;
-              case 'success':
-                return css`
-                  & > * > * {
-                    color: ${({ theme }) => theme[COLOR_ENUM.WHITE]};
-                  }
-                  transition: all 0.2s;
-
-                  :hover {
-                    ::after {
-                      background: #ffffff15;
-                    }
-                  }
-                  :disabled {
-                    ::after {
-                      background: #ffffff20;
-                    }
-                  }
-                  :active {
-                    background: ${({ theme }) => theme[COLOR_ENUM.SUCCESS]};
-                  }
-
-                  background: ${({ theme }) => theme[COLOR_ENUM.SUCCESS]};
-                `;
-              case 'error':
-                return css`
-                  & > * > * {
-                    color: ${({ theme }) => theme[COLOR_ENUM.ERROR]};
-                  }
-                  transition: all 0.2s;
-
-                  :hover {
-                    ::after {
-                      background: #ffffff05;
-                    }
-                  }
-                  :disabled {
-                    ::after {
-                      background: #ffffff20;
-                    }
-                  }
-                  :active {
-                    background: ${({ theme }) =>
-                      theme[COLOR_ENUM.ERROR_BACKGROUND]};
-                  }
-
-                  background: ${({ theme }) =>
-                    theme[COLOR_ENUM.ERROR_BACKGROUND]};
-                `;
-              default:
-                return css`
-                  & > * > * {
-                    color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_TEXT]};
-                  }
-                  transition: all 0.2s;
-
-                  :hover {
-                    ::after {
-                      background: ${({ theme }) =>
-                        theme[COLOR_ENUM.BUTTON_ACTIVE]};
-
-                      background: #ffffff20;
-                    }
-                  }
-                  :disabled {
-                    ::after {
-                      background: #ffffff30;
-                    }
-                  }
-
-                  :active {
-                    ::after {
-                      background: ${({ theme }) =>
-                        theme[COLOR_ENUM.BUTTON_ACTIVE]};
-                    }
-                  }
-
-                  background: ${({ theme }) =>
-                    theme[COLOR_ENUM.BUTTON_PRIMARY]};
-                `;
-            }
-          }}
-        `;
-      case 'outline':
-        return css`
-          & > * > * {
-            font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
-            line-height: 1em;
-            color: ${({ theme }) => theme[COLOR_ENUM.TEXT_SECONDARY]};
-          }
-          width: 100%;
-
-          opacity: 1;
-
-          :focus-visible {
-            outline: none;
-          }
-          transition: all 0.2s;
-
-          border-width: 1px;
-
-          border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]};
-          background: transparent;
-        `;
-      case 'clear':
-        return css`
-          height: auto;
-          width: auto;
-          border-radius: 0;
-          --background-activated: transparent;
-          --background-hover: transparent;
-          & > * > * {
-            font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.MAIN]}px;
-            color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_TEXT]};
-          }
-          --padding-end: 0 !important;
-          --padding-start: 0 !important;
-        `;
-    }
-  }}
-`;
-
 const Icon = styled.img<{
   color?: COLOR_TYPE;
   iconSize: SIZE_ICON_TYPE;
+  disabled?: boolean;
 }>`
   margin: auto;
-  ${({ color = COLOR_ENUM.DEFAULT, iconSize }) => css`
+
+  ${({ color = COLOR_ENUM.DEFAULT, iconSize, disabled }) => css`
     fill: ${({ theme }) => theme[color]};
+    opacity: ${disabled && '0.5'};
 
     height: ${SIZE_ICON_DATA[iconSize]}px;
     width: ${SIZE_ICON_DATA[iconSize]}px;
+
+    :hover {
+      opacity: 0.8;
+    }
   `}
 `;

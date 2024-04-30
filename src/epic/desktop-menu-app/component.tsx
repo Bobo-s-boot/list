@@ -31,7 +31,7 @@ export const Component: React.FC<{
   return (
     <Container>
       <Content spacing={0}>
-        <IconContainer></IconContainer>
+        <IconContainer />
         <DividerElem />
         <PageContainer spacing={0}>
           <GridElem spacing={1}>
@@ -73,7 +73,7 @@ const IconContainer = styled.div`
 const Content = styled(GridElem)`
   width: 270px;
   border-right: 1px solid ${({ theme }) => theme[COLOR_ENUM.DIVIDER]};
-  background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_SECONDARY]};
+  background: ${({ theme }) => theme[COLOR_ENUM.WHITE]};
 
   grid-template-rows: min-content 1px auto 1px min-content;
   height: 100vh;

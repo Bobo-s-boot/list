@@ -22,7 +22,9 @@ export const Elem: React.FC<{
 
 const Card = styled(GridElem)`
   padding: ${Spacing(6)} ${Spacing(5)};
-  background-color: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_SECONDARY]};
+  /* background-color: ${({ theme }) => {
+    return theme[COLOR_ENUM.BACKGROUND_SECONDARY];
+  }}; */
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.CONTENT]}px;
   width: 100%;
 `;

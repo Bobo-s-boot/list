@@ -50,8 +50,8 @@ export const Elem: React.FC<{
   // }, [background, state.type]);
   const bg =
     state.type === THEME_ENUM.LIGHT
-      ? LIGHT_COLOR_DATA[COLOR_ENUM.BACKGROUND_PRIMARY]
-      : DARK_COLOR_DATA[COLOR_ENUM.BACKGROUND_PRIMARY];
+      ? LIGHT_COLOR_DATA[COLOR_ENUM.WHITE]
+      : DARK_COLOR_DATA[COLOR_ENUM.WHITE];
   return (
     <Background
       background={bg}

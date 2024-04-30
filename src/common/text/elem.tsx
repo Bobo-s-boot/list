@@ -78,7 +78,8 @@ const Text = styled.span<{
     isMulishFont,
   }) => {
     return css`
-      font-family: ${isMulishFont ? 'Mulish' : 'Public Sans, sans-serif'};
+      /* font-family: ${isMulishFont ? 'Mulish' : 'Public Sans, sans-serif'}; */
+      font-family: 'Helvetica';
 
       font-size: ${SIZE_FONT_DATA[size]}px;
       color: ${({ theme }) => theme[color]};

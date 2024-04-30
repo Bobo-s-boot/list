@@ -77,5 +77,5 @@ export const Component: React.FC<{
 };
 
 const ButtonStyled = styled(ButtonElem)`
-  margin-top: 22px;
+  margin-top: 29px;
 `;

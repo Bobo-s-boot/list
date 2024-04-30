@@ -25,7 +25,7 @@ export const Component: React.FC<{
 };
 
 const Container = styled(GridElem)<{}>`
-  padding: ${Spacing(3)} ${Spacing(4)};
+  padding: 17.5px;
   width: 100%;
   display: flex;
   gap: ${Spacing(3)};
@@ -40,6 +40,6 @@ const Container = styled(GridElem)<{}>`
   cursor: pointer;
 
   :hover {
-    background: ${({ theme }) => theme[COLOR_ENUM.BUTTON_HOVER]};
+    background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
   }
 `;

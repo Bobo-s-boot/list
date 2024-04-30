@@ -111,7 +111,7 @@ export const Component: React.FC<{
           type="submit"
           fill="solid"
           tid="AUTH.LOGIN.BUTTON"
-          sizeText="input"
+          sizeText="main"
         />
         <LinkElem
           tid="AUTH.LOGIN.LINKS.RECOVERY.PREFIX"
@@ -119,6 +119,7 @@ export const Component: React.FC<{
           link={AUTH_SIGNUP_PAGE_PATH}
           type="bold"
           size="small"
+          color="textSecondary"
         />
 
         {isError && <AlertActionElem text={errorMessage} type="error" />}

@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import styled, { css } from 'styled-components';
+import PhoneInput from 'react-phone-input-2';
+
 import { COLOR_ENUM } from '../../theme/color';
 import { Spacing } from '../../theme';
 import {
@@ -14,12 +16,6 @@ import { TextElem } from '../text';
 import { PROPS_TYPE } from './constant';
 import { i18n } from '../../lib/lang';
 import CalendarIcon from '../../asset/svg/common/calendar.svg';
-
-import fieldSuccessIcon from '../../asset/svg/common/field-success.svg';
-import fieldErrorIcon from '../../asset/svg/common/field-error.svg';
-
-import PhoneInput from 'react-phone-input-2';
-import { IonIcon } from '@ionic/react';
 
 export const Elem: React.FC<PROPS_TYPE> = ({
   title,
@@ -40,9 +36,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   errorContainer = true,
   autoFocus = false,
 }) => {
-  const isIcon = !!value;
-  const successIcon = isIcon ? fieldSuccessIcon : '';
-  const defaultIcon = error ? fieldErrorIcon : successIcon;
+  const isSuccess = !!value && !error;
 
   const refIcon = useRef<HTMLDivElement>(null);
   const handleChange = (e: any) => {
@@ -78,28 +72,30 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   if (disabled) {
     return (
       <Container>
-        {title && <TextElem tid={title} type="bold" color="textSecondary" />}
+        {title && <TextElem tid={title} type="bold" color="textPrimary" />}
         <FakeInput>
-          <TextElem tid={value} />
-          <Icon ref={refIcon}>
-            {icon ? (
-              icon
-            ) : (
-              <IconContainer>
-                <IconDefault icon={defaultIcon} />
-              </IconContainer>
-            )}
-          </Icon>
+          <TextElem
+            color="textDisabled"
+            tid={value || i18n.t(placeholder || '')}
+          />
         </FakeInput>
       </Container>
     );
   } else {
     return (
       <Container className={className}>
-        {title && <TextElem tid={title} type="bold" color="textSecondary" />}
+        {title && (
+          <TextElem
+            tid={title}
+            size="default"
+            type="medium"
+            color="textSecondary"
+          />
+        )}
         <Content>
           {type === 'phone' ? (
             <PhoneInputCustom
+              isSuccess={isSuccess}
               country={'ua'}
               countryCodeEditable={false}
               onChange={handleChange}
@@ -112,6 +108,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
           ) : (
             <>
               <CustomInput
+                isSuccess={isSuccess}
                 name={name}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -127,29 +124,22 @@ export const Elem: React.FC<PROPS_TYPE> = ({
                 autoFocus={autoFocus}
               />
               <div id="content" />
-              <Icon ref={refIcon}>
-                {icon ? (
-                  icon
-                ) : (
-                  <IconContainer>
-                    <IconDefault icon={defaultIcon} />
-                  </IconContainer>
-                )}
-              </Icon>
+              <Icon ref={refIcon}>{icon && icon}</Icon>
+            </>
+          )}
+
+          {errorContainer && (
+            <>
+              {(error || errorMessage) && (
+                <ErrorContainer className="errorContainer">
+                  <TextElem size="alert" color="error">
+                    {errorMessage}
+                  </TextElem>
+                </ErrorContainer>
+              )}
             </>
           )}
         </Content>
-        {errorContainer && (
-          <>
-            {(error || errorMessage) && (
-              <ErrorContainer className="errorContainer">
-                <TextElem size="alert" color="error">
-                  {errorMessage}
-                </TextElem>
-              </ErrorContainer>
-            )}
-          </>
-        )}
       </Container>
     );
   }
@@ -160,6 +150,7 @@ const CustomInput = styled.input<{
   onIonChange?: Function;
   type?: string;
   iconSize: number;
+  isSuccess: boolean;
 }>`
   cursor: pointer;
   :focus-visible {
@@ -184,19 +175,20 @@ const CustomInput = styled.input<{
 
   transition: all 0.2s;
 
-  border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER_DEFAULT]};
+  border: 1px solid
+    ${({ theme, isSuccess }) =>
+      isSuccess
+        ? theme[COLOR_ENUM.BORDER_ACTIVE_SELECT]
+        : theme[COLOR_ENUM.BORDER_DEFAULT]};
 
   &:hover {
-    border-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_HOVER]};
-    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_HOVER]};
   }
 
   &:focus-within {
-    border-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_ACTIVE]};
   }
 
   ::placeholder {
-    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]};
+    /* color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]}; */
   }
 
   &:focus-within {
@@ -217,8 +209,7 @@ const CustomInput = styled.input<{
   ${({ error }) =>
     error &&
     css`
-      border-color: ${({ theme }) => theme[COLOR_ENUM.ERROR]} !important;
-      color: ${({ theme }) => theme[COLOR_ENUM.ERROR]} !important;
+      /* border-color: ${({ theme }) => theme[COLOR_ENUM.ERROR]} !important; */
     `}
 
   ::-webkit-calendar-picker-indicator {
@@ -231,7 +222,7 @@ const CustomInput = styled.input<{
   }
 `;
 
-const PhoneInputCustom = styled(PhoneInput)<{}>`
+const PhoneInputCustom = styled(PhoneInput)<{ isSuccess: boolean }>`
   && div {
     display: none;
   }
@@ -242,6 +233,7 @@ const PhoneInputCustom = styled(PhoneInput)<{}>`
     padding: 16px 20px;
     min-height: 53px;
 
+    font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
     font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.INPUT]}px;
     line-height: 1em;
     text-align: start;
@@ -252,13 +244,13 @@ const PhoneInputCustom = styled(PhoneInput)<{}>`
       SIZE_BORDER_RADIUS_ENUM.DEFAULT
     ]}px;
     width: 100%;
-    border: none;
     outline: none;
-    border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER_DEFAULT]};
 
-    &:hover {
-      border-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_HOVER]};
-    }
+    border: 1px solid
+      ${({ theme, isSuccess }) =>
+        isSuccess
+          ? theme[COLOR_ENUM.BORDER_ACTIVE_SELECT]
+          : theme[COLOR_ENUM.BORDER_DEFAULT]};
 
     ::placeholder {
       color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]};
@@ -275,32 +267,23 @@ const PhoneInputCustom = styled(PhoneInput)<{}>`
   }
 `;
 
-const IconContainer = styled.div`
-  height: 53px;
-  display: flex;
-  padding: 0 ${Spacing(4)};
-  align-items: center;
-`;
-
-const IconDefault = styled(IonIcon)`
-  height: 16px;
-  width: 16px;
-`;
-
 const FakeInput = styled.div`
   padding: 16px 20px;
   position: relative;
   height: 53px;
   font-size: ${({ theme }) => theme[SIZE_FONT_ENUM.INPUT]}px;
+  font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
   color: ${({ theme }) => theme[COLOR_ENUM.TEXT_DISABLED]};
   background: ${({ theme }) => theme[COLOR_ENUM.INPUT_DISABLED]};
   line-height: 1em;
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
   width: 100%;
-  border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]};
+  border: 1px dashed ${({ theme }) => theme[COLOR_ENUM.BORDER_DEFAULT]};
+
   overflow: hidden;
   display: flex;
   align-items: center;
+
   && > span {
     width: calc(100% - 40px);
     display: block;
@@ -310,22 +293,18 @@ const FakeInput = styled.div`
   }
 `;
 
-const ErrorMessage = styled.div`
-  display: flex;
-  gap: 10px;
-`;
-
 const Content = styled.div`
   position: relative;
 `;
 
 const ErrorContainer = styled.div`
   height: 13.19px;
+  position: absolute;
 `;
 
 const Container = styled.div`
   display: grid;
-  grid-gap: ${Spacing(2)};
+  grid-gap: ${Spacing(3)};
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,

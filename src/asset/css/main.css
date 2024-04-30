@@ -1,39 +1,39 @@
 @font-face {
-  font-family: 'Public Sans';
-  src: local('Public Sans Light'), local('PublicSans-Light'),
-    url('../font/PublicSans-Light.ttf') format('ttf');
+  font-family: 'Helvetica';
+  src: local('Helvetica Light'), local('Helvetica-Light'),
+    url('../font/Helvetica-Light.ttf') format('ttf');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Public Sans';
-  src: local('Public Sans Regular'), local('PublicSans-Regular'),
-    url('../font/PublicSans-Regular.ttf') format('truetype');
+  font-family: 'Helvetica';
+  src: local('Helvetica Regular'), local('Helvetica-Regular'),
+    url('../font/Helvetica-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Public Sans';
-  src: local('Public Sans Medium'), local('PublicSans-Medium'),
-    url('../font/PublicSans-Medium.ttf') format('truetype');
+  font-family: 'Helvetica';
+  src: local('Helvetica Medium'), local('Helvetica-Medium'),
+    url('../font/Helvetica-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Public Sans';
-  src: local('Public Sans SemiBold'), local('PublicSans-SemiBold'),
-    url('../font/PublicSans-SemiBold.ttf') format('truetype');
+  font-family: 'Helvetica';
+  src: local('Helvetica SemiBold'), local('Helvetica-SemiBold'),
+    url('../font/Helvetica-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Public Sans';
-  src: local('Public Sans Bold'), local('PublicSans-Bold'),
-    url('../font/PublicSans-Bold.ttf') format('truetype');
+  font-family: 'Helvetica Sans';
+  src: local('Helvetica Bold'), local('Helvetica-Bold'),
+    url('../font/Helvetica-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }

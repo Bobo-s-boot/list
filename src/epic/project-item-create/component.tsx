@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import styled from 'styled-components';
 import { FormikValues } from 'formik';
 
 import { FORM_VALUE_ENUM } from './constant';
@@ -14,10 +14,9 @@ import { i18n } from '../../lib/lang';
 
 import { TextElem } from '../../common/text';
 import { DoubleContainerElem } from '../../common/double-container';
-import styled from 'styled-components';
 import { Spacing } from '../../theme';
 import { ContentContainerElem } from '../../common/content-container';
-import addIcon from '../../asset/svg/button/plus.svg';
+import addIcon from '../../asset/svg/common/add-small.svg';
 import { COLOR_ENUM } from '../../theme/color';
 import {
   SIZE_BORDER_RADIUS_DATA,
@@ -84,6 +83,7 @@ export const Component: React.FC<{
                   fill="solid"
                   disabled={isSubmitDisabled()}
                   iconRight={addIcon}
+                  iconSize="very_small"
                   onClick={formik.handleSubmit}
                 />
               </DoubleContainerElem>
@@ -95,7 +95,7 @@ export const Component: React.FC<{
         </FormElem>
       ) : (
         <AddContainer onClick={() => setFormVisible(true)}>
-          <TextElem tid="PROJECT.CREATE.ADD" type="semi-bold" size="main" />
+          <TextElem tid="PROJECT.CREATE.ADD" type="medium" size="main" />
           <AddIconLarge />
         </AddContainer>
       )}
@@ -104,7 +104,7 @@ export const Component: React.FC<{
 };
 
 const ButtonStyled = styled(ButtonElem)`
-  margin-top: 24px;
+  margin-top: 29px;
 `;
 
 const TitleContainer = styled.div`
@@ -113,11 +113,15 @@ const TitleContainer = styled.div`
   align-items: center;
 `;
 
-const AddContainer = styled(TitleContainer)`
+const AddContainer = styled(TitleContainer)<{ disabled?: boolean }>`
   padding: ${Spacing(4)} ${Spacing(5)};
   cursor: pointer;
-  border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]};
+  border: 2px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]};
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.CARD]}px;
+  opacity: ${({ disabled }) => disabled && '0.4'};
+  :hover {
+    opacity: 0.8;
+  }
 `;
 
 const Icon = styled.img`

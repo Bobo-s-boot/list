@@ -27,7 +27,7 @@ export const Elem: React.FC<{
         onChange={handleChange}
       />
       <div style={{ height: '20px' }}>
-        {tid && <TextElem tid={tid} type="medium" />}
+        {tid && <TextElem color="textDefault" tid={tid} type="medium" />}
       </div>
     </Container>
   );

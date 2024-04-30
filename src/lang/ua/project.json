@@ -25,6 +25,7 @@
     "DELETE": "Delete"
   },
   "LIST": {
-    "TITLE": "Project list"
+    "TITLE": "Project list",
+    "HEADER": "Проекти"
   }
 }

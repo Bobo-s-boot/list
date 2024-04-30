@@ -1,7 +1,7 @@
 {
   "LOGIN": "Login should consist of Latin letters and numbers",
   "NUMBER": "Код введено не коректно",
-  "EMAIL": "Enter a valid mail address",
+  "EMAIL": "Введіть дійсну адресу електронної пошти",
   "PASSWORD": "Пароль має бути мінімум 8 символів, та містити цифри та букви",
   "PASSWORD_REPEAT": "Those passwords didn’t match. Try again.",
   "LENGTH": "Довжина поля має бути {{length}} символи",

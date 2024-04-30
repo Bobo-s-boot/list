@@ -12,7 +12,12 @@ import {
 import { useMutation } from 'react-query';
 
 import { Component } from './component';
-import { phoneOperator, phoneUA, required } from '../../lib/validation/service';
+import {
+  email,
+  phoneOperator,
+  phoneUA,
+  required,
+} from '../../lib/validation/service';
 import { FormikValues, useFormik } from 'formik';
 import { validation } from '../../lib/validation';
 import { action as fetch } from './action';
@@ -44,7 +49,7 @@ export const Container: React.FC = () => {
     validation(values, {
       [FORM_VALUE_ENUM.EMAIL]:
         formik.values[FORM_VALUE_ENUM.TYPE] === AUTH_TYPE.EMAIL
-          ? [required]
+          ? [required, email]
           : [],
       [FORM_VALUE_ENUM.PHONE]:
         formik.values[FORM_VALUE_ENUM.TYPE] === AUTH_TYPE.PHONE
