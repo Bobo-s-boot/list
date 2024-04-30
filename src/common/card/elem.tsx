@@ -40,7 +40,6 @@ const Card = styled.div<{ wide: boolean; control?: boolean }>`
   max-width: 100%;
   transition: all 0.2s;
   &:hover {
-    border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_THIRD]};
-    background-color: ${({ theme }) => theme[COLOR_ENUM.HOVER]};
+    opacity: 0.8;
   }
 `;
