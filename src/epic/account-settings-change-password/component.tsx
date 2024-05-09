@@ -82,7 +82,7 @@ export const Component: React.FC<{
           <DoubleContainerElem>
             <ButtonElem
               disabled={isSubmitDisabled()}
-              type="submit"
+              type="add"
               tid="SETTINGS.CHANGE_PASSWORD.BUTTON"
             />
           </DoubleContainerElem>

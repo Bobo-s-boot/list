@@ -5,8 +5,8 @@ import {
   SIZE_BORDER_RADIUS_DATA,
   SIZE_BORDER_RADIUS_ENUM,
 } from '../../theme/size';
-import MoreIcon from '../../asset/svg/button/more.svg';
-import MoreIconDark from '../../asset/svg/button/more-dark.svg';
+import MoreIcon from '../../asset/svg/common/more.svg';
+import MoreIconDark from '../../asset/svg/common/more.svg';
 
 import { SelectElem } from '../select';
 
@@ -30,14 +30,11 @@ export const Elem: React.FC<PROPS_TYPE> = ({ ...props }) => {
     );
   };
   return (
-    <div>
-      <Select
-        {...props}
-        onChange={props.onChange}
-        noAlertContainer
-        customComponents={{ DropdownIndicator: DropdownIndicator }}
-      />
-    </div>
+    <Select
+      {...props}
+      onChange={props.onChange}
+      customComponents={{ DropdownIndicator: DropdownIndicator }}
+    />
   );
 };
 

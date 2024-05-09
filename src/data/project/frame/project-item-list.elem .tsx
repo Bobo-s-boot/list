@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { PROJECT_ITEM_DATA_INTER } from '../constant';
 import { Spacing } from '../../../theme';
 
 import { CardElem } from '../../../common/card';
-
 import { TextElem } from '../../../common/text';
 import { ProjectItemDeleteContainer } from '../../../epic/project-item-delete';
 import { ProjectItemUpdateContainer } from '../../../epic/project-item-update';
@@ -76,14 +75,19 @@ const Elem: React.FC<PROJECT_ITEM_DATA_INTER> = ({ id, name }) => {
               size="main"
             />
             <RightContainer>
-              <ModalCntainer>
-                <MoreIcon onClick={() => setModalVisible(true)} />
+              <ModalContainer>
+                <MoreIconStyled onClick={() => setModalVisible(true)} />
 
                 {modalVisible && (
                   <ModalElem ref={ref}>
                     <ModalItem onClick={handleUpdateVisible}>
                       <EditIcon />
-                      <TextElem tid="PROJECT.UPDATE.MODAL.EDIT" />
+                      <TextElem
+                        type="bold"
+                        size="main"
+                        color="textSecondary"
+                        tid="PROJECT.UPDATE.MODAL.EDIT"
+                      />
                     </ModalItem>
                     <DividerElem />
                     <ModalItem onClick={deleteModalOpen}>
@@ -95,7 +99,7 @@ const Elem: React.FC<PROJECT_ITEM_DATA_INTER> = ({ id, name }) => {
                     </ModalItem>
                   </ModalElem>
                 )}
-              </ModalCntainer>
+              </ModalContainer>
 
               <ProjectItemDeleteContainer
                 projectId={id}
@@ -109,8 +113,21 @@ const Elem: React.FC<PROJECT_ITEM_DATA_INTER> = ({ id, name }) => {
     </>
   );
 };
-const ModalCntainer = styled.div`
+
+const MoreIconStyled = styled(MoreIcon)`
   position: relative;
+  top: 1px;
+  width: auto;
+  height: 22.4px;
+`;
+
+const ModalContainer = styled.div`
+  position: relative;
+  display: flex;
+
+  &:hover {
+    opacity: 1 !important;
+  }
 `;
 
 const ModalItem = styled.div`
@@ -168,17 +185,14 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   gap: ${Spacing(4)};
-  height: 24px;
   align-items: center;
-  span {
-    line-height: normal;
-  }
 `;
 
 const RightContainer = styled.div`
   display: flex;
   gap: ${Spacing(4)};
   align-items: center;
+  /* height: 19.2px; */
 `;
 
 export { Elem as ProjectItemElem };

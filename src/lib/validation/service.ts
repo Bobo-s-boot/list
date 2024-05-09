@@ -173,19 +173,17 @@ export const balanceAmount = (max: number) => (value: string) => {
 //
 //   return null;
 // };
-//
-// const ARRAY_LENGTH_MAX_TID = 'VALIDATION.ARRAY_LENGTH_MAX';
-//
-// export const arrayLengthMax =
-//   (length) =>
-//   (value = []) => {
-//     if (value.length > length) {
-//       return getError(ARRAY_LENGTH_MAX_TID, { length });
-//     }
-//
-//     return null;
-//   };
-//
+
+export const arrayLengthMax =
+  (length: number) =>
+  (value = []) => {
+    if (value.length > length) {
+      return getError('VALIDATION.ARRAY_LENGTH_MAX', { length });
+    }
+
+    return null;
+  };
+
 // // eslint-disable-next-line max-len
 // const URL_EXP = /^[A-z0-9-]{3,100}$/;
 // export const url = (value) =>

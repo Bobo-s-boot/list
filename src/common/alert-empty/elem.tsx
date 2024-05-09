@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { TextElem } from '../text';
 import { Spacing } from '../../theme';
 import { IonImg } from '@ionic/react';
-import emptyIcon from '../../asset/img/icon/empty.svg';
+import emptyIcon from '../../asset/svg/common/empty.svg';
 
 export const Elem: React.FC<{
   tid?: string;

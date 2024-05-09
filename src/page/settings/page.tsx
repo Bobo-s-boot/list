@@ -21,11 +21,8 @@ export const Page: React.FC<RouteComponentProps> = () => {
         <LayoutElem size="small">
           <LayoutSectionElem spacing={5}>
             <AccountSettingsChangeEmailContainer />
-            <DividerElem />
             <AccountSettingsChangePhoneContainer />
-            <DividerElem />
             <AccountSettingsChangePasswordContainer />
-            <DividerElem />
             <AccountSettingsChangeNameContainer />
           </LayoutSectionElem>
         </LayoutElem>

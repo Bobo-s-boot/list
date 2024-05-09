@@ -101,16 +101,6 @@ export const Container: React.FC<{
 
   const getFieldValue = (name: FORM_VALUE_TYPE) => formik.values[name];
 
-  const setFieldValue = (name: FORM_VALUE_TYPE, e: SELECT_OPTION_ITEM_DATA) =>
-    formik.setFieldValue(name, e.value);
-
-  const setValue = (options: SELECT_OPTION_ITEM_DATA[], value: any) => {
-    const optionList = options?.filter(
-      (item: SELECT_OPTION_ITEM_DATA) => item.value == formik.values[value],
-    )[0];
-    return optionList ? optionList : null;
-  };
-
   return (
     <Component
       isFieldError={isFieldError}

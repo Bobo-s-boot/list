@@ -1,0 +1,87 @@
+{
+  "CREATE": {
+    "HEADER": "New Webinar",
+    "ADD": {
+      "MANAGER": "Прикріпити менеджера",
+      "ADMIN": "Прикріпити адміна"
+    },
+    "FORM": {
+      "PHONE": "Телефон",
+      "NAME": "Ім'я",
+      "ADDRESS": "Адрес",
+      "DAYS": "Дні роботи",
+      "TIME": "Час роботи",
+      "ORDER_CURRENCY": "Замовлення валюти",
+      "TRADE_CRYPTO": "Криптовалюти",
+      "DESIRED_CURRENCY": "Список наявних валют",
+      "ADDRESS_PLACEHOLDER": "Місто, вулиця, будинок, поверх, офіс",
+      "ORDER_CURRENCY_PLACEHOLDER": "Можна замовити валюту",
+      "ORDER_CRYPTO_PLACEHOLDER": "Обмінює криптовалюту",
+      "DESIRED_CURRENCY_PLACEHOLDER": ""
+    },
+    "BUTTON": { "CREATE": "Створити обмінний пункт", "IMPORT": "Import office" }
+  },
+  "IMPORT": {
+    "HEADER": "Import webinar",
+    "TITLE": "Webinar",
+    "FORM": {
+      "SPEAKER": "Speaker Info",
+      "TOPICS": "Topics",
+      "SESSION": "Sessions",
+      "SPEAKER_IMG": "Speaker image",
+      "PERSON": "Person",
+      "EVENT": "Event",
+      "LOGO": "Webinar logo"
+    },
+    "BUTTON": { "IMPORT": "Import webinar" }
+  },
+  "TAB": {
+    "SETTINGS": "Settings",
+    "SESSION": "Sessions",
+    "VIEWER": "Viewer",
+    "PERSON": "Bot",
+    "EVENT": "Scenario"
+  },
+  "UPDATE": {
+    "TITLE": "General information",
+    "FORM": {
+      "NAME": "Name",
+      "SPEAKER": "Speaker ID",
+      "SPEAKER_NAME": "Speaker Name",
+      "PROJECT": "Project",
+      "SPEAKER_IMG": "Speaker avatar",
+      "LOGO": "Logo"
+    },
+    "MEDIA": { "TITLE": "Media" },
+    "BUTTON": { "UPDATE": "Save changes", "DELETE": "Delete webinar" },
+    "SUBTOPIC": {
+      "TITLE": "Subtopics",
+      "BUTTON": {
+        "CREATE": "Add subtopic",
+        "IMPORT": "Import"
+      }
+    }
+  },
+  "STATUS": {
+    "PLAN": " Planned",
+    "ONGOING": " Ongoing",
+    "COMPLETED": " Completed"
+  },
+  "LIST": {
+    "HEADER": "My webinars",
+    "FILTER": {
+      "TAB": {
+        "PLANNED": "Planned",
+        "COMING_SOON": "Coming now",
+        "COMPLATED": "Completed",
+        "AUTO": "Automatic"
+      },
+      "SEARCH": "Search",
+      "SELECT": {
+        "PLACEHOLDER": "By project"
+      },
+      "CREATE": "Create new"
+    },
+    "SESSION": "{{value}} Sessions"
+  }
+}

@@ -69,7 +69,7 @@ export const Component: React.FC<{
             errorMessage={getFieldError(CODE_VALUE_ENUM.CODE)}
             error={isFieldError(CODE_VALUE_ENUM.CODE)}
           />
-          <ResendComponent />
+          <ResendComponent email={login} />
         </GridElem>
 
         <ButtonElem

@@ -8,6 +8,7 @@ import NAVIGATION from './navigation.json';
 
 import LANG from './lang.json';
 import PROJECT from './project.json';
+import OFFICE from './office.json';
 
 export const UA = {
   translation: {
@@ -20,5 +21,6 @@ export const UA = {
     NAVIGATION,
     LANG,
     PROJECT,
+    OFFICE,
   },
 };

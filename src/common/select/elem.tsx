@@ -1,10 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import Select, {
-  DropdownIndicatorProps,
-  components,
-  ValueContainerProps,
-} from 'react-select';
+import React, { useRef } from 'react';
 import styled, { css } from 'styled-components';
+import Select, { DropdownIndicatorProps, components } from 'react-select';
+
 import {
   SIZE_BORDER_RADIUS_DATA,
   SIZE_BORDER_RADIUS_ENUM,
@@ -18,17 +15,10 @@ import { Spacing } from '../../theme';
 import { PROPS_TYPE } from './constant';
 import { TextElem } from '../text';
 import { i18n } from '../../lib/lang';
-import {
-  VALUE_OPACITY_DATA,
-  VALUE_OPACITY_ENUM,
-  VALUE_TRANSITION_DATA,
-  VALUE_TRANSITION_ENUM,
-} from '../../theme/value';
+import { VALUE_OPACITY_DATA, VALUE_OPACITY_ENUM } from '../../theme/value';
 import arrowIcon from '../../asset/svg/common/selectArrow.svg';
 import checkIcon from '../../asset/svg/common/selectCheck.svg';
 import { ReactComponent as IndicatorIcon } from '../../asset/svg/common/selectIndicator.svg';
-import { useOnClickOutside } from 'usehooks-ts';
-import { ButtonElem } from '../button';
 
 export const Elem: React.FC<PROPS_TYPE> = ({
   placeholder,
@@ -43,9 +33,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   noOptionsMessage,
   dynamic,
   onInputChange,
-
   textOnly = false,
-  noAlertContainer = false,
   customComponents = {},
   className,
   isDisabled = undefined,
@@ -53,7 +41,6 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   isRtl = false,
   closeMenuOnSelect = true,
   hideSelectedOptions = false,
-  ref,
   formatGroupLabel,
   maxWidth = '100%',
 }) => {
@@ -61,73 +48,10 @@ export const Elem: React.FC<PROPS_TYPE> = ({
 
   const handleChange = (e: any) => {
     onChange(name, e);
-    if (refSelect?.current)
-      if (!isMulti) {
-        // refSelect.current.blur();
-      }
-    // else {
-    //   refSelect.current.focus();
-    // }
   };
   const noOptionsMessageFn = (inputValue: string) => {
     return !inputValue ? 'Почніть вводити' : 'Нічого не знайдено';
   };
-
-  // const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props) => {
-  //   return (
-  //     <components.DropdownIndicator {...props}>
-  //       <img src={indicatorIcon} />
-  //     </components.DropdownIndicator>
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   if (refSelect?.current) {
-  //     refSelect.current.focus();
-  //   }
-  // }, [value]);
-
-  // interface CustomValueContainerProps extends ValueContainerProps {
-  //   selectProps: any;
-  //   children: any;
-  // }
-
-  // const ValueContainer: React.FC<CustomValueContainerProps> = ({
-  //   ...props
-  // }) => {
-  //   let [values, input] = props.children;
-
-  //   if (Array.isArray(values)) {
-  //     values = props.selectProps.value.map((x: any) => x.label).join(', ');
-  //   }
-
-  //   useEffect(() => {
-  //     console.log(prevValue, values, prevValue !== values, 'select11');
-
-  //     if (refSelect?.current && isMulti && prevValue !== values) {
-  //       refSelect.current.focus();
-  //     }
-
-  //     setTimeout(() => {
-  //       prevValue = values;
-  //     }, 500);
-  //   }, [values]);
-
-  //   return (
-  //     <>
-  //       {isMulti ? (
-  //         <components.ValueContainer {...props}>
-  //           <CustomTextElem maxWidth={maxWidth}>{values}</CustomTextElem>
-  //           {input}
-  //         </components.ValueContainer>
-  //       ) : (
-  //         <components.ValueContainer {...props}>
-  //           {values}
-  //         </components.ValueContainer>
-  //       )}
-  //     </>
-  //   );
-  // };
 
   const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props) => {
     return (
@@ -137,15 +61,16 @@ export const Elem: React.FC<PROPS_TYPE> = ({
     );
   };
 
-  // useEffect(() => {
-  //   if (refSelect?.current) {
-  //     refSelect.current.focus();
-  //   }
-  // }, [value]);
-
   return (
     <Container className={className}>
-      {title && <TextElem tid={title} color="textPrimary" />}
+      {title && (
+        <TextElem
+          size="input"
+          type="medium"
+          tid={title}
+          color="textSecondary"
+        />
+      )}
       <CustomSelect
         value={value}
         classNamePrefix={'Select'}
@@ -166,10 +91,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
         isMulti={isMulti}
         isRtl={isRtl}
         hideSelectedOptions={hideSelectedOptions}
-        // controlShouldRenderValue={!hideSelectedOptions}
         formatGroupLabel={formatGroupLabel}
-        // menuIsOpen
-        // autoFocus={true}
         ref={refSelect}
         components={{
           ...customComponents,
@@ -179,26 +101,22 @@ export const Elem: React.FC<PROPS_TYPE> = ({
       />
 
       {(error || errorMessage) && (
-        <ErrorMessage>
+        <>
           <TextElem size="alert" color="error">
             {errorMessage}
           </TextElem>
-        </ErrorMessage>
+        </>
       )}
     </Container>
   );
 };
 
-const ErrorContainer = styled.div`
-  height: 13.19px;
-`;
-
 const Container = styled.div`
   display: grid;
-  grid-gap: 2px;
-`;
+  grid-gap: ${Spacing(3)};
 
-const ErrorMessage = styled.div``;
+  width: 100%;
+`;
 
 const CustomSelect = styled(Select)<{
   textOnly: boolean;
@@ -213,7 +131,6 @@ const CustomSelect = styled(Select)<{
 
   .Select__multi-value {
     background-color: transparent;
-    /* min-width: 40% !important; */
   }
 
   .Select__multi-value:not(:nth-last-child(2)) ::after {
@@ -226,8 +143,21 @@ const CustomSelect = styled(Select)<{
     display: none;
   }
 
+  :hover {
+    .Select__value-container--is-multi {
+      color: ${({ theme }) => theme[COLOR_ENUM.TEXT_SECONDARY]};
+    }
+
+    .Select__placeholder {
+      color: ${({ theme }) => theme[COLOR_ENUM.TEXT_SECONDARY]};
+    }
+  }
+
   .Select__value-container--is-multi {
     text-overflow: ellipsis;
+    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PRIMARY]};
+
+    height: 1em;
     ${({ maxWidth }) => {
       if (maxWidth) {
         return css`
@@ -252,11 +182,11 @@ const CustomSelect = styled(Select)<{
     border-radius: ${SIZE_BORDER_RADIUS_DATA[
       SIZE_BORDER_RADIUS_ENUM.DEFAULT
     ]}px;
-    min-height: 46px;
-    max-height: 46px;
+    min-height: 53px;
+    max-height: 53px;
     cursor: pointer;
 
-    padding: ${Spacing(0)} ${Spacing(4.5)} ${Spacing(0)} ${Spacing(3)};
+    padding: ${Spacing(4)} ${Spacing(5)};
     width: 100%;
 
     box-shadow: none;
@@ -266,7 +196,7 @@ const CustomSelect = styled(Select)<{
     background: ${({ theme }) => theme[COLOR_ENUM.INPUT]};
 
     &:hover {
-      border-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_HOVER]};
+      border-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_DEFAULT]};
 
       .Select__single-value {
         color: ${({ theme }) => theme[COLOR_ENUM.SELECT_TEXT_HOVER]} !important;
@@ -309,9 +239,9 @@ const CustomSelect = styled(Select)<{
   }
   & .Select__placeholder {
     margin: 0;
-    color: ${({ theme }) => theme[COLOR_ENUM.SELECT_TEXT_PLACEHOLDER]};
+    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PRIMARY]};
     font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.INPUT]}px;
-    font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.REGULAR]};
+    font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
   }
   & .Select__indicator-separator {
     display: none;
@@ -356,7 +286,7 @@ const CustomSelect = styled(Select)<{
     border-bottom: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]};
     font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.INPUT]}px;
     padding: ${Spacing(4)};
-    height: 48;
+    height: 53;
   }
   & .Select__option:hover {
     background-color: ${({ theme }) => theme[COLOR_ENUM.BORDER]};
@@ -393,7 +323,7 @@ const CustomSelect = styled(Select)<{
           background-color: transparent;
           padding-top: 0;
           padding-bottom: 0;
-          height: 50px;
+          height: 53px;
         }
         & .Select__menu {
           border-radius: ${SIZE_BORDER_RADIUS_DATA[

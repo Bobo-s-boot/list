@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   SIZE_BORDER_RADIUS_DATA,
   SIZE_BORDER_RADIUS_ENUM,
@@ -9,16 +9,29 @@ import { COLOR_ENUM } from '../../theme/color';
 import { Spacing } from '../../theme';
 
 import { IonRippleEffect } from '@ionic/react';
+import {
+  VALUE_TRANSITION_DATA,
+  VALUE_TRANSITION_ENUM,
+} from '../../theme/value';
 
 export const Elem: React.FC<{
   children: ReactNode;
   handleClick?: any;
   wide?: boolean;
+  disabled?: boolean;
   control?: boolean;
   className?: string;
-}> = ({ children, handleClick, wide = false, control = false, className }) => {
+}> = ({
+  children,
+  handleClick,
+  wide = false,
+  control = false,
+  className,
+  disabled = false,
+}) => {
   return (
     <Card
+      disabled={disabled}
       onClick={handleClick}
       wide={wide}
       control={control}
@@ -30,16 +43,37 @@ export const Elem: React.FC<{
   );
 };
 
-const Card = styled.div<{ wide: boolean; control?: boolean }>`
-  padding: ${Spacing(4)} ${Spacing(5)};
-  background-color: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_SECONDARY]};
-  border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.CARD]}px;
-  cursor: pointer;
+const Card = styled.div<{
+  wide: boolean;
+  control?: boolean;
+  disabled?: boolean;
+}>`
+  padding: 20px;
+  border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
+  transition: background-color
+    ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
+  width: 100%;
 
-  border: 1px solid ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
-  max-width: 100%;
-  transition: all 0.2s;
-  &:hover {
-    opacity: 0.8;
+  ${({ theme, disabled = false }) =>
+    disabled &&
+    css`
+      background-color: ${theme[COLOR_ENUM.BUTTON_DISABLED]};
+
+      & > * > * {
+        color: ${theme[COLOR_ENUM.TEXT_BUTTON_DISABLED]};
+      }
+    `}
+
+  &:not(:disabled) {
+    background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
+    & > * > * {
+      color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_TEXT]};
+    }
+
+    &:hover {
+      background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_HOVER]};
+      cursor: pointer;
+      opacity: 0.8;
+    }
   }
 `;

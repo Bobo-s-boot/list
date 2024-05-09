@@ -114,7 +114,7 @@ const TitleContainer = styled.div`
 `;
 
 const AddContainer = styled(TitleContainer)<{ disabled?: boolean }>`
-  padding: ${Spacing(4)} ${Spacing(5)};
+  padding: ${Spacing(5)};
   cursor: pointer;
   border: 2px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]};
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.CARD]}px;

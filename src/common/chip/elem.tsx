@@ -15,21 +15,21 @@ export const Elem: React.FC<{
   text?: string;
   children?: ReactNode;
   color?: COLOR_TYPE;
+  textColor?: COLOR_TYPE;
 }> = ({
   tid,
   tvalue,
-
   color = 'backgroundSecondary',
+  textColor = 'textActive',
 }) => {
   return (
     <Container color={color}>
       <TextElem
-        color="active"
+        color={textColor}
         size="chip"
-        type="semi-bold"
+        type="regular"
         tid={tid}
         tvalue={tvalue}
-        style={{ height: '13px' }}
       />
     </Container>
   );
@@ -38,12 +38,11 @@ export const Elem: React.FC<{
 const Container = styled.div<{
   color: COLOR_TYPE;
 }>`
-  background: ${({ theme }) => theme[COLOR_ENUM.ACTIVE_BACKGROUND]};
-  padding: ${Spacing(0.5)} ${Spacing(3)};
+  background: ${({ theme, color }) => theme[color]};
+  padding: ${Spacing(2)} ${Spacing(5)};
   margin: auto 0;
 
   display: flex;
   align-items: center;
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.CHIP]}px;
-  height: 24px;
 `;

@@ -12,6 +12,12 @@ import { Spacing } from '../../theme';
 import { THEME_ENUM } from '../../data/theme/constant';
 import { useSelector } from '../../lib/store';
 import { THEME_MODULE_NAME } from '../../data/theme';
+import {
+  VALUE_OPACITY_DATA,
+  VALUE_OPACITY_ENUM,
+  VALUE_TRANSITION_DATA,
+  VALUE_TRANSITION_ENUM,
+} from '../../theme/value';
 
 export const Elem: React.FC<PROPS_TYPE> = ({ ...props }) => {
   const [visible, setVisible] = useState(false);
@@ -58,4 +64,9 @@ const IconContainer = styled.div`
   padding: 0 ${Spacing(4)};
   align-items: center;
   cursor: pointer;
+  transition: opacity ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
+
+  &:hover {
+    opacity: ${VALUE_OPACITY_DATA[VALUE_OPACITY_ENUM.HOVER]};
+  }
 `;

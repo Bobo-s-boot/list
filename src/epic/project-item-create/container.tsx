@@ -8,13 +8,12 @@ import {
 } from './constant';
 
 import { Component } from './component';
-import { email, required } from '../../lib/validation/service';
+import { required } from '../../lib/validation/service';
 import { FormikValues, useFormik } from 'formik';
 import { validation } from '../../lib/validation';
 import { useMutation, useQueryClient } from 'react-query';
 import { action as fetch } from './action';
 import { convert } from './convert';
-import { SELECT_OPTION_ITEM_DATA } from '../../common/select';
 import { PROJECT_LIST_MODULE_NAME } from '../project-list';
 
 export const Container: React.FC<{}> = ({}) => {

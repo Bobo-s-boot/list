@@ -62,7 +62,7 @@ export const Component: React.FC<{
             </GridElem>
             <ButtonStyled
               disabled={isSubmitDisabled()}
-              type="submit"
+              type="add"
               tid="SETTINGS.CHANGE_PHONE.BUTTON"
               // fill="transparent"
             />

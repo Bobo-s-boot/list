@@ -2,23 +2,20 @@ import React from 'react';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route, Switch } from 'react-router';
-import { SettingsPage, SETTINGS_PAGE_PATH } from '../settings';
 
 import { useSelector } from '../../lib/store';
 import { AUTH_MODULE_NAME } from '../../data/auth';
+import { STORE_INTER, USER_ROLE } from '../../data/auth/constant';
 
+import { SettingsPage, SETTINGS_PAGE_PATH } from '../settings';
 import {
   AUTH_RECOVERY_CONFIRM_PAGE_PATH,
   AuthRecoveryConfirmPage,
 } from '../auth-recovery-confirm';
-
 import {
   AUTH_RECOVERY_PASSWORD_PAGE_PATH,
   AuthRecoveryPasswordPage,
 } from '../auth-recovery-password';
-
-import { STORE_INTER, USER_ROLE } from '../../data/auth/constant';
-
 import { AUTH_LOGIN_PAGE_PATH, AuthLoginPage } from '../auth-login';
 import { AUTH_RECOVERY_PAGE_PATH, AuthRecoveryPage } from '../auth-recovery';
 import { AUTH_SIGNUP_PAGE_PATH, AuthSignupPage } from '../auth-signup';
@@ -32,6 +29,12 @@ import {
   AUTH_VERIFICATION_EMAIL_PAGE_PATH,
   AuthVerificationEmailPage,
 } from '../auth-verification-email';
+import { OFFICE_PAGE_PATH, OfficePage } from '../office-list';
+import { OFFICE_CREATE_PAGE_PATH, OfficeCreatePage } from '../office-create';
+import {
+  OFFICE_ITEM_UPDATE_PAGE_PATH,
+  OfficeItemUpdatePage,
+} from '../office-update';
 
 export const Page: React.FC = () => {
   const state: STORE_INTER = useSelector((s) => s[AUTH_MODULE_NAME]);
@@ -47,6 +50,19 @@ export const Page: React.FC = () => {
           {isLogged() ? (
             <Switch>
               <Route path={SETTINGS_PAGE_PATH} component={SettingsPage} exact />
+              <Route path={OFFICE_PAGE_PATH} component={OfficePage} exact />
+              <Route
+                path={OFFICE_CREATE_PAGE_PATH}
+                component={OfficeCreatePage}
+                exact
+              />
+
+              <Route
+                path={OFFICE_ITEM_UPDATE_PAGE_PATH}
+                component={OfficeItemUpdatePage}
+                exact
+              />
+
               <Route path={PROJECT_PAGE_PATH} component={ProjectPage} exact />
               <Route
                 path={AUTH_VERIFICATION_PHONE_PAGE_PATH}

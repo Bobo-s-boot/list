@@ -58,7 +58,7 @@ export const Component: React.FC<{
             />
             <ButtonStyled
               disabled={isSubmitDisabled()}
-              type="submit"
+              type="add"
               tid="SETTINGS.CHANGE_NAME.BUTTON"
             />
           </DoubleContainerElem>

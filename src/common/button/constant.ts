@@ -46,6 +46,7 @@ export enum ROLE_ENUM {
   BUTTON = 'button',
   SUBMIT = 'submit',
   RESET = 'reset',
+  ADD = 'add',
 }
 
 export type ROLE_TYPE = `${ROLE_ENUM}`;
@@ -54,6 +55,7 @@ export const ROLE_DATA = {
   [ROLE_ENUM.BUTTON]: 'button',
   [ROLE_ENUM.SUBMIT]: 'submit',
   [ROLE_ENUM.RESET]: 'reset',
+  [ROLE_ENUM.ADD]: 'add',
 };
 
 export enum FILL_ENUM {

@@ -9,7 +9,7 @@ import {
   SIZE_ICON_TYPE,
 } from '../../theme/size';
 import { TextElem } from '../text';
-import { PROPS_TYPE } from './constant';
+import { PROPS_TYPE, ROLE_ENUM, ROLE_TYPE } from './constant';
 import {
   VALUE_TRANSITION_DATA,
   VALUE_TRANSITION_ENUM,
@@ -20,7 +20,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   children,
   tid,
   tvalue,
-  color = 'buttonPrimary',
+  color = 'textSecondary',
   disabled = false,
   onClick,
   iconSize = 'small',
@@ -30,7 +30,10 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   className,
   sizeText = 'default',
   iconRight,
+  type = 'button',
 }) => {
+  const isIcon = iconLeft || iconRight;
+
   const handleClick = (e: any) => {
     if (onClick) onClick(e);
   };
@@ -40,8 +43,9 @@ export const Elem: React.FC<PROPS_TYPE> = ({
       disabled={disabled}
       className={className}
       ref={ref}
+      type={type}
     >
-      <Content>
+      <Content isIcon={isIcon}>
         {iconLeft && <Icon src={iconLeft} iconSize={iconSize} color={color} />}
         {tid ? (
           <TextElem
@@ -66,44 +70,72 @@ export const Elem: React.FC<PROPS_TYPE> = ({
     </ButtonStyled>
   );
 };
-
-const ButtonStyled = styled.button`
-  padding: 17px 20px;
+const ButtonStyled = styled.button<{ type: ROLE_TYPE | any }>`
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
   transition: background-color
     ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
   width: 100%;
 
-  ${({ theme, disabled }) =>
-    disabled &&
+  ${({ theme, disabled, type }) =>
+    type === ROLE_ENUM.BUTTON &&
     css`
-      background-color: ${theme[COLOR_ENUM.BUTTON_DISABLED]};
+      padding: 17px 20px;
 
-      & > * > * {
-        color: ${theme[COLOR_ENUM.TEXT_BUTTON_DISABLED]};
+      ${disabled &&
+      css`
+        background-color: ${theme[COLOR_ENUM.BUTTON_DISABLED]};
+
+        & > * > * {
+          color: ${theme[COLOR_ENUM.TEXT_BUTTON_DISABLED]};
+        }
+      `}
+
+      &:not(:disabled) {
+        background-color: ${theme[COLOR_ENUM.BUTTON_PRIMARY]};
+        & > * > * {
+          color: ${theme[COLOR_ENUM.BUTTON_TEXT]};
+        }
+
+        &:hover {
+          background-color: ${theme[COLOR_ENUM.BUTTON_HOVER]};
+          cursor: pointer;
+          opacity: 0.8;
+        }
       }
     `}
 
-  &:not(:disabled) {
-    background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
-    & > * > * {
-      color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_TEXT]};
-    }
+  ${({ theme, disabled, type }) =>
+    type === ROLE_ENUM.ADD &&
+    css`
+      background-color: ${theme[COLOR_ENUM.WHITE]};
 
-    &:hover {
-      background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_HOVER]};
+      padding: ${Spacing(4)};
       cursor: pointer;
-      opacity: 0.8;
-    }
-  }
+      border: 2px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]};
+      border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.CARD]}px;
+
+      :hover {
+        opacity: 0.8;
+      }
+
+      ${disabled &&
+      css`
+        opacity: 0.5;
+
+        :hover {
+          opacity: 0.5;
+        }
+      `}
+    `}
 `;
 
-const Content = styled.div`
+const Content = styled.div<{ isIcon: boolean }>`
   display: flex;
-  align-items: end;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: ${({ isIcon }) => (isIcon ? 'space-between' : 'center')};
+  text-align: center;
+  width: 100%;
   gap: ${Spacing(1.5)};
-  width: fit-content;
 `;
 
 const Icon = styled.img<{
@@ -111,17 +143,11 @@ const Icon = styled.img<{
   iconSize: SIZE_ICON_TYPE;
   disabled?: boolean;
 }>`
-  margin: auto;
-
   ${({ color = COLOR_ENUM.DEFAULT, iconSize, disabled }) => css`
     fill: ${({ theme }) => theme[color]};
     opacity: ${disabled && '0.5'};
 
     height: ${SIZE_ICON_DATA[iconSize]}px;
     width: ${SIZE_ICON_DATA[iconSize]}px;
-
-    :hover {
-      opacity: 0.8;
-    }
   `}
 `;

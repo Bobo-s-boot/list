@@ -14,14 +14,16 @@ import settingActiveIcon from '../../asset/svg/menu-app/setting-active.svg';
 
 import projectIcon from '../../asset/svg/menu-app/project.svg';
 import projectActiveIcon from '../../asset/svg/menu-app/project-active.svg';
+
+import officeIcon from '../../asset/svg/menu-app/office.svg';
+import officeActiveIcon from '../../asset/svg/menu-app/office-active.svg';
+
 import { SETTINGS_PAGE_PATH } from '../../page/settings';
-import { AUTH_MODULE_NAME } from '../../data/auth';
-import { useSelector } from '../../lib/store';
-import { DividerElem } from '../../common/divider';
 import { COLOR_ENUM } from '../../theme/color';
 import { AccountSettingsLogoutContainer } from '../account-settings-logout';
 import { ThemeChangeContainer } from '../theme-change';
 import { PROJECT_PAGE_PATH } from '../../page/project';
+import { OFFICE_PAGE_PATH } from '../../page/office-list';
 
 export const Component: React.FC<{
   isActivePath: Function;
@@ -32,7 +34,6 @@ export const Component: React.FC<{
     <Container>
       <Content spacing={0}>
         <IconContainer />
-        <DividerElem />
         <PageContainer spacing={0}>
           <GridElem spacing={1}>
             <View
@@ -42,12 +43,18 @@ export const Component: React.FC<{
               iconActive={projectActiveIcon}
               isActive={isActivePath(PROJECT_PAGE_PATH)}
             />
+            <View
+              href={OFFICE_PAGE_PATH}
+              title="NAVIGATION.TAB_APP.OFFICE"
+              icon={officeIcon}
+              iconActive={officeActiveIcon}
+              isActive={isActivePath(OFFICE_PAGE_PATH)}
+            />
           </GridElem>
           <ThemeContainer>
             <ThemeChangeContainer />
           </ThemeContainer>
         </PageContainer>
-        <DividerElem />
         <SettingsContainer>
           <View
             href={SETTINGS_PAGE_PATH}
@@ -72,10 +79,9 @@ const IconContainer = styled.div`
 
 const Content = styled(GridElem)`
   width: 270px;
-  border-right: 1px solid ${({ theme }) => theme[COLOR_ENUM.DIVIDER]};
   background: ${({ theme }) => theme[COLOR_ENUM.WHITE]};
 
-  grid-template-rows: min-content 1px auto 1px min-content;
+  grid-template-rows: min-content auto min-content;
   height: 100vh;
   position: fixed;
 `;

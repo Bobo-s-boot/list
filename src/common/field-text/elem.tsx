@@ -72,7 +72,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   if (disabled) {
     return (
       <Container>
-        {title && <TextElem tid={title} type="bold" color="textPrimary" />}
+        {title && <TextElem tid={title} type="medium" color="textPrimary" />}
         <FakeInput>
           <TextElem
             color="textDisabled"
@@ -191,12 +191,12 @@ const CustomInput = styled.input<{
     /* color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]}; */
   }
 
-  &:focus-within {
+  &:hover {
     color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]};
 
     ::placeholder {
       display: none;
-      color: ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
+      color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]} !important;
     }
   }
 
@@ -256,7 +256,7 @@ const PhoneInputCustom = styled(PhoneInput)<{ isSuccess: boolean }>`
       color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]};
     }
 
-    &:focus-within {
+    &:hover {
       color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]};
 
       ::placeholder {
@@ -324,4 +324,7 @@ const Icon = styled.div`
   height: max-content;
   box-sizing: content-box;
   z-index: 2;
+  :hover {
+    opacity: ;
+ }
 `;
