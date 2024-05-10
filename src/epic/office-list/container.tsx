@@ -14,6 +14,7 @@ export const Container: React.FC<{}> = () => {
   const [type, setType] = useState('');
 
   const preFetch = useInfiniteQuery({
+    // the list is not typed in UseInfiniteQueryResult<AxiosResponse<any, any>, unknown>
     queryKey: [MODULE_NAME],
     queryFn: ({ pageParam = 1 }) =>
       action({
@@ -26,11 +27,16 @@ export const Container: React.FC<{}> = () => {
       return lastPage.length ? allPages.length + 1 : 1;
     },
   });
+  // const list = preFetch?.data?.pages[0].list;
+
+  // console.log('list', list);
+  console.log('preFetch?.data?.pages', preFetch?.data?.pages);
 
   const data = useMemo(() => {
     return convertOfficeList(
       preFetch?.data?.pages.reduce((acc: any, page: any) => {
-        return [...acc, ...page];
+        console.log('page', page);
+        return [...acc, ...page.list];
       }, []) as OFFICE_ITEM_DATA_RAW_INTER[],
     );
   }, [preFetch?.data]);
@@ -96,7 +102,7 @@ export const Container: React.FC<{}> = () => {
 
   return (
     <Component
-      data={convertMockData}
+      data={data}
       isLoading={isLoading()}
       isError={isError()}
       isSuccess={isSuccess()}

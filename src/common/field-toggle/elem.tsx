@@ -22,7 +22,7 @@ export const Elem: React.FC<{
   title: string;
   placeholder?: string;
 }> = ({ handleClick = () => {}, checked = false, placeholder, title }) => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(checked);
 
   const onClick = () => {
     setActive((prev) => !prev);

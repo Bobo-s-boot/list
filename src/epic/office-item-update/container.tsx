@@ -19,6 +19,7 @@ import { validation } from '../../lib/validation';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { OFFICE_LIST_MODULE_NAME } from '../office-list';
 import { getData, updateData } from './action';
+import { OFFICE_ITEM_VALUE_INTER } from '../office-item-create';
 
 export const Container: React.FC<{
   officeId: string;
@@ -36,9 +37,13 @@ export const Container: React.FC<{
     formik.setFieldValue(name, [...values.map((e: any) => e.value)]);
   };
 
-  const data: any = useQuery(MODULE_NAME, () =>
+  const response = useQuery(MODULE_NAME, () =>
     getData(officeId).then((data: any) => data),
   );
+
+  const data = response?.data as unknown as OFFICE_ITEM_VALUE_INTER;
+
+  console.log('data', data);
 
   const onSuccess = (d: any, values: any) => {
     query.invalidateQueries(OFFICE_LIST_MODULE_NAME);
@@ -64,14 +69,14 @@ export const Container: React.FC<{
   const validate = (values: FormikValues) => validation(values, config);
 
   const initialValues = {
-    [FORM_VALUE_ENUM.NAME]: data.name,
-    [FORM_VALUE_ENUM.PHONE]: data.phone,
-    [FORM_VALUE_ENUM.ADDRESS]: data.address,
-    [FORM_VALUE_ENUM.TIME]: data.time,
-    [FORM_VALUE_ENUM.TRADE_CRYPTO]: data.isTradeCrypto,
-    [FORM_VALUE_ENUM.ORDER_CURRENCY]: data.isOrderCurrency,
-    [FORM_VALUE_ENUM.DAYS]: data.days,
-    [FORM_VALUE_ENUM.DESIRED_CURRENCY]: data.desiredCurrency,
+    [FORM_VALUE_ENUM.NAME]: data?.name || '',
+    [FORM_VALUE_ENUM.PHONE]: data?.phone || '',
+    [FORM_VALUE_ENUM.ADDRESS]: data?.address || '',
+    [FORM_VALUE_ENUM.TIME]: data?.time || [],
+    [FORM_VALUE_ENUM.TRADE_CRYPTO]: data?.isTradeCrypto || false,
+    [FORM_VALUE_ENUM.ORDER_CURRENCY]: data?.isOrderCurrency || false,
+    [FORM_VALUE_ENUM.DAYS]: data?.days || [],
+    [FORM_VALUE_ENUM.DESIRED_CURRENCY]: data?.desiredCurrency || [],
   };
 
   const formik: FormikValues = useFormik({

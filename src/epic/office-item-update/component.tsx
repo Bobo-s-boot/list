@@ -100,6 +100,7 @@ export const Component: React.FC<{
               />
 
               <SelectElem
+                value={getFieldValue(FORM_VALUE_ENUM.DAYS)}
                 name={FORM_VALUE_ENUM.DAYS}
                 title="OFFICE.CREATE.FORM.DAYS"
                 onChange={onChangeSelect}
@@ -118,6 +119,7 @@ export const Component: React.FC<{
                 }
                 title="OFFICE.CREATE.FORM.ORDER_CURRENCY"
                 placeholder="OFFICE.CREATE.FORM.ORDER_CURRENCY_PLACEHOLDER"
+                checked={getFieldValue(FORM_VALUE_ENUM.ORDER_CURRENCY)}
               />
               <FieldToggleElem
                 handleClick={(e) =>
@@ -125,6 +127,7 @@ export const Component: React.FC<{
                 }
                 title="OFFICE.CREATE.FORM.TRADE_CRYPTO"
                 placeholder="OFFICE.CREATE.FORM.ORDER_CRYPTO_PLACEHOLDER"
+                checked={getFieldValue(FORM_VALUE_ENUM.TRADE_CRYPTO)}
               />
             </DoubleContainerElem>
 
@@ -138,7 +141,7 @@ export const Component: React.FC<{
               name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
               title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
               onChange={onChangeSelect}
-              value={stateSelect[FORM_VALUE_ENUM.DESIRED_CURRENCY]}
+              value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
               errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
               error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
               options={currencyOptions}
