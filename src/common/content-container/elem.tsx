@@ -21,7 +21,6 @@ export const Elem: React.FC<{
 };
 
 const Card = styled(GridElem)`
-  padding: ${Spacing(6)} ${Spacing(5)};
   /* background-color: ${({ theme }) => {
     return theme[COLOR_ENUM.BACKGROUND_SECONDARY];
   }}; */

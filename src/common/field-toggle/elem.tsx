@@ -17,27 +17,22 @@ import {
 } from '../../theme/size';
 
 export const Elem: React.FC<{
-  handleClick?: (e: boolean) => void;
+  handleClick?: any;
   checked?: boolean;
-  title: string;
+  tid: string;
   placeholder?: string;
-}> = ({ handleClick = () => {}, checked = false, placeholder, title }) => {
-  const [active, setActive] = useState(checked);
-
-  const onClick = () => {
-    setActive((prev) => !prev);
-    handleClick(active);
+  name?: string;
+}> = ({ handleClick = () => {}, checked, placeholder, tid, name }) => {
+  const handleChange = (e: any) => {
+    if (handleClick) {
+      handleClick({ target: { name: name, value: !checked } });
+    }
   };
 
   return (
-    <Container onClick={onClick}>
-      {title && (
-        <TextElem
-          tid={title}
-          type="medium"
-          color="textSecondary"
-          size="input"
-        />
+    <Container onClick={handleChange}>
+      {tid && (
+        <TextElem tid={tid} type="medium" color="textSecondary" size="input" />
       )}
       <FakeInput>
         <TextElem
@@ -46,7 +41,7 @@ export const Elem: React.FC<{
           type="medium"
           tid={i18n.t(placeholder || '')}
         />
-        <ToggleElem checked={!active} />
+        <ToggleElem checked={checked} name={name} handleClick={handleClick} />
       </FakeInput>
     </Container>
   );

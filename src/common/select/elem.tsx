@@ -42,7 +42,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   closeMenuOnSelect = true,
   hideSelectedOptions = false,
   formatGroupLabel,
-  maxWidth = '100%',
+  maxWidth = '356px',
 }) => {
   const refSelect = useRef<any>();
 
@@ -73,7 +73,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
       )}
       <CustomSelect
         value={value}
-        classNamePrefix={'Select'}
+        classNamePrefix="Select"
         options={options}
         placeholder={placeholder && i18n.t(placeholder)}
         onChange={handleChange}
@@ -157,7 +157,6 @@ const CustomSelect = styled(Select)<{
     text-overflow: ellipsis;
     color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PRIMARY]};
 
-    height: 1em;
     ${({ maxWidth }) => {
       if (maxWidth) {
         return css`
@@ -168,6 +167,8 @@ const CustomSelect = styled(Select)<{
 
     font-size:14px !important;
     font-weight: 400;
+    /* height: 1.4em; */
+    max-height: 16px;
 
     white-space: nowrap;
     overflow: hidden;
@@ -182,11 +183,11 @@ const CustomSelect = styled(Select)<{
     border-radius: ${SIZE_BORDER_RADIUS_DATA[
       SIZE_BORDER_RADIUS_ENUM.DEFAULT
     ]}px;
-    min-height: 53px;
     max-height: 53px;
+
     cursor: pointer;
 
-    padding: ${Spacing(4)} ${Spacing(5)};
+    padding: 18px ${Spacing(5)};
     width: 100%;
 
     box-shadow: none;
@@ -251,7 +252,8 @@ const CustomSelect = styled(Select)<{
     color: #000;
     padding: 0;
     transition: all 0.2s;
-    margin-left: ${Spacing(2)};
+    /* margin-top: ${Spacing(2)}; */
+    align-self: center !important;
   }
   & .Select__menu {
     border-radius: 0px 0px

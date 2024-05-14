@@ -18,11 +18,6 @@ export const Elem: React.FC<{ path?: string | boolean }> = ({ path }) => {
   };
 
   return (
-    <ButtonElem
-      onClick={handleAction}
-      iconLeft={arrowBack}
-      fill="clear"
-      iconSize="large"
-    />
+    <ButtonElem onClick={handleAction} iconLeft={arrowBack} iconSize="large" />
   );
 };

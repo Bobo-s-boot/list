@@ -16,19 +16,20 @@ export const Elem: React.FC<{ tabList: TAB_ELEM_TYPE[] }> = ({ tabList }) => {
 
   const history = useHistory();
 
+  const isActive = (path: string) => router.pathname.includes(path);
+
   return (
     <Container>
       {tabList.map((item: TAB_ELEM_TYPE) => (
         <TabItem
           active={router.pathname.includes(item.path)}
-          onClick={() => history.push(item.path)}
+          // onClick={() => history.push(item.path)}
         >
           <TextElem
             tid={item.tid}
-            color={
-              router.pathname.includes(item.path) ? 'default' : 'textThird'
-            }
-            type="medium"
+            color={isActive(item.path) ? 'textSecondary' : 'textPrimary'}
+            size="small"
+            type={isActive(item.path) ? 'bold' : 'medium'}
           />
         </TabItem>
       ))}
@@ -37,28 +38,25 @@ export const Elem: React.FC<{ tabList: TAB_ELEM_TYPE[] }> = ({ tabList }) => {
 };
 
 const Container = styled.div`
-  padding: ${Spacing(0)} ${Spacing(1)};
-  height: 46px;
+  height: 38px;
   display: flex;
   align-items: center;
 
-  background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_SECONDARY]};
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
-  gap: ${Spacing(1)};
+  gap: ${Spacing(2)};
 `;
 
 const TabItem = styled.div<{ active: boolean }>`
   cursor: pointer;
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
-  padding: 0 ${Spacing(5)};
+  padding: ${Spacing(2)} ${Spacing(5)};
   height: 38px;
-  line-height: 1em;
+  line-height: 0.8em;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
   box-sizing: border-box;
-  border: 1px solid ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
 
   transition: all 0.2s;
 
@@ -69,9 +67,16 @@ const TabItem = styled.div<{ active: boolean }>`
   ${({ active }) =>
     active
       ? css`
-          border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER_ACTIVE]};
-          background-color: ${({ theme }) =>
-            theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
+          border: unset !important;
+          background: ${({ theme }) => theme[COLOR_ENUM.TAB]};
         `
-      : ''};
+      : css`
+          :hover {
+            border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER_DEFAULT]};
+
+            & > span {
+              color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]};
+            }
+          }
+        `};
 `;

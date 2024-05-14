@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router';
 
 import {
   ACTION_ERROR_INTER,
@@ -20,13 +21,10 @@ import { useMutation, useQueryClient } from 'react-query';
 import { action as fetch } from './action';
 import { convert } from './convert';
 import { OFFICE_LIST_MODULE_NAME } from '../office-list';
+import { OFFICE_PAGE_PATH } from '../../page/office-list';
 
 export const Container: React.FC<{}> = ({}) => {
-  const [stateSelect, setStateSelect] = useState({
-    [FORM_VALUE_ENUM.DAYS]: '',
-    [FORM_VALUE_ENUM.DESIRED_CURRENCY]: '',
-  });
-
+  const history = useHistory();
   const query = useQueryClient();
   const onSuccess = () => {
     query.invalidateQueries(OFFICE_LIST_MODULE_NAME);
@@ -42,6 +40,7 @@ export const Container: React.FC<{}> = ({}) => {
     [FORM_VALUE_ENUM.PHONE]: [required, phoneUA, phoneOperator],
     [FORM_VALUE_ENUM.ADDRESS]: [required],
     [FORM_VALUE_ENUM.TIME]: [required, arrayLengthMax(2)],
+    [FORM_VALUE_ENUM.BREAK]: [required, arrayLengthMax(2)],
     [FORM_VALUE_ENUM.DAYS]: [required],
     [FORM_VALUE_ENUM.DESIRED_CURRENCY]: [required],
     [FORM_VALUE_ENUM.ORDER_CURRENCY]: [],
@@ -54,7 +53,8 @@ export const Container: React.FC<{}> = ({}) => {
     [FORM_VALUE_ENUM.NAME]: '',
     [FORM_VALUE_ENUM.PHONE]: '',
     [FORM_VALUE_ENUM.ADDRESS]: '',
-    [FORM_VALUE_ENUM.TIME]: ['', ''] as [string, string],
+    [FORM_VALUE_ENUM.TIME]: ['00:00:00', '00:00:00'] as [string, string],
+    [FORM_VALUE_ENUM.BREAK]: ['00:00:00', '00:00:00'] as [string, string],
     [FORM_VALUE_ENUM.TRADE_CRYPTO]: false,
     [FORM_VALUE_ENUM.ORDER_CURRENCY]: false,
     [FORM_VALUE_ENUM.DAYS]: [],
@@ -65,14 +65,13 @@ export const Container: React.FC<{}> = ({}) => {
     initialValues,
     validate,
     onSubmit: (values: FORM_VALUE_INTER) => {
-      return action.mutate(convert(values));
+      action.mutate(convert(values));
+      return history.push(OFFICE_PAGE_PATH);
     },
   });
 
   const onChangeSelect = (name: string, values: any) => {
-    setStateSelect({ ...values, name: values[name] });
-
-    formik.setFieldValue(name, [...values.map((e: any) => e.value)]);
+    formik.setFieldValue(name, [...values]);
   };
 
   const isFieldError = (name: FORM_VALUE_TYPE): boolean => {
@@ -122,10 +121,6 @@ export const Container: React.FC<{}> = ({}) => {
 
   const getFieldValue = (name: FORM_VALUE_TYPE) => formik.values[name];
 
-  useEffect(() => {
-    console.log('VALUES', formik.values);
-  }, [formik.values]);
-
   return (
     <Component
       isFieldError={isFieldError}
@@ -138,7 +133,6 @@ export const Container: React.FC<{}> = ({}) => {
       isSuccess={isSuccess()}
       errorMessage={getErrorMessage()}
       onChangeSelect={onChangeSelect}
-      stateSelect={stateSelect}
     />
   );
 };

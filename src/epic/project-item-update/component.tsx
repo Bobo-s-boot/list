@@ -60,7 +60,7 @@ export const Component: React.FC<{
           />
 
           <ButtonStyled
-            type="submit"
+            type="button"
             tid="PROJECT.UPDATE.BUTTON"
             fill="solid"
             disabled={isSubmitDisabled()}

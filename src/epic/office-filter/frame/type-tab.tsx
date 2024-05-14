@@ -8,12 +8,18 @@ import {
   SIZE_BORDER_RADIUS_ENUM,
 } from '../../../theme/size';
 import { TextElem } from '../../../common/text';
+import { OFFICE_FILTER_TYPE } from '../constant';
 
 export const TabType: React.FC<{
   type: string;
   setType: Function;
 }> = ({ type, setType }) => {
-  const typeArr = ['PLANNED', 'COMING_SOON', 'COMPLATED', 'AUTO'];
+  const typeArr = [
+    OFFICE_FILTER_TYPE.ALL,
+    OFFICE_FILTER_TYPE.WORKING,
+    OFFICE_FILTER_TYPE.NOT_WORKING,
+    OFFICE_FILTER_TYPE.CRYPTO,
+  ];
 
   useEffect(() => setType(typeArr[0]), []);
   return (
@@ -24,7 +30,7 @@ export const TabType: React.FC<{
             tid={`OFFICE.LIST.FILTER.TAB.${item}`}
             color={type === item ? 'textSecondary' : 'textPrimary'}
             size="tab"
-            type="medium"
+            type={type === item ? 'bold' : 'medium'}
           />
         </TabItem>
       ))}
@@ -74,7 +80,7 @@ const TabItem = styled.div<{ active: boolean }>`
     active
       ? css`
           border: unset !important;
-          background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_THIRD]};
+          background: ${({ theme }) => theme[COLOR_ENUM.TAB]};
         `
       : css`
           :hover {

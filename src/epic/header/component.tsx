@@ -66,7 +66,7 @@ export const Component: React.FC<{
                 <TextContainer>
                   <Text
                     type="medium"
-                    size="title"
+                    size="main"
                     oneLine={true}
                     tid={title}
                     tvalue={tvalue}

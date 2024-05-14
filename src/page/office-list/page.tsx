@@ -9,14 +9,21 @@ import { PageElem } from '../../common/page';
 import { LayoutFooterElem } from '../../common/layout-footer';
 import { OfficeListContainer } from '../../epic/office-list';
 import { DesktopMenuAppContainer } from '../../epic/desktop-menu-app';
+import { TextElem } from '../../common/text';
 
 export const Page: React.FC = () => {
   return (
     <PageElem>
       <LayoutAppElem>
-        <HeaderContainer title="PROJECT.LIST.HEADER" size="default" />
+        {/* <HeaderContainer title="PROJECT.LIST.HEADER" size="default" /> */}
         <LayoutElem size="default">
           <LayoutSectionElem spacing={5}>
+            <TextElem
+              tid="OFFICE.LIST.TITLE"
+              color="textSecondary"
+              type="bold"
+              size="title"
+            />
             <OfficeListContainer />
           </LayoutSectionElem>
         </LayoutElem>

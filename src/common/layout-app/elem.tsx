@@ -15,6 +15,7 @@ import { THEME_ENUM } from '../../data/theme/constant';
 import { StatusBar } from '@capacitor/status-bar';
 import backgroundImg from '../../asset/img/background.png';
 import { Capacitor } from '@capacitor/core';
+import { Spacing } from '../../theme';
 
 export const Elem: React.FC<{
   children: ReactNode;
@@ -85,8 +86,12 @@ const Background = styled(IonContent)<{
       return css`
         ::part(scroll) {
           display: grid;
+          background-color: ${({ theme }) =>
+            theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
+
           grid-template-columns: 270px auto;
           grid-template-rows: ${tab ? '162px' : '92px'} auto;
+          padding-bottom: ${Spacing(10)};
         }
       `;
     }

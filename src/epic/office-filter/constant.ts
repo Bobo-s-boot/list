@@ -16,3 +16,10 @@ export const CATEGORY_OPTION_LIST = [
   { value: 1, label: i18n.t('Project 1') },
   { value: 2, label: i18n.t('Project 2') },
 ];
+
+export enum OFFICE_FILTER_TYPE {
+  ALL = 'ALL',
+  WORKING = 'WORKING',
+  NOT_WORKING = 'NOT_WORKING',
+  CRYPTO = 'CRYPTO',
+}

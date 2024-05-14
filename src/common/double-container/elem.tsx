@@ -11,7 +11,7 @@ export const Elem: React.FC<{
 };
 
 const Container = styled(GridElem)`
-  gap: ${Spacing(3)};
+  gap: ${Spacing(4)};
   grid-template-columns: 1fr 1fr;
   align-items: start;
 `;

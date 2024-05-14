@@ -57,7 +57,7 @@ const Container = styled(GridElem)<{ isActive: boolean }>`
   ${({ isActive }) => {
     if (isActive) {
       return css`
-        background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_THIRD]};
+        background: ${({ theme }) => theme[COLOR_ENUM.TAB]};
 
         & > span {
           font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};

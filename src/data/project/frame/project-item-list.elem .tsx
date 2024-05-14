@@ -49,7 +49,6 @@ const Elem: React.FC<PROJECT_ITEM_DATA_INTER> = ({ id, name }) => {
   };
 
   const handleCloseModal = () => {
-    console.log('handleCloseModal');
     setUpdateVisible(false);
     setModalVisible(false);
   };

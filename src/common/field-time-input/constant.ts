@@ -1,8 +1,8 @@
 import { TimeRangePickerProps } from 'antd';
-import React from 'react';
 
 export interface PROPS_TYPE extends TimeRangePickerProps {
   title: string;
+  fieldValue?: [string, string];
 }
 
 export interface CALENDAR {

@@ -30,7 +30,7 @@ export const Component: React.FC<PROPS_TYPE> = ({
 }) => {
   const isIonInfiniteScroll =
     data && data.list && data.list.length > 39 && !data.isEmpty && !isFetching;
-  console.log('DATA', data);
+
   return (
     <GridElem spacing={5}>
       <OfficeFilterContainer
@@ -45,7 +45,7 @@ export const Component: React.FC<PROPS_TYPE> = ({
       {isSuccess && data && data.isEmpty && <AlertEmptyElem />}
 
       <GridElem spacing={3}>
-        {data && !data.isEmpty && (
+        {data && !data.isEmpty && !isFetching && (
           <Container style={{ width: '100%' }}>
             {data.list.map((item: OFFICE_ITEM_DATA_INTER) => (
               <OfficeItemElem {...item} />

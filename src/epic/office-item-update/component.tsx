@@ -17,6 +17,10 @@ import { FieldTimeInputElem } from '../../common/field-time-input';
 import { FieldToggleElem } from '../../common/field-toggle';
 import { daysOptions, currencyOptions } from '../office-item-create/constant';
 import addIcon from '../../asset/svg/common/add-small.svg';
+import { ToggleElem } from '../../common/toggle';
+import { TextElem } from '../../common/text';
+import { Spacing } from '../../theme';
+import { TabElem } from '../../common/tab';
 
 export const Component: React.FC<{
   formik: FormikValues;
@@ -28,9 +32,8 @@ export const Component: React.FC<{
   isSuccess?: boolean;
   isError?: boolean;
   errorMessage?: string;
+  name?: string;
   onChangeSelect: (name: string, values: any) => void;
-  stateSelect: any;
-  data: any;
 }> = ({
   formik,
   isFieldError,
@@ -42,30 +45,56 @@ export const Component: React.FC<{
   isError,
   errorMessage,
   onChangeSelect,
-  stateSelect,
+  name,
 }) => {
   const multiValueContainer = ({ selectProps, data }: any) => {
-    const label = data.label;
-    const allSelected = selectProps.value;
+    const label = data?.label;
+    const allSelected = selectProps?.value;
     const index = allSelected.findIndex(
-      (selected: any) => selected.label === label,
+      (selected: any) => selected?.label === label,
     );
-    const isLastSelected = index === allSelected.length - 1;
+    const isLastSelected = index === allSelected?.length - 1;
     const labelSuffix = isLastSelected ? '' : ', ';
     const val = `${label}${labelSuffix}`;
     return val;
   };
 
-  function handleTimeRangeChange(dates: any, dateStrings: any) {
+  function handleTimeRangeChange(_dates: any, dateStrings: any) {
     formik.setFieldValue(FORM_VALUE_ENUM.TIME, dateStrings);
   }
+
+  function handleBreakRangeChange(_dates: any, dateStrings: any) {
+    formik.setFieldValue(FORM_VALUE_ENUM.BREAK, dateStrings);
+  }
+
+  const mockData = [
+    {
+      tid: 'Settings',
+      path: 'office/update',
+      dynamicPath: '/dynamicPath1',
+    },
+    {
+      tid: 'Sessions',
+      path: '/settings',
+      dynamicPath: '/dynamicPath2',
+    },
+    {
+      tid: 'Profile',
+      path: '/settings',
+      dynamicPath: '/dynamicPath3',
+    },
+  ];
 
   return (
     <>
       <FormElem onSubmit={formik.handleSubmit}>
         {isLoading && <LoaderElem />}
-        <ContentContainerElem>
-          <GridElem spacing={5}>
+
+        <GridElem spacing={4}>
+          <TextElem size="medium" type="bold" tid={name} />
+          <TabElem tabList={mockData} />
+
+          <FlexContainer>
             <DoubleContainerElem>
               <FieldTextElem
                 name={FORM_VALUE_ENUM.NAME}
@@ -112,45 +141,52 @@ export const Component: React.FC<{
                 isMulti
                 customComponents={{ MultiValueContainer: multiValueContainer }}
               />
-
-              <FieldToggleElem
-                handleClick={(e) =>
-                  formik.setFieldValue(FORM_VALUE_ENUM.ORDER_CURRENCY, e)
-                }
-                title="OFFICE.CREATE.FORM.ORDER_CURRENCY"
-                placeholder="OFFICE.CREATE.FORM.ORDER_CURRENCY_PLACEHOLDER"
-                checked={getFieldValue(FORM_VALUE_ENUM.ORDER_CURRENCY)}
+              <FieldTimeInputElem
+                fieldValue={getFieldValue(FORM_VALUE_ENUM.TIME)}
+                name={FORM_VALUE_ENUM.TIME}
+                onChange={handleTimeRangeChange}
+                title="OFFICE.CREATE.FORM.TIME"
               />
-              <FieldToggleElem
-                handleClick={(e) =>
-                  formik.setFieldValue(FORM_VALUE_ENUM.TRADE_CRYPTO, e)
-                }
-                title="OFFICE.CREATE.FORM.TRADE_CRYPTO"
-                placeholder="OFFICE.CREATE.FORM.ORDER_CRYPTO_PLACEHOLDER"
-                checked={getFieldValue(FORM_VALUE_ENUM.TRADE_CRYPTO)}
+
+              <FieldTimeInputElem
+                fieldValue={getFieldValue(FORM_VALUE_ENUM.BREAK)}
+                name={FORM_VALUE_ENUM.BREAK}
+                onChange={handleBreakRangeChange}
+                title="OFFICE.CREATE.FORM.BREAK"
               />
             </DoubleContainerElem>
+            <GridElem spacing={4}>
+              <DoubleContainerElem>
+                <FieldToggleElem
+                  name={FORM_VALUE_ENUM.ORDER_CURRENCY}
+                  handleClick={formik.handleChange}
+                  checked={getFieldValue(FORM_VALUE_ENUM.ORDER_CURRENCY)}
+                  tid="OFFICE.CREATE.FORM.ORDER_CURRENCY"
+                  placeholder="OFFICE.CREATE.FORM.ORDER_CURRENCY_PLACEHOLDER"
+                />
+                <FieldToggleElem
+                  name={FORM_VALUE_ENUM.TRADE_CRYPTO}
+                  handleClick={formik.handleChange}
+                  checked={getFieldValue(FORM_VALUE_ENUM.TRADE_CRYPTO)}
+                  tid="OFFICE.CREATE.FORM.TRADE_CRYPTO"
+                  placeholder="OFFICE.CREATE.FORM.ORDER_CRYPTO_PLACEHOLDER"
+                />
+              </DoubleContainerElem>
 
-            <FieldTimeInputElem
-              name={FORM_VALUE_ENUM.TIME}
-              onChange={handleTimeRangeChange}
-              title="OFFICE.CREATE.FORM.TIME"
-            />
-
-            <SelectElem
-              name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
-              title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
-              onChange={onChangeSelect}
-              value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-              errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-              error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-              options={currencyOptions}
-              closeMenuOnSelect={false}
-              hideSelectedOptions={false}
-              isMulti
-              placeholder="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
-              customComponents={{ MultiValueContainer: multiValueContainer }}
-            />
+              <SelectElem
+                value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
+                title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
+                onChange={onChangeSelect}
+                errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                options={currencyOptions}
+                closeMenuOnSelect={false}
+                hideSelectedOptions={false}
+                isMulti
+                customComponents={{ MultiValueContainer: multiValueContainer }}
+              />
+            </GridElem>
 
             <DoubleContainerElem>
               <ButtonStyled
@@ -168,22 +204,33 @@ export const Component: React.FC<{
                 onClick={formik.handleSubmit}
               />
             </DoubleContainerElem>
-
-            <ButtonElem
-              type="button"
-              tid="OFFICE.CREATE.BUTTON.CREATE"
-              disabled={isSubmitDisabled()}
-              onClick={formik.handleSubmit}
-            />
-
-            {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
-            {isSuccess && <AlertActionElem type="success" tid="Success" />}
-          </GridElem>
-        </ContentContainerElem>
+            <SubmitContainer>
+              <ButtonElem
+                type="button"
+                tid="OFFICE.UPDATE.BUTTON.UPDATE"
+                disabled={isSubmitDisabled()}
+                onClick={formik.handleSubmit}
+              />
+            </SubmitContainer>
+          </FlexContainer>
+          {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
+          {isSuccess && <AlertActionElem type="success" tid="Success" />}
+        </GridElem>
       </FormElem>
     </>
   );
 };
+
+const SubmitContainer = styled.div`
+  display: flex;
+  max-width: ${Spacing(121)};
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${Spacing(8)};
+`;
 
 const ButtonStyled = styled(ButtonElem)`
   & > div > span {

@@ -23,7 +23,12 @@ export interface OFFICE_ITEM_DATA_RAW_INTER {
   phone: string;
   address: string;
   days: DAYS_TYPE[];
-  time: string;
+  workStartTime: string;
+  workEndTime: string;
+  pauseStartTime: string;
+  pauseEndTime: string;
+  isWork: boolean;
+  isPause: boolean;
   desiredCurrency: CURRENCY_TYPE[];
   isOrderCurrency: boolean;
   isTradeCrypto: boolean;
@@ -33,7 +38,10 @@ export interface OFFICE_ITEM_LIST_DATA_RAW_INTER {
   list: OFFICE_ITEM_DATA_RAW_INTER[];
 }
 
-export interface OFFICE_ITEM_DATA_INTER extends OFFICE_ITEM_DATA_RAW_INTER {}
+export interface OFFICE_ITEM_DATA_INTER extends OFFICE_ITEM_DATA_RAW_INTER {
+  time: [string, string];
+  break: [string, string];
+}
 
 export interface OFFICE_ITEM_LIST_DATA_INTER {
   list: OFFICE_ITEM_DATA_INTER[];

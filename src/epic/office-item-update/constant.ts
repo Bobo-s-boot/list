@@ -12,6 +12,7 @@ export enum FORM_VALUE_ENUM {
   ADDRESS = 'address',
   DAYS = 'days',
   TIME = 'time',
+  BREAK = 'break',
   DESIRED_CURRENCY = 'desiredCurrency',
   ORDER_CURRENCY = 'isOrderCurrency',
   TRADE_CRYPTO = 'isTradeCrypto',
@@ -26,6 +27,7 @@ export interface FORM_VALUE_INTER {
   [FORM_VALUE_ENUM.DAYS]: DAYS_TYPE[];
   [FORM_VALUE_ENUM.DESIRED_CURRENCY]: CURRENCY_TYPE[];
   [FORM_VALUE_ENUM.TIME]: [string, string];
+  [FORM_VALUE_ENUM.BREAK]: [string, string];
   [FORM_VALUE_ENUM.ORDER_CURRENCY]: boolean;
   [FORM_VALUE_ENUM.TRADE_CRYPTO]: boolean;
 }

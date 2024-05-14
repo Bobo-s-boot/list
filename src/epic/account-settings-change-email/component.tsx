@@ -13,8 +13,6 @@ import { AlertActionElem } from '../../common/alert-action';
 import { FieldPasswordElem } from '../../common/field-password';
 import { FormElem } from '../../common/form';
 import { ContentContainerElem } from '../../common/content-container';
-import styled from 'styled-components';
-import { Spacing } from '../../theme';
 import { DoubleContainerElem } from '../../common/double-container';
 
 export const Component: React.FC<{
@@ -42,9 +40,9 @@ export const Component: React.FC<{
     <ContentContainerElem>
       <FormElem onSubmit={formik.handleSubmit}>
         {isLoading && <LoaderElem />}
-        <GridElem spacing={5}>
+        <GridElem spacing={8}>
           <TextElem
-            size="title"
+            size="main"
             type="semi-bold"
             tid="SETTINGS.CHANGE_EMAIL.TITLE"
           />

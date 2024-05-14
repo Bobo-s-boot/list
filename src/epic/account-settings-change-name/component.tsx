@@ -42,7 +42,7 @@ export const Component: React.FC<{
       <ContentContainerElem>
         <GridElem size="com">
           <TextElem
-            size="title"
+            size="main"
             type="medium"
             tid="SETTINGS.CHANGE_NAME.TITLE"
           />

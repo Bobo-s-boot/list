@@ -85,7 +85,7 @@ export const Component: React.FC<{
         )}
         <ButtonElem
           disabled={isSubmitDisabled()}
-          type="submit"
+          type="button"
           tid="AUTH.RECOVERY.BUTTON"
         />
         <LinkElem

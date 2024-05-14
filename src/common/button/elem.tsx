@@ -77,7 +77,7 @@ const ButtonStyled = styled.button<{ type: ROLE_TYPE | any }>`
   width: 100%;
 
   ${({ theme, disabled, type }) =>
-    type === ROLE_ENUM.BUTTON &&
+    (type === ROLE_ENUM.BUTTON || type === ROLE_ENUM.SUBMIT) &&
     css`
       padding: 17px 20px;
 

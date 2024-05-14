@@ -13,6 +13,7 @@
       "TIME": "Час роботи",
       "ORDER_CURRENCY": "Замовлення валюти",
       "TRADE_CRYPTO": "Криптовалюти",
+      "BREAK": "Перерва",
       "DESIRED_CURRENCY": "Список наявних валют",
       "ADDRESS_PLACEHOLDER": "Місто, вулиця, будинок, поверх, офіс",
       "ORDER_CURRENCY_PLACEHOLDER": "Можна замовити валюту",
@@ -21,6 +22,7 @@
     },
     "BUTTON": { "CREATE": "Створити обмінний пункт", "IMPORT": "Import office" }
   },
+
   "IMPORT": {
     "HEADER": "Import webinar",
     "TITLE": "Webinar",
@@ -43,17 +45,16 @@
     "EVENT": "Scenario"
   },
   "UPDATE": {
-    "TITLE": "General information",
+    "TITLE": "Змінити обмінний пункт",
     "FORM": {
       "NAME": "Name",
       "SPEAKER": "Speaker ID",
       "SPEAKER_NAME": "Speaker Name",
-      "PROJECT": "Project",
       "SPEAKER_IMG": "Speaker avatar",
       "LOGO": "Logo"
     },
     "MEDIA": { "TITLE": "Media" },
-    "BUTTON": { "UPDATE": "Save changes", "DELETE": "Delete webinar" },
+    "BUTTON": { "UPDATE": "Зберегти зміни", "DELETE": "Видалити пункт" },
     "SUBTOPIC": {
       "TITLE": "Subtopics",
       "BUTTON": {
@@ -68,19 +69,23 @@
     "COMPLETED": " Completed"
   },
   "LIST": {
-    "HEADER": "My webinars",
+    "TITLE": " Керування обмінними пунктами",
+    "WORKING": "Працює",
+    "NOT_WORKING": "Не працює",
+    "CRYPTO": "Криптовалюта",
+    "BREAK": "Перерва",
     "FILTER": {
       "TAB": {
-        "PLANNED": "Planned",
-        "COMING_SOON": "Coming now",
-        "COMPLATED": "Completed",
-        "AUTO": "Automatic"
+        "ALL": "Всі",
+        "WORKING": "Працює",
+        "NOT_WORKING": "Не працює",
+        "CRYPTO": "Криптовалюта"
       },
-      "SEARCH": "Search",
+      "SEARCH": "Пошук",
       "SELECT": {
         "PLACEHOLDER": "By project"
       },
-      "CREATE": "Create new"
+      "CREATE": "Створити новий"
     },
     "SESSION": "{{value}} Sessions"
   }

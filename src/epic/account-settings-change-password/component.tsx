@@ -36,9 +36,9 @@ export const Component: React.FC<{
     <ContentContainerElem>
       <FormElem onSubmit={formik.handleSubmit}>
         {isLoading && <LoaderElem />}
-        <GridElem spacing={5}>
+        <GridElem size="com">
           <TextElem
-            size="title"
+            size="main"
             type="semi-bold"
             tid="SETTINGS.CHANGE_PASSWORD.TITLE"
           />

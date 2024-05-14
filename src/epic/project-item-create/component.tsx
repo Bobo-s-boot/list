@@ -78,7 +78,7 @@ export const Component: React.FC<{
                 />
 
                 <ButtonStyled
-                  type="submit"
+                  type="button"
                   tid="PROJECT.CREATE.BUTTON"
                   fill="solid"
                   disabled={isSubmitDisabled()}

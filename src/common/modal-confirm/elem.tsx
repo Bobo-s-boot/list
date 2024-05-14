@@ -16,19 +16,11 @@ import { TextElem } from '../text';
 import closeIcon from '../../asset/svg/common/close.svg';
 
 export const Elem: React.FC<PROPS_TYPE> = ({
-  titleTid,
-  titleValue,
-  infoTid,
-  infoValue,
-  cancelTid,
-  cancelTvalue,
   children,
-  divider,
   action,
   open,
   onClose,
   closeAction,
-  onClick,
   type = 'confirm',
   ref,
 }) => {
@@ -43,8 +35,6 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   };
 
   const handleAction = (e: any) => {
-    console.log('handleAction');
-    console.log(action);
     action && action();
   };
 

@@ -16,16 +16,18 @@ export const Elem: React.FC<{
   children?: ReactNode;
   color?: COLOR_TYPE;
   textColor?: COLOR_TYPE;
+  active?: boolean;
 }> = ({
   tid,
   tvalue,
   color = 'backgroundSecondary',
   textColor = 'textActive',
+  active,
 }) => {
   return (
-    <Container color={color}>
+    <Container color={active ? 'chip' : color || 'chipInactive'}>
       <TextElem
-        color={textColor}
+        color={active ? 'textSecondary' : textColor || 'textActive'}
         size="chip"
         type="regular"
         tid={tid}

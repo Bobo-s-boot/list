@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-
-import styled from 'styled-components';
-import { Spacing } from '../../theme';
+import React from 'react';
 
 import { ToggleElem } from '../../common/toggle';
 

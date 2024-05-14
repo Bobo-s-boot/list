@@ -18,7 +18,7 @@ export const Component: React.FC<{}> = () => {
         <TitleContainer>
           <TextContainer spacing={3}>
             <TextElem
-              size="title"
+              size="main"
               color="white"
               type="bold"
               tid="WELLCOME.TITLE"

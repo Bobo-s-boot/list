@@ -5,8 +5,11 @@ import {
   SIZE_LAYOUT_TYPE,
   SIZE_LAYOUT_DATA,
   SIZE_LAYOUT_ENUM,
+  SIZE_BORDER_RADIUS_DATA,
+  SIZE_BORDER_RADIUS_ENUM,
 } from '../../theme/size';
 import { Spacing } from '../../theme';
+import { COLOR_ENUM } from '../../theme/color';
 
 export const Elem: React.FC<{
   children: ReactNode;
@@ -45,9 +48,12 @@ const Center = styled.div<{
   display: flex;
   width: 100%;
   margin: 0 auto;
-  padding: ${Spacing(0)} ${Spacing(10)} ${Spacing(10)} ${Spacing(10)};
+  padding: ${Spacing(6)};
+  background-color: ${({ theme }) => theme[COLOR_ENUM.WHITE]};
+  border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.CONTENT]}px;
+
   box-sizing: border-box;
-  height: ${(props) => (props.fullHeight ? '100%' : 'auto')};
+  height: ${(props) => (props.fullHeight ? '100%' : 'max-content')};
   align-items: center;
 
   @media screen and (min-width: 900px) {

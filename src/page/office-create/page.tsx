@@ -9,14 +9,23 @@ import { LayoutElem } from '../../common/layout';
 import { PageElem } from '../../common/page';
 import { DesktopMenuAppContainer } from '../../epic/desktop-menu-app';
 import { OfficeItemCreateContainer } from '../../epic/office-item-create';
+import { TextElem } from '../../common/text';
 
 export const Page: React.FC<RouteComponentProps> = () => {
   return (
     <PageElem>
       <LayoutAppElem>
-        <LayoutElem size="small">
-          <LayoutSectionElem spacing={5}>
-            <OfficeItemCreateContainer />
+        <LayoutElem size="default">
+          <LayoutSectionElem spacing={8}>
+            <TextElem
+              tid="OFFICE.CREATE.BUTTON.CREATE"
+              color="textSecondary"
+              type="bold"
+              size="title"
+            />
+            <LayoutSectionElem spacing={5}>
+              <OfficeItemCreateContainer />
+            </LayoutSectionElem>
           </LayoutSectionElem>
         </LayoutElem>
       </LayoutAppElem>

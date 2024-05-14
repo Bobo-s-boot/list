@@ -14,7 +14,7 @@ export const Elem: React.FC<{
   return (
     <Form onSubmit={handleSubmit} className={className}>
       {children}
-      <Input type="submit" />
+      <Input type="button" />
     </Form>
   );
 };

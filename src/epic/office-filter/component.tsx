@@ -49,7 +49,7 @@ const ButtonFixedContainer = styled.div`
     bottom: 0;
     left: 0;
     padding: ${Spacing(4)};
-    background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_THIRD]};
+    background: ${({ theme }) => theme[COLOR_ENUM.TAB]};
     width: 100%;
   }
 `;

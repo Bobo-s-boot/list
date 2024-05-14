@@ -16,6 +16,7 @@ import { SelectElem } from '../../common/select';
 import { FieldTimeInputElem } from '../../common/field-time-input';
 import { FieldToggleElem } from '../../common/field-toggle';
 import addIcon from '../../asset/svg/common/add-small.svg';
+import { Spacing } from '../../theme';
 
 export const Component: React.FC<{
   formik: FormikValues;
@@ -28,7 +29,6 @@ export const Component: React.FC<{
   isError?: boolean;
   errorMessage?: string;
   onChangeSelect: (name: string, values: any) => void;
-  stateSelect: any;
 }> = ({
   formik,
   isFieldError,
@@ -40,7 +40,6 @@ export const Component: React.FC<{
   isError,
   errorMessage,
   onChangeSelect,
-  stateSelect,
 }) => {
   const multiValueContainer = ({ selectProps, data }: any) => {
     const label = data.label;
@@ -58,12 +57,17 @@ export const Component: React.FC<{
     formik.setFieldValue(FORM_VALUE_ENUM.TIME, dateStrings);
   }
 
+  function handleBreakRangeChange(dates: any, dateStrings: any) {
+    formik.setFieldValue(FORM_VALUE_ENUM.BREAK, dateStrings);
+  }
+
   return (
     <>
       <FormElem onSubmit={formik.handleSubmit}>
         {isLoading && <LoaderElem />}
-        <ContentContainerElem>
-          <GridElem spacing={5}>
+
+        <GridElem spacing={4}>
+          <FlexContainer>
             <DoubleContainerElem>
               <FieldTextElem
                 name={FORM_VALUE_ENUM.NAME}
@@ -98,6 +102,7 @@ export const Component: React.FC<{
               />
 
               <SelectElem
+                value={getFieldValue(FORM_VALUE_ENUM.DAYS)}
                 name={FORM_VALUE_ENUM.DAYS}
                 title="OFFICE.CREATE.FORM.DAYS"
                 onChange={onChangeSelect}
@@ -109,43 +114,52 @@ export const Component: React.FC<{
                 isMulti
                 customComponents={{ MultiValueContainer: multiValueContainer }}
               />
-
-              <FieldToggleElem
-                handleClick={(e) =>
-                  formik.setFieldValue(FORM_VALUE_ENUM.ORDER_CURRENCY, e)
-                }
-                title="OFFICE.CREATE.FORM.ORDER_CURRENCY"
-                placeholder="OFFICE.CREATE.FORM.ORDER_CURRENCY_PLACEHOLDER"
+              <FieldTimeInputElem
+                fieldValue={getFieldValue(FORM_VALUE_ENUM.TIME)}
+                name={FORM_VALUE_ENUM.TIME}
+                onChange={handleTimeRangeChange}
+                title="OFFICE.CREATE.FORM.TIME"
               />
-              <FieldToggleElem
-                handleClick={(e) =>
-                  formik.setFieldValue(FORM_VALUE_ENUM.TRADE_CRYPTO, e)
-                }
-                title="OFFICE.CREATE.FORM.TRADE_CRYPTO"
-                placeholder="OFFICE.CREATE.FORM.ORDER_CRYPTO_PLACEHOLDER"
+
+              <FieldTimeInputElem
+                fieldValue={getFieldValue(FORM_VALUE_ENUM.BREAK)}
+                name={FORM_VALUE_ENUM.BREAK}
+                onChange={handleBreakRangeChange}
+                title="OFFICE.CREATE.FORM.BREAK"
               />
             </DoubleContainerElem>
+            <GridElem spacing={4}>
+              <DoubleContainerElem>
+                <FieldToggleElem
+                  name={FORM_VALUE_ENUM.ORDER_CURRENCY}
+                  handleClick={formik.handleChange}
+                  checked={getFieldValue(FORM_VALUE_ENUM.ORDER_CURRENCY)}
+                  tid="OFFICE.CREATE.FORM.ORDER_CURRENCY"
+                  placeholder="OFFICE.CREATE.FORM.ORDER_CURRENCY_PLACEHOLDER"
+                />
+                <FieldToggleElem
+                  name={FORM_VALUE_ENUM.TRADE_CRYPTO}
+                  handleClick={formik.handleChange}
+                  checked={getFieldValue(FORM_VALUE_ENUM.TRADE_CRYPTO)}
+                  tid="OFFICE.CREATE.FORM.TRADE_CRYPTO"
+                  placeholder="OFFICE.CREATE.FORM.ORDER_CRYPTO_PLACEHOLDER"
+                />
+              </DoubleContainerElem>
 
-            <FieldTimeInputElem
-              name={FORM_VALUE_ENUM.TIME}
-              onChange={handleTimeRangeChange}
-              title="OFFICE.CREATE.FORM.TIME"
-            />
-
-            <SelectElem
-              name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
-              title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
-              onChange={onChangeSelect}
-              value={stateSelect[FORM_VALUE_ENUM.DESIRED_CURRENCY]}
-              errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-              error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-              options={currencyOptions}
-              closeMenuOnSelect={false}
-              hideSelectedOptions={false}
-              isMulti
-              placeholder="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
-              customComponents={{ MultiValueContainer: multiValueContainer }}
-            />
+              <SelectElem
+                value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
+                title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
+                onChange={onChangeSelect}
+                errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                options={currencyOptions}
+                closeMenuOnSelect={false}
+                hideSelectedOptions={false}
+                isMulti
+                customComponents={{ MultiValueContainer: multiValueContainer }}
+              />
+            </GridElem>
 
             <DoubleContainerElem>
               <ButtonStyled
@@ -163,22 +177,34 @@ export const Component: React.FC<{
                 onClick={formik.handleSubmit}
               />
             </DoubleContainerElem>
+            <SubmitContainer>
+              <ButtonElem
+                type="button"
+                tid="OFFICE.UPDATE.BUTTON.UPDATE"
+                disabled={isSubmitDisabled()}
+                onClick={formik.handleSubmit}
+              />
+            </SubmitContainer>
+          </FlexContainer>
 
-            <ButtonElem
-              type="button"
-              tid="OFFICE.CREATE.BUTTON.CREATE"
-              disabled={isSubmitDisabled()}
-              onClick={formik.handleSubmit}
-            />
-
-            {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
-            {isSuccess && <AlertActionElem type="success" tid="Success" />}
-          </GridElem>
-        </ContentContainerElem>
+          {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
+          {isSuccess && <AlertActionElem type="success" tid="Success" />}
+        </GridElem>
       </FormElem>
     </>
   );
 };
+
+const SubmitContainer = styled.div`
+  display: flex;
+  max-width: ${Spacing(121)};
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${Spacing(8)};
+`;
 
 const ButtonStyled = styled(ButtonElem)`
   & > div > span {

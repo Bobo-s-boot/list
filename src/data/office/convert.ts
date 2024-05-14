@@ -11,6 +11,8 @@ export const convertOffice = (
 ): OFFICE_ITEM_DATA_INTER => {
   return {
     ...office,
+    time: [office.workStartTime, office.workEndTime],
+    break: [office.pauseStartTime, office.pauseEndTime],
   };
 };
 

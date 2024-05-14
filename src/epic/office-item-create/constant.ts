@@ -13,6 +13,9 @@ export enum FORM_VALUE_ENUM {
   DESIRED_CURRENCY = 'desiredCurrency',
   ORDER_CURRENCY = 'isOrderCurrency',
   TRADE_CRYPTO = 'isTradeCrypto',
+  BREAK = 'break',
+  IS_PAUSE = 'isPause',
+  IS_BREAK = 'isBreak',
 }
 
 export type FORM_VALUE_TYPE = `${FORM_VALUE_ENUM}`;
@@ -24,6 +27,7 @@ export interface FORM_VALUE_INTER {
   [FORM_VALUE_ENUM.DAYS]: DAYS_TYPE[];
   [FORM_VALUE_ENUM.DESIRED_CURRENCY]: CURRENCY_TYPE[];
   [FORM_VALUE_ENUM.TIME]: [string, string];
+  [FORM_VALUE_ENUM.BREAK]: [string, string];
   [FORM_VALUE_ENUM.ORDER_CURRENCY]: boolean;
   [FORM_VALUE_ENUM.TRADE_CRYPTO]: boolean;
 }
@@ -39,13 +43,13 @@ export enum DAYS_ENUM {
 }
 
 export type DAYS_TYPE = {
-  TUESDAY: 1;
-  WEDNESDAY: 2;
-  THURSDAY: 3;
-  FRIDAY: 4;
-  SATURDAY: 5;
-  SUNDAY: 6;
-  MONDAY: 7;
+  MONDAY: 1;
+  TUESDAY: 2;
+  WEDNESDAY: 3;
+  THURSDAY: 4;
+  FRIDAY: 5;
+  SATURDAY: 6;
+  SUNDAY: 7;
 };
 
 export const daysOptions = [

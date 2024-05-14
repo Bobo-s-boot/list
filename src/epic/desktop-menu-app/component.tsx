@@ -95,7 +95,7 @@ const ThemeContainer = styled.div`
 `;
 
 const PageContainer = styled(GridElem)`
-  padding: ${Spacing(8)} ${Spacing(7)} ${Spacing(6)};
+  padding: 54px ${Spacing(7)} ${Spacing(6)};
   height: 100%;
   align-content: space-between;
 `;

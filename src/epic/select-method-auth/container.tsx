@@ -61,7 +61,8 @@ const TabBar = styled.div`
 
 const TabButton = styled.button<{ selected: boolean }>`
   width: 100%;
-  padding: ${Spacing(5)} ${Spacing(4)};
+  padding: ${Spacing(3)} ${Spacing(4)};
+  height: 38px;
   transition: background ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.DEFAULT]};
   display: flex;
   align-items: center;
@@ -85,7 +86,7 @@ const TabButton = styled.button<{ selected: boolean }>`
     selected
       ? css`
           border: unset !important;
-          background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_THIRD]};
+          background: ${({ theme }) => theme[COLOR_ENUM.TAB]};
         `
       : css`
           :hover {

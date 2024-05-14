@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FormikValues, useFormik } from 'formik';
+import { useHistory } from 'react-router';
 
 import {
   ACTION_ERROR_INTER,
@@ -20,35 +21,27 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { OFFICE_LIST_MODULE_NAME } from '../office-list';
 import { getData, updateData } from './action';
 import { OFFICE_ITEM_VALUE_INTER } from '../office-item-create';
+import { convert } from './convert';
+import { OFFICE_PAGE_PATH } from '../../page/office-list';
 
 export const Container: React.FC<{
   officeId: string;
 }> = ({ officeId }) => {
   const query = useQueryClient();
-
-  const [stateSelect, setStateSelect] = useState({
-    [FORM_VALUE_ENUM.DAYS]: '',
-    [FORM_VALUE_ENUM.DESIRED_CURRENCY]: '',
-  });
+  const history = useHistory();
 
   const onChangeSelect = (name: string, values: any) => {
-    setStateSelect({ ...values, name: values[name] });
-
-    formik.setFieldValue(name, [...values.map((e: any) => e.value)]);
+    formik.setFieldValue(name, [...values]);
   };
 
   const response = useQuery(MODULE_NAME, () =>
     getData(officeId).then((data: any) => data),
   );
 
-  const data = response?.data as unknown as OFFICE_ITEM_VALUE_INTER;
-
-  console.log('data', data);
+  const data = convert(response?.data) as unknown as OFFICE_ITEM_VALUE_INTER;
 
   const onSuccess = (d: any, values: any) => {
     query.invalidateQueries(OFFICE_LIST_MODULE_NAME);
-    formik.resetForm();
-    close();
   };
   const action = useMutation(
     (values: FORM_VALUE_INTER) => updateData(officeId, values),
@@ -60,6 +53,7 @@ export const Container: React.FC<{
     [FORM_VALUE_ENUM.PHONE]: [required, phoneUA, phoneOperator],
     [FORM_VALUE_ENUM.ADDRESS]: [required],
     [FORM_VALUE_ENUM.TIME]: [required, arrayLengthMax(2)],
+    [FORM_VALUE_ENUM.BREAK]: [required, arrayLengthMax(2)],
     [FORM_VALUE_ENUM.DAYS]: [required],
     [FORM_VALUE_ENUM.DESIRED_CURRENCY]: [required],
     [FORM_VALUE_ENUM.ORDER_CURRENCY]: [],
@@ -72,7 +66,8 @@ export const Container: React.FC<{
     [FORM_VALUE_ENUM.NAME]: data?.name || '',
     [FORM_VALUE_ENUM.PHONE]: data?.phone || '',
     [FORM_VALUE_ENUM.ADDRESS]: data?.address || '',
-    [FORM_VALUE_ENUM.TIME]: data?.time || [],
+    [FORM_VALUE_ENUM.TIME]: data?.time || ['00:00:00', '00:00:00'],
+    [FORM_VALUE_ENUM.BREAK]: data?.break || ['00:00:00', '00:00:00'],
     [FORM_VALUE_ENUM.TRADE_CRYPTO]: data?.isTradeCrypto || false,
     [FORM_VALUE_ENUM.ORDER_CURRENCY]: data?.isOrderCurrency || false,
     [FORM_VALUE_ENUM.DAYS]: data?.days || [],
@@ -84,7 +79,8 @@ export const Container: React.FC<{
     validate,
     enableReinitialize: true,
     onSubmit: (values: FORM_VALUE_INTER) => {
-      return action.mutate(values);
+      action.mutate(values);
+      return history.push(OFFICE_PAGE_PATH);
     },
   });
 
@@ -141,7 +137,7 @@ export const Container: React.FC<{
 
   return (
     <Component
-      data={data}
+      name={data?.name}
       isFieldError={isFieldError}
       getFieldError={getFieldError}
       isSubmitDisabled={isSubmitDisabled}
@@ -152,7 +148,6 @@ export const Container: React.FC<{
       isSuccess={isSuccess()}
       errorMessage={getErrorMessage()}
       onChangeSelect={onChangeSelect}
-      stateSelect={stateSelect}
     />
   );
 };

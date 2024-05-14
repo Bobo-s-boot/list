@@ -75,7 +75,6 @@ export const Elem: React.FC<{
                   onClick={actionClose}
                   tid={buttonCloseTid}
                   tvalue={buttonCloseTvalue}
-                  fill="outline"
                 />
               </GridElem>
             </GridElem>

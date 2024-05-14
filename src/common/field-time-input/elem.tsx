@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React from 'react';
 import { TimePicker } from 'antd';
+import dayjs from 'dayjs';
 
 import { Spacing } from '../../theme';
 import { COLOR_ENUM } from '../../theme/color';
@@ -21,11 +22,15 @@ import { TextElem } from '../text';
 export const Elem: React.FC<PROPS_TYPE> = ({
   onChange = () => {},
   title,
+  fieldValue = ['00:00:00', '00:00:00'],
   ...props
 }) => {
   const onChangeDate = (value: any, stringValue: any) => {
     onChange(value, stringValue);
   };
+
+  const startDate = fieldValue[0];
+  const endDate = fieldValue[1];
 
   return (
     <Container id="container" className="timeRange">
@@ -40,6 +45,10 @@ export const Elem: React.FC<PROPS_TYPE> = ({
 
       <Field
         {...props}
+        value={[
+          dayjs(startDate || '00:00:00', 'HH:mm:ss'),
+          dayjs(endDate || '00:00:00', 'HH:mm:ss'),
+        ]}
         format="HH:mm:ss"
         onChange={onChangeDate}
         onCalendarChange={onChange}
@@ -73,7 +82,6 @@ const Container = styled.div`
   }
 
   .ant-picker-focused {
-    /* border: 1px solid red !important; */
   }
 
   .ant-picker-footer {
