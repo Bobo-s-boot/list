@@ -79,6 +79,20 @@ export type CURRENCY_TYPE = {
   UAH: 2;
   EUR: 3;
 };
+export enum TRANSACTIONS_ENUM {
+  CASH = 'cash',
+  CARD = 'card',
+}
+
+export const transactionsOptions = [
+  { value: 1, label: TRANSACTIONS_ENUM.CASH },
+  { value: 2, label: TRANSACTIONS_ENUM.CARD },
+];
+
+export type TRANSACTIONS_TYPE = {
+  CASH: 1;
+  CARD: 2;
+};
 
 export const API = {
   TYPE: 'POST',

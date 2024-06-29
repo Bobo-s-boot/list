@@ -35,6 +35,7 @@ import {
   OFFICE_ITEM_UPDATE_PAGE_PATH,
   OfficeItemUpdatePage,
 } from '../office-update';
+import { TRANSACTIONS_PAGE_PATH, TransactionsPage } from '../transactions-list';
 
 export const Page: React.FC = () => {
   const state: STORE_INTER = useSelector((s) => s[AUTH_MODULE_NAME]);
@@ -51,6 +52,7 @@ export const Page: React.FC = () => {
             <Switch>
               <Route path={SETTINGS_PAGE_PATH} component={SettingsPage} exact />
               <Route path={OFFICE_PAGE_PATH} component={OfficePage} exact />
+              <Route path={TRANSACTIONS_PAGE_PATH} component={TransactionsPage} exact />
               <Route
                 path={OFFICE_CREATE_PAGE_PATH}
                 component={OfficeCreatePage}

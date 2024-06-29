@@ -10,6 +10,8 @@ import LANG from './lang.json';
 import PROJECT from './project.json';
 import OFFICE from './office.json';
 
+import TRANSACTIONS from './transactions.json';
+
 export const UA = {
   translation: {
     VALIDATION,
@@ -22,5 +24,6 @@ export const UA = {
     LANG,
     PROJECT,
     OFFICE,
+    TRANSACTIONS,
   },
 };
