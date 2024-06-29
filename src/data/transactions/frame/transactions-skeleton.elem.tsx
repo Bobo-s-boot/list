@@ -11,7 +11,7 @@ import { VALUE_OPACITY_ENUM } from '../../../theme/value';
 import { FlexElem } from '../../../common/flex';
 import { COLOR_DATA, COLOR_ENUM } from '../../../theme/color';
 
-export const Elem: React.FC = ({}) => {
+export const Elem: React.FC = ({ }) => {
   return (
     <GridElem spacing={3}>
       {[1, 2, 3, 4].map(() => (
@@ -38,7 +38,6 @@ export const Elem: React.FC = ({}) => {
 
           <GridElem spacing={4} className="mobileContainer">
             <SkeletonTitle animated={true} style={{ height: '24px' }} />
-
             <FlexElem spacing={5}>
               <GridElem spacing={3} style={{ width: 'min-content' }}>
                 <Flex spacing={2} style={{ justifyContent: 'space-between' }}>
@@ -50,7 +49,6 @@ export const Elem: React.FC = ({}) => {
               </GridElem>
               <GridElem spacing={3} style={{}}>
                 <SkeletonTitle animated={true} style={{ width: '50px' }} />
-
                 <Flex spacing={2}>
                   <SkeletonTitle animated={true} style={{ width: '60px' }} />
                   <SkeletonTitle animated={true} style={{ width: '100px' }} />
@@ -103,4 +101,4 @@ const Flex = styled(FlexElem)`
   align-items: end;
 `;
 
-export { Elem as OfficeSkeletonElem };
+export { Elem as TransactionsSkeletonElem };

@@ -1,29 +1,21 @@
 import React from 'react';
-
 import styled from 'styled-components';
-import { AlertActionElem } from '../../common/alert-action';
+import { IonInfiniteScroll } from '@ionic/react';
 
+import { AlertActionElem } from '../../common/alert-action';
 import { GridElem } from '../../common/grid';
-import { DATA_INTER, PROPS_TYPE } from './constant';
+import { PROPS_TYPE } from './constant';
 import { AlertEmptyElem } from '../../common/alert-empty';
 import { TRANSACTIONS_ITEM_DATA_INTER } from '../../data/transactions/constant';
 import { TransactionsItemElem } from '../../data/transactions/frame/transactions-item-list.elem ';
 import { TransactionsSkeletonElem } from '../../data/transactions/frame/transactions-skeleton.elem';
 import { Spacing } from '../../theme';
-import { TransactionsFilterContainer } from '../transactions-filter';
-import { IonInfiniteScroll } from '@ionic/react';
 
 export const Component: React.FC<PROPS_TYPE> = ({
   data,
   isSuccess,
   isError,
   errorMessage,
-  project,
-  setProject,
-  setType,
-  search,
-  setSearch,
-  type,
   isFetching,
   fetchNextPage,
   isIdle,
@@ -33,22 +25,13 @@ export const Component: React.FC<PROPS_TYPE> = ({
 
   return (
     <GridElem spacing={5}>
-      <OfficeFilterContainer
-        project={project}
-        setProject={setProject}
-        setType={setType}
-        search={search}
-        setSearch={setSearch}
-        type={type}
-      />
       {isError && <AlertActionElem text={errorMessage} />}
       {isSuccess && data && data.isEmpty && <AlertEmptyElem />}
-
       <GridElem spacing={3}>
         {data && !data.isEmpty && !isFetching && (
           <Container style={{ width: '100%' }}>
-            {data.list.map((item: OFFICE_ITEM_DATA_INTER) => (
-              <OfficeItemElem {...item} />
+            {data.list.map((item: TRANSACTIONS_ITEM_DATA_INTER) => (
+              <TransactionsItemElem {...item} />
             ))}
           </Container>
         )}
@@ -59,10 +42,10 @@ export const Component: React.FC<PROPS_TYPE> = ({
               setTimeout(() => ev.target.complete(), 500);
             }}
           >
-            {!isIdle && <OfficeSkeletonElem />}
+            {!isIdle && <TransactionsSkeletonElem />}
           </IonInfiniteScroll>
         )}
-        {isFetching && <OfficeSkeletonElem />}
+        {isFetching && <TransactionsSkeletonElem />}
       </GridElem>
     </GridElem>
   );

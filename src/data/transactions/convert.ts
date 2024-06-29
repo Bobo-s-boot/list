@@ -1,41 +1,39 @@
 import { SELECT_OPTION_ITEM_DATA } from '../../common/select';
 import {
-  OFFICE_ITEM_DATA_RAW_INTER,
-  OFFICE_ITEM_DATA_INTER,
-  OFFICE_ITEM_LIST_DATA_RAW_INTER,
-  OFFICE_ITEM_LIST_DATA_INTER,
+  TRANSACTIONS_ITEM_DATA_RAW_INTER,
+  TRANSACTIONS_ITEM_DATA_INTER,
+  TRANSACTIONS_ITEM_LIST_DATA_RAW_INTER,
+  TRANSACTIONS_ITEM_LIST_DATA_INTER,
 } from './constant';
 
-export const convertOffice = (
-  office: OFFICE_ITEM_DATA_RAW_INTER,
-): OFFICE_ITEM_DATA_INTER => {
+export const convertTransactions = (
+  transactions: TRANSACTIONS_ITEM_DATA_RAW_INTER,
+): TRANSACTIONS_ITEM_DATA_INTER => {
   return {
-    ...office,
-    time: [office.workStartTime, office.workEndTime],
-    break: [office.pauseStartTime, office.pauseEndTime],
+    ...transactions,
   };
 };
 
-export const convertOfficeList = (
-  list: OFFICE_ITEM_DATA_RAW_INTER[],
-): OFFICE_ITEM_LIST_DATA_INTER => {
+export const converTransactionsList = (
+  list: TRANSACTIONS_ITEM_DATA_RAW_INTER[],
+): TRANSACTIONS_ITEM_LIST_DATA_INTER => {
+  console.log(list);
   return {
-    list: list?.map((office: OFFICE_ITEM_DATA_RAW_INTER) => {
-      return convertOffice(office);
+    list: list?.map((transactions: TRANSACTIONS_ITEM_DATA_RAW_INTER) => {
+      return convertTransactions(transactions);
     }),
     isEmpty: !list?.length,
   };
 };
 
-export const convertOfficeListToSelect = (
-  data: OFFICE_ITEM_DATA_RAW_INTER[],
+export const convertTransactionsListToSelect = (
+  data: TRANSACTIONS_ITEM_DATA_RAW_INTER[],
 ) => {
   const newList: SELECT_OPTION_ITEM_DATA[] = [];
-  data.map((item: OFFICE_ITEM_DATA_RAW_INTER) => {
+  data.map((item: TRANSACTIONS_ITEM_DATA_RAW_INTER) => {
     newList.push({
       value: item.id,
-
-      label: item.name,
+      label: item.email,
     });
   });
 

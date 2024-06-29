@@ -1,11 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useInfiniteQuery, useQuery } from 'react-query';
-
+import { useInfiniteQuery } from 'react-query';
 import { ACTION_ERROR_INTER, MODULE_NAME } from './constant';
 import { Component } from './component';
-import { convertOfficeList } from '../../data/office/convert';
 import { action } from './action';
-import { OFFICE_ITEM_DATA_RAW_INTER } from '../../data/office/constant';
+import { TRANSACTIONS_ITEM_DATA_RAW_INTER } from '../../data/transactions/constant';
+import { converTransactionsList } from '../../data/transactions/convert';
 
 export const Container: React.FC<{}> = () => {
   const [project, setProject] = useState('');
@@ -17,9 +16,6 @@ export const Container: React.FC<{}> = () => {
     queryFn: ({ pageParam = 1 }) =>
       action({
         pageParam,
-        type,
-        search,
-        project,
       }),
     getNextPageParam: (lastPage: any, allPages: any) => {
       return lastPage.length ? allPages.length + 1 : 1;
@@ -27,10 +23,11 @@ export const Container: React.FC<{}> = () => {
   });
 
   const data = useMemo(() => {
-    return convertOfficeList(
+    return converTransactionsList(
       preFetch?.data?.pages.reduce((acc: any, page: any) => {
+        console.log(acc, page);
         return [...acc, ...page.list];
-      }, []) as OFFICE_ITEM_DATA_RAW_INTER[],
+      }, []) as TRANSACTIONS_ITEM_DATA_RAW_INTER[],
     );
   }, [preFetch?.data]);
 
@@ -68,7 +65,7 @@ export const Container: React.FC<{}> = () => {
     if (Array.isArray(preFetch.data?.pages.slice(-1)[0]) && isSuccess()) {
       const data = preFetch.data?.pages.slice(
         -1,
-      )[0] as unknown as OFFICE_ITEM_DATA_RAW_INTER[];
+      )[0] as unknown as TRANSACTIONS_ITEM_DATA_RAW_INTER[];
       return !data.length;
     }
   };
