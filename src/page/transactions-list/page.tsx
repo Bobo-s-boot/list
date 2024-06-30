@@ -1,31 +1,27 @@
 import React from 'react';
-
-import { LayoutSectionElem } from '../../common/layout-section';
-import { HeaderContainer } from '../../epic/header';
-import { LayoutAppElem } from '../../common/layout-app';
 import { LayoutElem } from '../../common/layout';
-import { PageElem } from '../../common/page';
-
+import { LayoutAppElem } from '../../common/layout-app';
 import { LayoutFooterElem } from '../../common/layout-footer';
-
+import { LayoutSectionElem } from '../../common/layout-section';
+import { PageElem } from '../../common/page';
 import { DesktopMenuAppContainer } from '../../epic/desktop-menu-app';
-import { TextElem } from '../../common/text';
-import { TransactionsListContainer } from '../../epic/transactions-list';
+import { HeaderContainer } from '../../epic/header';
+import { TRANSACTIONSListContainer } from '../../epic/transactions-list';
 
 export const Page: React.FC = () => {
   return (
     <PageElem>
       <LayoutAppElem>
-        <HeaderContainer title="TRANSACTIONS.LIST.TITLE" size="default" />
+        <HeaderContainer title="TRANSACTIONS.TITLE" size="default" />
         <LayoutElem size="default">
           <LayoutSectionElem spacing={5}>
-            <TextElem
+            {/* <TextElem
               tid="TRANSACTIONS.LIST.TITLE"
               color="textSecondary"
               type="bold"
               size="title"
-            />
-            <TransactionsListContainer />
+            /> */}
+            <TRANSACTIONSListContainer sessionId={''} />
           </LayoutSectionElem>
         </LayoutElem>
       </LayoutAppElem>

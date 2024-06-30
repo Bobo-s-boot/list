@@ -1,27 +1,25 @@
 import { HttpRequest } from '../../lib/http';
 import { API } from './constant';
 
-export const action = ({ search, type, project, pageParam }: any) => {
-  let params = '?';
-
-  if (search) {
-    params += `name=${search}`;
-  }
-
-  if (type) {
-    params += `&type=${type}`;
-  }
-
-  if (project) {
-    project?.map((item: any) => (params += `&project=${item.value}`));
-  }
-
-  if (pageParam) {
-    params += `&skip${pageParam}`;
-  }
+export const action = ({
+  sessionId,
+  category,
+  search,
+  fromDate,
+  toDate,
+  session,
+  pageParam,
+}: any) => {
+  let params = '';
+  if (search) params += `&search=${search}`;
+  if (category) params += `&${category}`;
+  if (fromDate) params += `&fromDate=${fromDate}`;
+  if (toDate) params += `&toDate=${toDate}`;
+  // if (session) params += `&session=${session}`;
+  if (pageParam) params += `&skip${pageParam}`;
 
   return HttpRequest({
     method: API.TYPE,
-    url: API.URL(params),
+    url: API.URL(sessionId, params),
   });
 };

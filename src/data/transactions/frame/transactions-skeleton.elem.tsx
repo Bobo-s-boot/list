@@ -1,15 +1,15 @@
-import React from 'react';
 import { IonSkeletonText } from '@ionic/react';
-import styled from 'styled-components';
+import React from 'react';
 
+import styled from 'styled-components';
+import { CardElem } from '../../../common/card';
+import { FlexElem } from '../../../common/flex';
 import { GridElem } from '../../../common/grid';
 import {
   SIZE_BORDER_RADIUS_DATA,
   SIZE_BORDER_RADIUS_ENUM,
 } from '../../../theme/size';
 import { VALUE_OPACITY_ENUM } from '../../../theme/value';
-import { FlexElem } from '../../../common/flex';
-import { COLOR_DATA, COLOR_ENUM } from '../../../theme/color';
 
 export const Elem: React.FC = ({ }) => {
   return (
@@ -22,38 +22,25 @@ export const Elem: React.FC = ({ }) => {
           >
             <FlexElem spacing={4}>
               <SkeletonTitle animated={true} style={{ height: '24px' }} />
-              <SkeletonTitle
-                animated={true}
-                style={{ width: '80px', height: '24px' }}
-              />
             </FlexElem>
 
             <FlexElem spacing={7} style={{ width: 'fit-content' }}>
+              <SkeletonTitle animated={true} style={{ width: '130px' }} />
               <SkeletonTitle animated={true} style={{ width: '80px' }} />
               <SkeletonTitle animated={true} style={{ width: '80px' }} />
               <SkeletonTitle animated={true} style={{ width: '80px' }} />
-              <SkeletonTitle animated={true} style={{ width: '80px' }} />
+              <SkeletonTitle animated={true} style={{ width: '130px' }} />
             </FlexElem>
           </FlexElem>
+          <GridElem spacing={3} className="mobileContainer">
+            <FlexElem spacing={4}>
+              <SkeletonTitle animated={true} style={{ height: '24px' }} />
+            </FlexElem>
+            <SkeletonTitle animated={true} style={{ width: '100px' }} />
 
-          <GridElem spacing={4} className="mobileContainer">
-            <SkeletonTitle animated={true} style={{ height: '24px' }} />
-            <FlexElem spacing={5}>
-              <GridElem spacing={3} style={{ width: 'min-content' }}>
-                <Flex spacing={2} style={{ justifyContent: 'space-between' }}>
-                  <SkeletonTitle animated={true} style={{ width: '100px' }} />
-                </Flex>
-                <Flex spacing={2} style={{ justifyContent: 'space-between' }}>
-                  <SkeletonTitle animated={true} style={{ width: '100px' }} />
-                </Flex>
-              </GridElem>
-              <GridElem spacing={3} style={{}}>
-                <SkeletonTitle animated={true} style={{ width: '50px' }} />
-                <Flex spacing={2}>
-                  <SkeletonTitle animated={true} style={{ width: '60px' }} />
-                  <SkeletonTitle animated={true} style={{ width: '100px' }} />
-                </Flex>
-              </GridElem>
+            <FlexElem spacing={7} style={{ width: 'fit-content' }}>
+              <SkeletonTitle animated={true} style={{ width: '60px' }} />
+              <SkeletonTitle animated={true} style={{ width: '60px' }} />
             </FlexElem>
           </GridElem>
         </Card>
@@ -62,16 +49,9 @@ export const Elem: React.FC = ({ }) => {
   );
 };
 
-const Card = styled.div`
+const Card = styled(CardElem)`
   display: flex;
-  padding: 20px;
-  border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
-
-  width: 100%;
-
-  background-color: ${({ theme }) =>
-    theme[COLOR_DATA[COLOR_ENUM.BACKGROUND_PRIMARY]]} !important;
-
+  cursor: auto;
   .desktopContainer {
     display: flex;
     @media screen and (width<=800px) {
@@ -101,4 +81,4 @@ const Flex = styled(FlexElem)`
   align-items: end;
 `;
 
-export { Elem as TransactionsSkeletonElem };
+export { Elem as TRANSACTIONSSkeletonElem };

@@ -1,8 +1,39 @@
-import {
-  CURRENCY_TYPE,
-  TRANSACTIONS_TYPE,
-} from '../../epic/transactions-list-item-create/constant';
+export enum BAN_TYPE {
+  NONE = 'NONE',
+  PERMANENT = 'PERMANENT',
 
+}
+export enum CURRENCY_ENUM {
+  USD = 'Доллар',
+  UAH = 'Гривня',
+  EUR = 'Євро',
+}
+
+export const currencyOptions = [
+  { value: 1, label: CURRENCY_ENUM.USD },
+  { value: 2, label: CURRENCY_ENUM.UAH },
+  { value: 3, label: CURRENCY_ENUM.EUR },
+];
+
+export type CURRENCY_TYPE = {
+  USD: 1;
+  UAH: 2;
+  EUR: 3;
+};
+export enum TRANSACTIONS_ENUM {
+  CASH = 'cash',
+  CARD = 'card',
+}
+
+export const transactionsOptions = [
+  { value: 1, label: TRANSACTIONS_ENUM.CASH },
+  { value: 2, label: TRANSACTIONS_ENUM.CARD },
+];
+
+export type TRANSACTIONS_TYPE = {
+  CASH: 1;
+  CARD: 2;
+};
 
 export interface TRANSACTIONS_ITEM_DATA_RAW_INTER {
   id: string;
@@ -27,17 +58,10 @@ export interface TRANSACTIONS_ITEM_LIST_DATA_RAW_INTER {
 }
 
 export interface TRANSACTIONS_ITEM_DATA_INTER extends TRANSACTIONS_ITEM_DATA_RAW_INTER {
+  status?: string;
 }
 
 export interface TRANSACTIONS_ITEM_LIST_DATA_INTER {
   list: TRANSACTIONS_ITEM_DATA_INTER[];
   isEmpty: boolean;
 }
-
-export const API = {
-  LIST: {
-    TYPE: 'GET',
-    // потрібно буде забрати щоб працювало нормально
-    URL: 'office/39fa17f4-ee46-43d9-8c66-5dfb548206be/transactions',
-  },
-};

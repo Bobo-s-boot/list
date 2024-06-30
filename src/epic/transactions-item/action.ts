@@ -1,9 +1,10 @@
 import { HttpRequest } from '../../lib/http';
 import { API } from './constant';
 
-export const getWebinarList = () => {
+export const action = (TRANSACTIONSId: string) => {
+
   return HttpRequest({
-    method: API.LIST.TYPE,
-    url: API.LIST.URL,
+    method: API.TYPE,
+    url: API.URL(TRANSACTIONSId),
   });
 };

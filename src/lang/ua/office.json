@@ -20,7 +20,10 @@
       "ORDER_CRYPTO_PLACEHOLDER": "Обмінює криптовалюту",
       "DESIRED_CURRENCY_PLACEHOLDER": ""
     },
-    "BUTTON": { "CREATE": "Створити обмінний пункт", "IMPORT": "Import office" }
+    "BUTTON": {
+      "CREATE": "Створити обмінний пункт",
+      "IMPORT": "Import office"
+    }
   },
 
   "IMPORT": {
@@ -35,12 +38,14 @@
       "EVENT": "Event",
       "LOGO": "Webinar logo"
     },
-    "BUTTON": { "IMPORT": "Import webinar" }
+    "BUTTON": {
+      "IMPORT": "Import webinar"
+    }
   },
   "TAB": {
     "SETTINGS": "Settings",
     "SESSION": "Sessions",
-    "VIEWER": "Viewer",
+    "TRANSACTIONS": "TRANSACTIONS",
     "PERSON": "Bot",
     "EVENT": "Scenario"
   },
@@ -53,8 +58,13 @@
       "SPEAKER_IMG": "Speaker avatar",
       "LOGO": "Logo"
     },
-    "MEDIA": { "TITLE": "Media" },
-    "BUTTON": { "UPDATE": "Зберегти зміни", "DELETE": "Видалити пункт" },
+    "MEDIA": {
+      "TITLE": "Media"
+    },
+    "BUTTON": {
+      "UPDATE": "Зберегти зміни",
+      "DELETE": "Видалити пункт"
+    },
     "SUBTOPIC": {
       "TITLE": "Subtopics",
       "BUTTON": {

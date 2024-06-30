@@ -1,29 +1,54 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { ACTION_ERROR_INTER, MODULE_NAME } from './constant';
-import { Component } from './component';
-import { action } from './action';
-import { TRANSACTIONS_ITEM_DATA_RAW_INTER } from '../../data/transactions/constant';
-import { converTransactionsList } from '../../data/transactions/convert';
 
-export const Container: React.FC<{}> = () => {
-  const [project, setProject] = useState('');
+import { ACTION_ERROR_INTER, CALENDAR, MODULE_NAME } from './constant';
+import { Component } from './component';
+
+import { action } from './action';
+import moment from 'moment';
+import { TRANSACTIONS_ITEM_DATA_RAW_INTER } from '../../data/transactions/constant';
+import { convertTransactionsList } from '../../data/transactions/convert';
+
+
+export const Container: React.FC<{
+  sessionId: string;
+}> = ({ sessionId }) => {
+  const [value, setValue] = useState('');
   const [search, setSearch] = useState('');
-  const [type, setType] = useState('');
+  const [range, setRange] = useState<CALENDAR[]>([
+    {
+      startDate: null,
+      endDate: null,
+      key: 'selection',
+    },
+  ]);
 
   const preFetch = useInfiniteQuery({
-    queryKey: [MODULE_NAME],
+    queryKey: [MODULE_NAME, sessionId],
     queryFn: ({ pageParam = 1 }) =>
       action({
         pageParam,
+        category: value,
+        sessionId,
+        search,
+        fromDate: range[0].startDate
+          ? moment(range[0].startDate).format('YYYY-MM-DD')
+          : null,
+        toDate: range[0].endDate
+          ? moment(range[0].endDate).format('YYYY-MM-DD')
+          : null,
       }),
     getNextPageParam: (lastPage: any, allPages: any) => {
       return lastPage.length ? allPages.length + 1 : 1;
     },
+    // retry: 0,
+    // refetchInterval: false,
+    // refetchOnReconnect: false,
+    // refetchOnWindowFocus: false,
   });
 
   const data = useMemo(() => {
-    return converTransactionsList(
+    return convertTransactionsList(
       preFetch?.data?.pages.reduce((acc: any, page: any) => {
         console.log(acc, page);
         return [...acc, ...page.list];
@@ -31,18 +56,14 @@ export const Container: React.FC<{}> = () => {
     );
   }, [preFetch?.data]);
 
-  useEffect(() => {
-    preFetch.refetch();
-  }, [project, type, search]);
-
   const isLoading = () => {
-    if (preFetch.isLoading || preFetch.isFetching) {
+    if (preFetch.isLoading) {
       return true;
     }
   };
 
   const isSuccess = () => {
-    if (preFetch.isSuccess && !preFetch.isFetching) {
+    if (preFetch.isSuccess) {
       return true;
     }
   };
@@ -70,22 +91,26 @@ export const Container: React.FC<{}> = () => {
     }
   };
 
+  useEffect(() => {
+    preFetch.refetch();
+  }, [range, value, search]);
   return (
     <Component
+      value={value}
+      setValue={setValue}
+      search={search}
+      setSearch={setSearch}
+      range={range}
+      setRange={setRange}
       data={data}
       isLoading={isLoading()}
       isError={isError()}
       isSuccess={isSuccess()}
       errorMessage={getErrorMessage()}
-      project={project}
-      setProject={setProject}
-      setType={setType}
-      search={search}
-      setSearch={setSearch}
-      type={type}
       fetchNextPage={preFetch.fetchNextPage}
       isFetching={preFetch.isFetching}
       isIdle={isIdle()}
+      sessionId={sessionId}
     />
   );
 };

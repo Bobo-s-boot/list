@@ -1,103 +1,18 @@
 {
-  "CREATE": {
-    "HEADER": "New Webinar",
-    "ADD": {
-      "MANAGER": "Прикріпити менеджера",
-      "ADMIN": "Прикріпити адміна"
-    },
-    "FORM": {
-      "PHONE": "Телефон",
-      "NAME": "Ім'я",
-      "ADDRESS": "Адрес",
-      "DAYS": "Дні роботи",
-      "TIME": "Час роботи",
-      "ORDER_CURRENCY": "Замовлення валюти",
-      "TRADE_CRYPTO": "Криптовалюти",
-      "BREAK": "Перерва",
-      "DESIRED_CURRENCY": "Список наявних валют",
-      "ADDRESS_PLACEHOLDER": "Місто, вулиця, будинок, поверх, офіс",
-      "ORDER_CURRENCY_PLACEHOLDER": "Можна замовити валюту",
-      "ORDER_CRYPTO_PLACEHOLDER": "Обмінює криптовалюту",
-      "DESIRED_CURRENCY_PLACEHOLDER": ""
-    },
-    "BUTTON": {
-      "CREATE": "Створити обмінний пункт",
-      "IMPORT": "Import office"
-    }
-  },
-
-  "IMPORT": {
-    "HEADER": "Import webinar",
-    "TITLE": "Webinar",
-    "FORM": {
-      "SPEAKER": "Speaker Info",
-      "TOPICS": "Topics",
-      "SESSION": "Sessions",
-      "SPEAKER_IMG": "Speaker image",
-      "PERSON": "Person",
-      "EVENT": "Event",
-      "LOGO": "Webinar logo"
-    },
-    "BUTTON": {
-      "IMPORT": "Import webinar"
-    }
-  },
-  "TAB": {
-    "SETTINGS": "Settings",
-    "SESSION": "Sessions",
-    "VIEWER": "Viewer",
-    "PERSON": "Bot",
-    "EVENT": "Scenario"
-  },
-  "UPDATE": {
-    "TITLE": "Змінити обмінний пункт",
-    "FORM": {
-      "NAME": "Name",
-      "SPEAKER": "Speaker ID",
-      "SPEAKER_NAME": "Speaker Name",
-      "SPEAKER_IMG": "Speaker avatar",
-      "LOGO": "Logo"
-    },
-    "MEDIA": {
-      "TITLE": "Media"
-    },
-    "BUTTON": {
-      "UPDATE": "Зберегти зміни",
-      "DELETE": "Видалити пункт"
-    },
-    "SUBTOPIC": {
-      "TITLE": "Subtopics",
-      "BUTTON": {
-        "CREATE": "Add subtopic",
-        "IMPORT": "Import"
-      }
-    }
-  },
-  "STATUS": {
-    "PLAN": " Planned",
-    "ONGOING": " Ongoing",
-    "COMPLETED": " Completed"
-  },
+  "TITLE": "Список Транзакцій",
   "LIST": {
-
-    "TITLE": "Список Транзакцій",
-    "WORKING": "Працює",
-    "NOT_WORKING": "Не працює",
-    "CRYPTO": "Криптовалюта",
-    "BREAK": "Перерва",
-    "FILTER": {
-      "TAB": {
-        "ALL": "Всі",
-        "WORKING": "Працює",
-        "NOT_WORKING": "Не працює",
-        "CRYPTO": "Криптовалюта"
-      },
-      "SEARCH": "Пошук",
-      "SELECT": {
-        "PLACEHOLDER": "By project"
-      },
-      "CREATE": "Створити новий"
+    "HEAD": {
+      "NUMBER_ID": "Номер (ID)",
+      "DATE": "Дата",
+      "PAYMENT_TYPE": "Вид",
+      "VALUTE_BUY": "Валюта купівля",
+      "VALUTE_SELL": "Валюта продаж",
+      "SUM": "Сума"
     },
-    "SESSION": "{{value}} Sessions"
+    "CURRENCY_TYPE": {
+      "1": "USD",
+      "2": "UAH",
+      "3": "EUR"
+    }
   }
 }

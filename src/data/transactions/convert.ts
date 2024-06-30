@@ -1,9 +1,7 @@
-import { SELECT_OPTION_ITEM_DATA } from '../../common/select';
 import {
-  TRANSACTIONS_ITEM_DATA_RAW_INTER,
   TRANSACTIONS_ITEM_DATA_INTER,
-  TRANSACTIONS_ITEM_LIST_DATA_RAW_INTER,
-  TRANSACTIONS_ITEM_LIST_DATA_INTER,
+  TRANSACTIONS_ITEM_DATA_RAW_INTER,
+  TRANSACTIONS_ITEM_LIST_DATA_INTER
 } from './constant';
 
 export const convertTransactions = (
@@ -14,28 +12,34 @@ export const convertTransactions = (
   };
 };
 
-export const converTransactionsList = (
-  list: TRANSACTIONS_ITEM_DATA_RAW_INTER[],
+export const convertTransactionsList = (
+  transactionsList: TRANSACTIONS_ITEM_DATA_RAW_INTER[],
 ): TRANSACTIONS_ITEM_LIST_DATA_INTER => {
-  console.log(list);
   return {
-    list: list?.map((transactions: TRANSACTIONS_ITEM_DATA_RAW_INTER) => {
+    list: transactionsList?.map((transactions: TRANSACTIONS_ITEM_DATA_RAW_INTER) => {
       return convertTransactions(transactions);
     }),
-    isEmpty: !list?.length,
+    isEmpty: !transactionsList?.length,
   };
 };
 
-export const convertTransactionsListToSelect = (
-  data: TRANSACTIONS_ITEM_DATA_RAW_INTER[],
-) => {
-  const newList: SELECT_OPTION_ITEM_DATA[] = [];
-  data.map((item: TRANSACTIONS_ITEM_DATA_RAW_INTER) => {
-    newList.push({
-      value: item.id,
-      label: item.email,
-    });
-  });
+export const convertTransactionsToExcel = (transactions: TRANSACTIONS_ITEM_DATA_INTER): any => {
+  return {
+    id: transactions.id,
+    // name: transactions.name,
+    phone: transactions.phone,
+    // ip: transactions.ip[0],
+    // location: transactions.location[0],
+    // needRecord: transactions.needRecord,
+    // reservation: transactions.reservation ? '+' : '-',
+    // payeed: transactions.reservation?.payment?.confirm ? '+' : '-',
+  };
+};
 
-  return newList;
+export const convertTransactionsToExcelList = (
+  transactionsList?: TRANSACTIONS_ITEM_DATA_INTER[],
+): any => {
+  return transactionsList?.map((transactions: TRANSACTIONS_ITEM_DATA_RAW_INTER) => {
+    return convertTransactionsToExcel(transactions);
+  });
 };
