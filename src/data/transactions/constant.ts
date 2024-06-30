@@ -1,7 +1,6 @@
 export enum BAN_TYPE {
   NONE = 'NONE',
   PERMANENT = 'PERMANENT',
-
 }
 export enum CURRENCY_ENUM {
   USD = 'Доллар',
@@ -38,6 +37,7 @@ export type TRANSACTIONS_TYPE = {
 export interface TRANSACTIONS_ITEM_DATA_RAW_INTER {
   id: string;
   value: string;
+  createDate: string;
   type: TRANSACTIONS_TYPE[];
   valuteBuy: CURRENCY_TYPE[];
   valuteSell: CURRENCY_TYPE[];
@@ -57,7 +57,8 @@ export interface TRANSACTIONS_ITEM_LIST_DATA_RAW_INTER {
   list: TRANSACTIONS_ITEM_DATA_RAW_INTER[];
 }
 
-export interface TRANSACTIONS_ITEM_DATA_INTER extends TRANSACTIONS_ITEM_DATA_RAW_INTER {
+export interface TRANSACTIONS_ITEM_DATA_INTER
+  extends TRANSACTIONS_ITEM_DATA_RAW_INTER {
   status?: string;
 }
 

@@ -13,6 +13,7 @@ const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
   id,
   phone,
   status,
+  createDate
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const modalClose = (e: any) => {
@@ -24,6 +25,8 @@ const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
   const modalOpen = () => {
     setModalVisible(true);
   };
+
+
   return (
     <Card handleClick={modalOpen}>
       {modalVisible && (
@@ -35,11 +38,11 @@ const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
       )}
       <EllipsisContainerElem style={{ paddingRight: `${Spacing(5)}` }}>
         <TextElem type="semi-bold" size="main" oneLine>
-          {name}
+          {id}
         </TextElem>
       </EllipsisContainerElem>
       <TextElem color="textSecondary" style={{ maxWidth: '200px' }} oneLine>
-        {phone}
+        {createDate}
       </TextElem>
 
       {/* <TextElem */}

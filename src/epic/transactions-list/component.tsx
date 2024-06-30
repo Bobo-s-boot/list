@@ -78,38 +78,31 @@ export const Component: React.FC<{
               <>
                 <Head>
                   <TextElem
-                    tid="TRANSACTIONS.LIST.HEAD.NAME"
+                    tid="TRANSACTIONS.LIST.HEAD.NUMBER_ID"
+                    type="medium"
+                    color="textPrimary"
+                  />
+                  <TextElem
+                    tid="TRANSACTIONS.LIST.HEAD.DATE"
                     type="medium"
                     color="textPrimary"
                   />
 
                   <TextElem
-                    tid="TRANSACTIONS.LIST.HEAD.NUMBER"
-                    type="medium"
-                    color="textPrimary"
-                  />
-
-                  <TextElem
-                    tid="TRANSACTIONS.LIST.HEAD.WATCH_TIME"
+                    tid="TRANSACTIONS.LIST.HEAD.VALUTE_BUY"
                     type="medium"
                     color="textPrimary"
                     style={{ justifySelf: 'center' }}
                   />
 
                   <TextElem
-                    tid="TRANSACTIONS.LIST.HEAD.BAN"
+                    tid="TRANSACTIONS.LIST.HEAD.VALUTE_SELL"
                     type="medium"
                     color="textPrimary"
                     style={{ justifySelf: 'center' }}
                   />
                   <TextElem
-                    tid="TRANSACTIONS.LIST.HEAD.REQUEST"
-                    type="medium"
-                    color="textPrimary"
-                    style={{ justifySelf: 'center' }}
-                  />
-                  <TextElem
-                    tid="TRANSACTIONS.LIST.HEAD.STATUS"
+                    tid="TRANSACTIONS.LIST.HEAD.SUM"
                     type="medium"
                     color="textPrimary"
                     style={{ justifySelf: 'center' }}
