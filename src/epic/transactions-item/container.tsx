@@ -12,11 +12,11 @@ import {
 import { action } from './action';
 
 export const Container: React.FC<{
-  TRANSACTIONSId: string;
+  transitionId: string;
   visible: boolean;
   onClose: Function;
-}> = ({ TRANSACTIONSId, onClose, visible }) => {
-  const preFetch = useQuery(MODULE_NAME, () => action(TRANSACTIONSId));
+}> = ({ transitionId, onClose, visible }) => {
+  const preFetch = useQuery(MODULE_NAME, () => action(transitionId));
 
   const isLoading = () => {
     if (preFetch.isLoading || preFetch.isFetching) {

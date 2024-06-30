@@ -7,7 +7,7 @@ import { CardElem } from '../../../common/card';
 
 import { EllipsisContainerElem } from '../../../common/ellipsis-container';
 import { TextElem } from '../../../common/text';
-import { TRANSACTIONSItemContainer } from '../../../epic/transactions-item';
+import { TransitionsItemContainer } from '../../../epic/transactions-item';
 
 const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
   id,
@@ -30,8 +30,8 @@ const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
   return (
     <Card handleClick={modalOpen}>
       {modalVisible && (
-        <TRANSACTIONSItemContainer
-          TRANSACTIONSId={id}
+        <TransitionsItemContainer
+          transitionId={id}
           visible={modalVisible}
           onClose={modalClose}
         />

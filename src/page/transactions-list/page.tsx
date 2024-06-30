@@ -6,7 +6,7 @@ import { LayoutSectionElem } from '../../common/layout-section';
 import { PageElem } from '../../common/page';
 import { DesktopMenuAppContainer } from '../../epic/desktop-menu-app';
 import { HeaderContainer } from '../../epic/header';
-import { TRANSACTIONSListContainer } from '../../epic/transactions-list';
+import { TransitionsListContainer } from '../../epic/transactions-list';
 
 export const Page: React.FC = () => {
   return (
@@ -21,7 +21,7 @@ export const Page: React.FC = () => {
               type="bold"
               size="title"
             /> */}
-            <TRANSACTIONSListContainer sessionId={''} />
+            <TransitionsListContainer sessionId={''} />
           </LayoutSectionElem>
         </LayoutElem>
       </LayoutAppElem>
