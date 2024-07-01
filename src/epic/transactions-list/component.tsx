@@ -35,8 +35,6 @@ export const Component: React.FC<{
   setSearch: Function;
   range: CALENDAR[];
   setRange: Function;
-  // setSession: Function;
-  // session: any;
   sessionId: string;
 }> = ({
   data,
@@ -46,30 +44,10 @@ export const Component: React.FC<{
   errorMessage,
   isFetching,
   fetchNextPage,
-  setValue,
-  value,
-  search,
-  setSearch,
-  range,
-  setRange,
-  // session,
-  // setSession,
   isIdle,
-  sessionId,
 }) => {
     return (
       <GridElem spacing={5}>
-        {/* <TRANSACTIONSFilterContainer
-        value={value}
-        setValue={setValue}
-        // session={session}
-        // setSession={setSession}
-        search={search}
-        setSearch={setSearch}
-        range={range}
-        setRange={setRange}
-        sessionId={sessionId}
-      /> */}
         {isError && <AlertActionElem text={errorMessage} />}
         {data && isSuccess && data.isEmpty && <AlertEmptyElem />}
         <Container>

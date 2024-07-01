@@ -20,9 +20,9 @@ const formatCreateDate = (rawDate: string): string => {
   return formattedCreateDate;
 };
 
-const formatValuteCurrency = (carrency: CURRENCY_TYPE[]): string => {
+const formatValuteCurrency = (currency: CURRENCY_TYPE[]): string => {
   const formatedValute = `${i18n.t(
-    `TRANSACTIONS.LIST.CURRENCY_TYPE.${carrency}`,
+    `TRANSACTIONS.LIST.CURRENCY_TYPE.${currency}`,
   )}`;
 
   return formatedValute;

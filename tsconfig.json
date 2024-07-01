@@ -20,8 +20,12 @@
     "noEmit": true,
     "jsx": "preserve"
   },
-  "include": [
-    "src"
+"include": [
+    "src",
+    "src/data/transactions/constant.ts",
+    "src/data/transactions/convert.ts",
+    "src/data/transactions/frame/transactions-item-list.elem.tsx",
+    "src/data/transactions/frame/transactions-skeleton.elem.tsx"
   ]
 }
 
