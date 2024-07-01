@@ -1,3 +1,5 @@
+import i18n from 'i18next';
+
 export enum BAN_TYPE {
   NONE = 'NONE',
   PERMANENT = 'PERMANENT',
@@ -8,17 +10,18 @@ export enum CURRENCY_ENUM {
   EUR = 'Євро',
 }
 
-export const currencyOptions = [
-  { value: 1, label: CURRENCY_ENUM.USD },
-  { value: 2, label: CURRENCY_ENUM.UAH },
-  { value: 3, label: CURRENCY_ENUM.EUR },
-];
-
 export type CURRENCY_TYPE = {
   USD: 1;
   UAH: 2;
   EUR: 3;
 };
+
+export const currencyOptions = [
+  { value: 1, label: i18n.t('TRANSACTIONS.LIST.CURRENCY_ENUM.1') },
+  { value: 2, label: i18n.t('TRANSACTIONS.LIST.CURRENCY_ENUM.2') },
+  { value: 3, label: i18n.t('TRANSACTIONS.LIST.CURRENCY_ENUM.3') },
+];
+
 export enum TRANSACTIONS_ENUM {
   CASH = 'cash',
   CARD = 'card',

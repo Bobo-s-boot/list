@@ -15,12 +15,6 @@ export const Page: React.FC = () => {
         <HeaderContainer title="TRANSACTIONS.TITLE" size="default" />
         <LayoutElem size="default">
           <LayoutSectionElem spacing={5}>
-            {/* <TextElem
-              tid="TRANSACTIONS.LIST.TITLE"
-              color="textSecondary"
-              type="bold"
-              size="title"
-            /> */}
             <TransitionsListContainer sessionId={''} />
           </LayoutSectionElem>
         </LayoutElem>

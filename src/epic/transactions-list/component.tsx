@@ -10,7 +10,7 @@ import {
   TRANSACTIONS_ITEM_DATA_INTER,
   TRANSACTIONS_ITEM_LIST_DATA_INTER,
 } from '../../data/transactions/constant';
-import { TRANSACTIONSItemElem } from '../../data/transactions/frame/transactions-item-list.elem';
+import { TransactionsItemElem } from '../../data/transactions/frame/transactions-item-list.elem';
 import { Spacing } from '../../theme';
 
 import { IonInfiniteScroll } from '@ionic/react';
@@ -87,7 +87,12 @@ export const Component: React.FC<{
                     type="medium"
                     color="textPrimary"
                   />
-
+                  <TextElem
+                    tid="TRANSACTIONS.LIST.HEAD.PAYMENT_TYPE"
+                    type="medium"
+                    color="textPrimary"
+                    style={{ justifySelf: 'center' }}
+                  />
                   <TextElem
                     tid="TRANSACTIONS.LIST.HEAD.VALUTE_BUY"
                     type="medium"
@@ -109,7 +114,7 @@ export const Component: React.FC<{
                   />
                 </Head>
                 {data?.list.map((item: TRANSACTIONS_ITEM_DATA_INTER) => (
-                  <TRANSACTIONSItemElem {...item} />
+                  <TransactionsItemElem {...item} />
                 ))}
               </>
             )}

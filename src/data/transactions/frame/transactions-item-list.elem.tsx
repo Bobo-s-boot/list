@@ -8,12 +8,15 @@ import { CardElem } from '../../../common/card';
 import { EllipsisContainerElem } from '../../../common/ellipsis-container';
 import { TextElem } from '../../../common/text';
 import { TransitionsItemContainer } from '../../../epic/transactions-item';
+import { i18n } from '../../../lib/lang';
 
 const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
   id,
-  phone,
-  status,
-  createDate
+  createDate,
+  type,
+  valuteBuy,
+  valuteSell,
+  sum,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const modalClose = (e: any) => {
@@ -25,7 +28,6 @@ const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
   const modalOpen = () => {
     setModalVisible(true);
   };
-
 
   return (
     <Card handleClick={modalOpen}>
@@ -44,32 +46,20 @@ const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
       <TextElem color="textSecondary" style={{ maxWidth: '200px' }} oneLine>
         {createDate}
       </TextElem>
-
-      {/* <TextElem */}
-      {/* //   tid="TRANSACTIONS.LIST.WATCH_TIME"
-        //   tvalue={{ value: watchTime }}
-        //   color="textSecondary"
-        //   oneLine
-        //   style={{ justifySelf: 'center' }}
-        // /> */}
-      {/* <TextElem
-        tid={`TRANSACTIONS.BAN.${ban}`}
-        color="textSecondary"
-        oneLine
-        style={{ justifySelf: 'center' }}
-      /> */}
-      //   {/* <TextElem
-      //   tid={needRecord ? `TRANSACTIONS.LIST.REQUEST_YES` : `TRANSACTIONS.LIST.REQUEST_NO`}
-      //   color="textSecondary"
-      //   oneLine
-      //   style={{ justifySelf: 'center' }}
-      // /> */}
-      <TextElem
-        tid={`TRANSACTIONS.LIST.${status}`}
-        color="textSecondary"
-        oneLine
-        style={{ justifySelf: 'center' }}
+      <img
+        src={`../assets/svg/payment-type-icons/type-${type}.svg`}
+        width={`auto`}
+        height={Spacing(6)}
       />
+      <TextElem color="textSecondary" style={{ maxWidth: '200px' }} oneLine>
+        {`${i18n.t(`TRANSACTIONS.LIST.CURRENCY_TYPE.${valuteBuy}`)}`}
+      </TextElem>
+      <TextElem color="textSecondary" style={{ maxWidth: '200px' }} oneLine>
+        {`${i18n.t(`TRANSACTIONS.LIST.CURRENCY_TYPE.${valuteSell}`)}`}
+      </TextElem>
+      <TextElem color="textSecondary" style={{ maxWidth: '200px' }} oneLine>
+        {sum}
+      </TextElem>
     </Card>
   );
 };
@@ -85,4 +75,4 @@ const Card = styled(CardElem) <{}>`
   gap: ${Spacing(12)};
 `;
 
-export { Elem as TRANSACTIONSItemElem };
+export { Elem as TransactionsItemElem };
