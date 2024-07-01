@@ -10,6 +10,7 @@ import {
   SIZE_BORDER_RADIUS_ENUM,
 } from '../../../theme/size';
 import { VALUE_OPACITY_ENUM } from '../../../theme/value';
+import { COLOR_ENUM } from '../../../theme/color';
 
 export const Elem: React.FC = ({ }) => {
   return (
@@ -76,9 +77,4 @@ const SkeletonTitle = styled(IonSkeletonText)`
   opacity: ${({ theme }) => theme.value[VALUE_OPACITY_ENUM.SKELETON]};
 `;
 
-const Flex = styled(FlexElem)`
-  width: auto;
-  align-items: end;
-`;
-
-export { Elem as TRANSACTIONSSkeletonElem };
+export { Elem as TransactionsSkeletonElem };

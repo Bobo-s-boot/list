@@ -29,19 +29,19 @@ export const Elem: React.FC<{
   className,
   disabled = false,
 }) => {
-  return (
-    <Card
-      disabled={disabled}
-      onClick={handleClick}
-      wide={wide}
-      control={control}
-      className={`${className} ${control && 'ion-activatable'} `}
-    >
-      {children}
-      {control && <IonRippleEffect />}
-    </Card>
-  );
-};
+    return (
+      <Card
+        disabled={disabled}
+        onClick={handleClick}
+        wide={wide}
+        control={control}
+        className={`${className} ${control && 'ion-activatable'} `}
+      >
+        {children}
+        {control && <IonRippleEffect />}
+      </Card>
+    );
+  };
 
 const Card = styled.div<{
   wide: boolean;

@@ -9,13 +9,14 @@ import { EllipsisContainerElem } from '../../../common/ellipsis-container';
 import { TextElem } from '../../../common/text';
 import { TransitionsItemContainer } from '../../../epic/transactions-item';
 import { i18n } from '../../../lib/lang';
+import { COLOR_ENUM } from '../../../theme/color';
 
 const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
   id,
   createDate,
-  type,
-  valuteBuy,
-  valuteSell,
+  paymentType,
+  valuteBuyFormated,
+  valuteSellFormated,
   sum,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -46,16 +47,12 @@ const Elem: React.FC<TRANSACTIONS_ITEM_DATA_INTER> = ({
       <TextElem color="textSecondary" style={{ maxWidth: '200px' }} oneLine>
         {createDate}
       </TextElem>
-      <img
-        src={`../assets/svg/payment-type-icons/type-${type}.svg`}
-        width={`auto`}
-        height={Spacing(6)}
-      />
+      <img src={paymentType} width={`auto`} height={Spacing(6)} />
       <TextElem color="textSecondary" style={{ maxWidth: '200px' }} oneLine>
-        {`${i18n.t(`TRANSACTIONS.LIST.CURRENCY_TYPE.${valuteBuy}`)}`}
+        {valuteBuyFormated}
       </TextElem>
       <TextElem color="textSecondary" style={{ maxWidth: '200px' }} oneLine>
-        {`${i18n.t(`TRANSACTIONS.LIST.CURRENCY_TYPE.${valuteSell}`)}`}
+        {valuteSellFormated}
       </TextElem>
       <TextElem color="textSecondary" style={{ maxWidth: '200px' }} oneLine>
         {sum}
@@ -73,6 +70,8 @@ const Card = styled(CardElem) <{}>`
   position: relative;
   align-items: center;
   gap: ${Spacing(12)};
+  text-align: center;
+  background-color: ${({ theme }) => theme[COLOR_ENUM.INPUT]};
 `;
 
 export { Elem as TransactionsItemElem };

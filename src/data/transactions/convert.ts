@@ -5,6 +5,7 @@ import {
   TRANSACTIONS_ITEM_DATA_INTER,
   TRANSACTIONS_ITEM_DATA_RAW_INTER,
   TRANSACTIONS_ITEM_LIST_DATA_INTER,
+  TRANSACTIONS_TYPE,
   currencyOptions,
 } from './constant';
 
@@ -19,14 +20,29 @@ const formatCreateDate = (rawDate: string): string => {
   return formattedCreateDate;
 };
 
+const formatValuteCurrency = (carrency: CURRENCY_TYPE[]): string => {
+  const formatedValute = `${i18n.t(
+    `TRANSACTIONS.LIST.CURRENCY_TYPE.${carrency}`,
+  )}`;
+
+  return formatedValute;
+};
+
+const formatPaymentTypeSrc = (type: TRANSACTIONS_TYPE[]): string => {
+  const paymentType = `../assets/svg/payment-type-icons/type-${type}.svg`;
+
+  return paymentType;
+};
+
 export const convertTransactions = (
   transactions: TRANSACTIONS_ITEM_DATA_RAW_INTER,
 ): TRANSACTIONS_ITEM_DATA_INTER => {
-  const formattedCreateDate = formatCreateDate(transactions.createDate);
-
   return {
     ...transactions,
-    createDate: formattedCreateDate,
+    createDate: formatCreateDate(transactions.createDate),
+    valuteBuyFormated: formatValuteCurrency(transactions.valuteBuy),
+    valuteSellFormated: formatValuteCurrency(transactions.valuteSell),
+    paymentType: formatPaymentTypeSrc(transactions.type),
   };
 };
 
@@ -48,13 +64,7 @@ export const convertTransactionsToExcel = (
 ): any => {
   return {
     id: transactions.id,
-    // name: transactions.name,
     phone: transactions.phone,
-    // ip: transactions.ip[0],
-    // location: transactions.location[0],
-    // needRecord: transactions.needRecord,
-    // reservation: transactions.reservation ? '+' : '-',
-    // payeed: transactions.reservation?.payment?.confirm ? '+' : '-',
   };
 };
 

@@ -17,7 +17,7 @@ import { IonInfiniteScroll } from '@ionic/react';
 import { TextElem } from '../../common/text';
 import { COLOR_ENUM } from '../../theme/color';
 
-import { TRANSACTIONSSkeletonElem } from '../../data/transactions/frame/transactions-skeleton.elem';
+import { TransactionsSkeletonElem } from '../../data/transactions/frame/transactions-skeleton.elem';
 import { CALENDAR } from './constant';
 
 export const Component: React.FC<{
@@ -79,36 +79,35 @@ export const Component: React.FC<{
                 <Head>
                   <TextElem
                     tid="TRANSACTIONS.LIST.HEAD.NUMBER_ID"
-                    type="medium"
+                    type="semi-bold"
                     color="textPrimary"
                   />
                   <TextElem
                     tid="TRANSACTIONS.LIST.HEAD.DATE"
-                    type="medium"
+                    type="semi-bold"
                     color="textPrimary"
                   />
                   <TextElem
                     tid="TRANSACTIONS.LIST.HEAD.PAYMENT_TYPE"
-                    type="medium"
+                    type="semi-bold"
                     color="textPrimary"
                     style={{ justifySelf: 'center' }}
                   />
                   <TextElem
                     tid="TRANSACTIONS.LIST.HEAD.VALUTE_BUY"
-                    type="medium"
+                    type="semi-bold"
                     color="textPrimary"
                     style={{ justifySelf: 'center' }}
                   />
-
                   <TextElem
                     tid="TRANSACTIONS.LIST.HEAD.VALUTE_SELL"
-                    type="medium"
+                    type="semi-bold"
                     color="textPrimary"
                     style={{ justifySelf: 'center' }}
                   />
                   <TextElem
                     tid="TRANSACTIONS.LIST.HEAD.SUM"
-                    type="medium"
+                    type="semi-bold"
                     color="textPrimary"
                     style={{ justifySelf: 'center' }}
                   />
@@ -130,26 +129,26 @@ export const Component: React.FC<{
                   setTimeout(() => ev.target.complete(), 500);
                 }}
               >
-                {!isIdle && <TRANSACTIONSSkeletonElem />}
+                {!isIdle && <TransactionsSkeletonElem />}
               </IonInfiniteScroll>
             )}
-
-          {isFetching && <TRANSACTIONSSkeletonElem />}
+          {isFetching && <TransactionsSkeletonElem />}
         </Container>
       </GridElem>
     );
   };
 const Container = styled.div`
   overflow-x: auto;
-  scrollbar-color: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_THIRD]}
+  scrollbar-color: ${({ theme }) => theme[COLOR_ENUM.INPUT]}
     transparent;
   scrollbar-width: thin;
 `;
 
 const NewGrid = styled(GridElem)`
-  grid-auto-columns: repeat(6, 'auto');
+  grid-template-columns: 2fr 2fr 1fr 2fr 2fr 2fr;
   row-gap: ${Spacing(3)};
   width: 1050px;
+  
 `;
 
 const Head = styled(GridElem)`
@@ -163,4 +162,5 @@ const Head = styled(GridElem)`
   grid-column: span 6;
   grid-template-columns: subgrid;
   gap: ${Spacing(12)};
+  text-align: center;
 `;

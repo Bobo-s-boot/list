@@ -33,7 +33,6 @@ export const Component: React.FC<{
   isError,
   errorMessage,
 }) => {
-
     const ref = useRef(null);
 
     const handleClickOutside = () => {
@@ -242,7 +241,7 @@ export const Component: React.FC<{
 const ContentContainer = styled.div`
   padding: ${Spacing(5)};
   border-radius: 12px;
-  background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
+  background: ${({ theme }) => theme[COLOR_ENUM.INPUT]};
   height: 100%;
 `;
 

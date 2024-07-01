@@ -62,7 +62,9 @@ export interface TRANSACTIONS_ITEM_LIST_DATA_RAW_INTER {
 
 export interface TRANSACTIONS_ITEM_DATA_INTER
   extends TRANSACTIONS_ITEM_DATA_RAW_INTER {
-  status?: string;
+  valuteBuyFormated?: string;
+  valuteSellFormated?: string;
+  paymentType?: string;
 }
 
 export interface TRANSACTIONS_ITEM_LIST_DATA_INTER {
