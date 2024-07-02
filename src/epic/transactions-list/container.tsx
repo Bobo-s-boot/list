@@ -9,7 +9,6 @@ import moment from 'moment';
 import { TRANSACTIONS_ITEM_DATA_RAW_INTER } from '../../data/transactions/constant';
 import { convertTransactionsList } from '../../data/transactions/convert';
 
-
 export const Container: React.FC<{
   sessionId: string;
 }> = ({ sessionId }) => {
@@ -50,7 +49,6 @@ export const Container: React.FC<{
   const data = useMemo(() => {
     return convertTransactionsList(
       preFetch?.data?.pages.reduce((acc: any, page: any) => {
-        console.log(acc, page);
         return [...acc, ...page.list];
       }, []) as TRANSACTIONS_ITEM_DATA_RAW_INTER[],
     );

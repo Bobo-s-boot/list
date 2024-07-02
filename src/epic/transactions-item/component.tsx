@@ -50,7 +50,7 @@ export const Component: React.FC<{
                   <GridElem spacing={5} style={{ overflow: 'hidden' }}>
                     <GridElem style={{ gridTemplateColumns: 'auto 16px' }}>
                       <TextElem
-                        tid="TRANSACTIONS.ITEM.TITLE"
+                        tid="TRANSACTIONS.LIST.ITEM.TITLE"
                         size="main"
                         type="semi-bold"
                       />
@@ -62,169 +62,265 @@ export const Component: React.FC<{
                     {isSuccess && data && (
                       <>
                         <Container>
-                          <GridElem spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.NAME"
-                              size="small"
-                              color="textPrimary"
-                            />
-                          </GridElem>
-                          <GridElem spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.ID"
-                              size="small"
-                              color="textPrimary"
-                            />
-                            {!!data.id ? (
-                              <TextElem type="semi-bold">{data.id}</TextElem>
-                            ) : (
+                          <FirstContainer spacing={2}>
+                            <GridElem spacing={2}>
                               <TextElem
-                                type="semi-bold"
-                                tid={`TRANSACTIONS.ITEM.EMPTY`}
+                                tid="TRANSACTIONS.LIST.ITEM.LASTNAME_AND_FIRSTNAME"
+                                size="small"
+                                color="textPrimary"
                               />
-                            )}
-                          </GridElem>
-
-                          <GridElem spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.PHONE"
-                              size="small"
-                              color="textPrimary"
-                            />
-                            {!!data.phone ? (
-                              <TextElem type="semi-bold">{data.phone}</TextElem>
-                            ) : (
-                              <TextElem
-                                type="semi-bold"
-                                tid={`TRANSACTIONS.ITEM.EMPTY`}
-                              />
-                            )}
-                          </GridElem>
-                          <GridElem spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.IP"
-                              size="small"
-                              color="textPrimary"
-                            />
-                          </GridElem>
-                          <GridElem spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.LOCATION"
-                              size="small"
-                              color="textPrimary"
-                            />
-                          </GridElem>
-                          <GridElem spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.DEVICES"
-                              size="small"
-                              color="textPrimary"
-                            />
-
-                            {/* {!!data.id.length ? (
-                              data.id.map((item: string) => (
-                                <TextElem type="semi-bold">{item}</TextElem>
-                              ))
-                            ) : (
-                              <TextElem
-                                type="semi-bold"
-                                tid="TRANSACTIONS.ITEM.EMPTY"
-                              />
-                            )} */}
-                          </GridElem>
-                          <GridElem spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.BAN"
-                              size="small"
-                              color="textPrimary"
-                            />
-                            {!!data.id ? (
-                              <TextElem
-                                type="semi-bold"
-                                tid={`TRANSACTIONS.BAN.${data.id}`}
-                              />
-                            ) : (
-                              <TextElem
-                                type="semi-bold"
-                                tid={`TRANSACTIONS.ITEM.EMPTY`}
-                              />
-                            )}
-                          </GridElem>
-                          <GridElem spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.REQUEST"
-                              size="small"
-                              color="textPrimary"
-                            />
-                          </GridElem>
-                          {data.id && (
-                            <>
-                              <GridElem spacing={2}>
-                                <TextElem
-                                  tid="TRANSACTIONS.ITEM.RESERVATION_NAME"
-                                  size="small"
-                                  color="textPrimary"
-                                />
+                              {!!data.firstname && !!data.lastname ? (
                                 <TextElem type="semi-bold">
-                                  {/* {data.name} */}
+                                  {data.lastname} {data.firstname}
                                 </TextElem>
-                              </GridElem>
-                              <GridElem spacing={2}>
+                              ) : (
                                 <TextElem
-                                  tid="TRANSACTIONS.ITEM.RESERVATION_PHONE"
-                                  size="small"
-                                  color="textPrimary"
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
                                 />
+                              )}
+                            </GridElem>
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.ID"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.id ? (
+                                <TextElem type="semi-bold">{data.id}</TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.PHONE"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.phone ? (
                                 <TextElem type="semi-bold">{data.phone}</TextElem>
-                              </GridElem>
-                            </>
-                          )}
-                          <GridElem spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.STATUS"
-                              size="small"
-                              color="textPrimary"
-                            />
-                            <ContentContainer>
-                              {/* <StepperElem
-                                stepArray={STEPPER_LIST}
-                                activeStep={getActiveSteppe()}
-                                numeretic={false}
-                              /> */}
-                            </ContentContainer>
-                          </GridElem>
-                          <GridElem
-                            spacing={2}
-                            style={{
-                              gridTemplateRows: 'min-content auto',
-                              height: '100%',
-                            }}
-                          >
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.UTM"
-                              size="small"
-                              color="textPrimary"
-                            />
-                            <ContentContainer>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                            <GridElem spacing={2}>
                               <TextElem
-                                type="semi-bold"
-                                tid="TRANSACTIONS.ITEM.EMPTY"
+                                tid="TRANSACTIONS.LIST.ITEM.EMAIL"
+                                size="small"
+                                color="textPrimary"
                               />
-                            </ContentContainer>
-                          </GridElem>
-                          <ChatContainer spacing={2}>
-                            <TextElem
-                              tid="TRANSACTIONS.ITEM.CHAT"
-                              size="small"
-                              color="textPrimary"
-                            />
-                            <ContentContainer>
+                              {!!data.email ? (
+                                <TextElem type="semi-bold">{data.email}</TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                            <GridElem spacing={2}>
                               <TextElem
-                                type="semi-bold"
-                                tid="TRANSACTIONS.ITEM.EMPTY"
+                                tid="TRANSACTIONS.LIST.ITEM.PASSPORT"
+                                size="small"
+                                color="textPrimary"
                               />
-                            </ContentContainer>
-                          </ChatContainer>
+                              {!!data.passport ? (
+                                <TextElem type="semi-bold">
+                                  {data.passport}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                          </FirstContainer>
+
+                          <FirstContainer spacing={2}>
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.USER_NAME"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.userName ? (
+                                <TextElem type="semi-bold">
+                                  {data.userName}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.OFFICE_NAME"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.officeName ? (
+                                <TextElem type="semi-bold">
+                                  {data.officeName}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.DATE"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.createDate ? (
+                                <TextElem type="semi-bold">
+                                  {data.createDate}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.LOCATION"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.officeLocation ? (
+                                <TextElem type="semi-bold">
+                                  {data.officeLocation}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                          </FirstContainer>
+
+                          <LastContainer spacing={2}>
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.PAYMENT_TYPE"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.paymentTypeString ? (
+                                <TextElem type="semi-bold">
+                                  {data.paymentTypeString}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.VALUTE_BUY"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.valuteBuy ? (
+                                <TextElem type="semi-bold">
+                                  {data.valuteBuyFormated}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.HEAD.SUM"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.sum ? (
+                                <TextElem type="semi-bold">{data.sum}</TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.CURRENCY"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.currency ? (
+                                <TextElem type="semi-bold">
+                                  {data.currency}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.COMMISION"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.commission ? (
+                                <TextElem type="semi-bold">
+                                  {data.commission}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+
+                            <GridElem spacing={2}>
+                              <TextElem
+                                tid="TRANSACTIONS.LIST.ITEM.VALUTE_SELL"
+                                size="small"
+                                color="textPrimary"
+                              />
+                              {!!data.valuteSell ? (
+                                <TextElem type="semi-bold">
+                                  {data.valuteSellFormated}
+                                </TextElem>
+                              ) : (
+                                <TextElem
+                                  type="semi-bold"
+                                  tid={`TRANSACTIONS.LIST.ITEM.EMPTY`}
+                                />
+                              )}
+                            </GridElem>
+                          </LastContainer>
                         </Container>
                       </>
                     )}
@@ -245,15 +341,32 @@ const ContentContainer = styled.div`
   height: 100%;
 `;
 
-const ChatContainer = styled(GridElem)`
+const FirstContainer = styled(GridElem)`
   grid-column-start: 1;
   grid-column-end: 3;
-  grid-template-rows: min-content auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
   height: 100%;
   @media screen and (width<620px) {
     grid-column-start: 1;
     grid-column-end: 1;
   }
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+`;
+
+const LastContainer = styled(GridElem)`
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  height: 100%;
+  @media screen and (width<620px) {
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
 `;
 
 const CloseIconStyled = styled(CloseIcon)`

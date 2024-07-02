@@ -11,7 +11,7 @@ export const ACTION_TYPE = {
 
 export const API = {
   TYPE: 'GET',
-  URL: (transactionsId: string) => `/office/39fa17f4-ee46-43d9-8c66-5dfb548206be/transactions`,
+  URL: (transactionsId: string) => `/39fa17f4-ee46-43d9-8c66-5dfb548206be/5`,
 };
 
 export interface ACTION_RESPONSE_INTER

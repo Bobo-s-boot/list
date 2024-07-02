@@ -37,6 +37,7 @@ export type TRANSACTIONS_TYPE = {
   CARD: 2;
 };
 
+
 export interface TRANSACTIONS_ITEM_DATA_RAW_INTER {
   id: string;
   value: string;
@@ -54,6 +55,9 @@ export interface TRANSACTIONS_ITEM_DATA_RAW_INTER {
   passport: string;
   userId: string;
   officeId: string;
+  userName: string;
+  officeName: string;
+  officeLocation: string;
 }
 
 export interface TRANSACTIONS_ITEM_LIST_DATA_RAW_INTER {
@@ -65,6 +69,7 @@ export interface TRANSACTIONS_ITEM_DATA_INTER
   valuteBuyFormated?: string;
   valuteSellFormated?: string;
   paymentType?: string;
+  paymentTypeString?: string;
 }
 
 export interface TRANSACTIONS_ITEM_LIST_DATA_INTER {
