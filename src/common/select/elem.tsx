@@ -112,13 +112,14 @@ export const Elem: React.FC<PROPS_TYPE> = ({
 };
 
 const Container = styled.div`
+  font-family: 'Public Sans', sans-serif;
   display: grid;
   grid-gap: ${Spacing(3)};
 
   width: 100%;
 `;
 
-const CustomSelect = styled(Select)<{
+const CustomSelect = styled(Select) <{
   textOnly: boolean;
   isDisabled: true | undefined;
   maxWidth: string;
@@ -158,12 +159,12 @@ const CustomSelect = styled(Select)<{
     color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PRIMARY]};
 
     ${({ maxWidth }) => {
-      if (maxWidth) {
-        return css`
+    if (maxWidth) {
+      return css`
           max-width: calc(${maxWidth} - 40px);
         `;
-      }
-    }}
+    }
+  }}
 
     font-size:14px !important;
     font-weight: 400;
@@ -181,8 +182,8 @@ const CustomSelect = styled(Select)<{
 
   & .Select__control {
     border-radius: ${SIZE_BORDER_RADIUS_DATA[
-      SIZE_BORDER_RADIUS_ENUM.DEFAULT
-    ]}px;
+  SIZE_BORDER_RADIUS_ENUM.DEFAULT
+  ]}px;
     max-height: 53px;
 
     cursor: pointer;
@@ -329,8 +330,8 @@ const CustomSelect = styled(Select)<{
         }
         & .Select__menu {
           border-radius: ${SIZE_BORDER_RADIUS_DATA[
-            SIZE_BORDER_RADIUS_ENUM.DEFAULT
-          ]}px;
+        SIZE_BORDER_RADIUS_ENUM.DEFAULT
+        ]}px;
           padding-top: 0;
           right: 0;
           width: 100%;
@@ -339,8 +340,8 @@ const CustomSelect = styled(Select)<{
         }
         & .Select__menu-list {
           border-radius: ${SIZE_BORDER_RADIUS_DATA[
-            SIZE_BORDER_RADIUS_ENUM.DEFAULT
-          ]}px;
+        SIZE_BORDER_RADIUS_ENUM.DEFAULT
+        ]}px;
           background: ${({ theme }) => theme[COLOR_ENUM.INPUT_ACTIVE]};
         }
       `;
