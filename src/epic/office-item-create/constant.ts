@@ -82,7 +82,7 @@ export type CURRENCY_TYPE = {
 
 export const API = {
   TYPE: 'POST',
-  URL: `/transactions/`,
+  URL: `/office`,
 };
 
 export interface ACTION_ERROR_INTER {

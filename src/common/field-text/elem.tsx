@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled, { css } from 'styled-components';
 import PhoneInput from 'react-phone-input-2';
 
-import { COLOR_ENUM } from '../../theme/color';
+import { COLOR_DATA, COLOR_ENUM } from '../../theme/color';
 import { Spacing } from '../../theme';
 import {
   SIZE_BORDER_RADIUS_DATA,
@@ -152,6 +152,7 @@ const CustomInput = styled.input<{
   iconSize: number;
   isSuccess: boolean;
 }>`
+  font-family: 'Public Sans', sans-serif;
   cursor: pointer;
   :focus-visible {
     outline: none;
@@ -167,6 +168,7 @@ const CustomInput = styled.input<{
   line-height: 1em;
   text-align: start;
   color: ${({ theme }) => theme[COLOR_ENUM.TEXT_DEFAULT]};
+  background-color: ${({ theme }) => theme[COLOR_ENUM.WHITE]};
 
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
   width: 100%;
@@ -177,9 +179,9 @@ const CustomInput = styled.input<{
 
   border: 1px solid
     ${({ theme, isSuccess }) =>
-      isSuccess
-        ? theme[COLOR_ENUM.BORDER_ACTIVE_SELECT]
-        : theme[COLOR_ENUM.BORDER_DEFAULT]};
+    isSuccess
+      ? theme[COLOR_ENUM.BORDER_ACTIVE_SELECT]
+      : theme[COLOR_ENUM.BORDER_DEFAULT]};
 
   &:hover {
   }
@@ -188,7 +190,7 @@ const CustomInput = styled.input<{
   }
 
   ::placeholder {
-    /* color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]}; */
+    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]};
   }
 
   &:hover {
@@ -222,7 +224,8 @@ const CustomInput = styled.input<{
   }
 `;
 
-const PhoneInputCustom = styled(PhoneInput)<{ isSuccess: boolean }>`
+const PhoneInputCustom = styled(PhoneInput) <{ isSuccess: boolean }>`
+  font-family: 'Public Sans', sans-serif;
   && div {
     display: none;
   }
@@ -241,16 +244,16 @@ const PhoneInputCustom = styled(PhoneInput)<{ isSuccess: boolean }>`
 
     background: ${({ theme }) => theme[COLOR_ENUM.INPUT]};
     border-radius: ${SIZE_BORDER_RADIUS_DATA[
-      SIZE_BORDER_RADIUS_ENUM.DEFAULT
-    ]}px;
+  SIZE_BORDER_RADIUS_ENUM.DEFAULT
+  ]}px;
     width: 100%;
     outline: none;
 
     border: 1px solid
       ${({ theme, isSuccess }) =>
-        isSuccess
-          ? theme[COLOR_ENUM.BORDER_ACTIVE_SELECT]
-          : theme[COLOR_ENUM.BORDER_DEFAULT]};
+    isSuccess
+      ? theme[COLOR_ENUM.BORDER_ACTIVE_SELECT]
+      : theme[COLOR_ENUM.BORDER_DEFAULT]};
 
     ::placeholder {
       color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]};
@@ -326,5 +329,5 @@ const Icon = styled.div`
   z-index: 2;
   :hover {
     opacity: ;
- }
+  }
 `;
