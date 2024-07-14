@@ -10,12 +10,12 @@ export enum FORM_VALUE_ENUM {
   NAME = 'name',
   PHONE = 'phone',
   ADDRESS = 'address',
-  DAYS = 'days',
   TIME = 'time',
   BREAK = 'break',
   DESIRED_CURRENCY = 'desiredCurrency',
   ORDER_CURRENCY = 'isOrderCurrency',
   TRADE_CRYPTO = 'isTradeCrypto',
+  DAYS = 'days',
 }
 
 export type FORM_VALUE_TYPE = `${FORM_VALUE_ENUM}`;
@@ -24,12 +24,12 @@ export interface FORM_VALUE_INTER {
   [FORM_VALUE_ENUM.NAME]: string;
   [FORM_VALUE_ENUM.PHONE]: string;
   [FORM_VALUE_ENUM.ADDRESS]: string;
-  [FORM_VALUE_ENUM.DAYS]: DAYS_TYPE[];
   [FORM_VALUE_ENUM.DESIRED_CURRENCY]: CURRENCY_TYPE[];
   [FORM_VALUE_ENUM.TIME]: [string, string];
   [FORM_VALUE_ENUM.BREAK]: [string, string];
   [FORM_VALUE_ENUM.ORDER_CURRENCY]: boolean;
   [FORM_VALUE_ENUM.TRADE_CRYPTO]: boolean;
+  [FORM_VALUE_ENUM.DAYS]: DAYS_TYPE[];
 }
 
 export const API = {
