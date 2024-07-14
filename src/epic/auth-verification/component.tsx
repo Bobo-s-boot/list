@@ -38,50 +38,52 @@ export const Component: React.FC<{
   login,
   type,
 }) => {
-  return (
-    <Form onSubmit={formik.handleSubmit}>
-      {isLoading && <LoaderElem />}
-      <TitleContainer>
-        <TextElem
-          size="heading"
-          type="bold"
-          color="textSecondary"
-          isMulishFont
-          tid="AUTH.SIGNUP.TITLE"
-          tvalue={{ type }}
-        />
-        <TextElem
-          size="main"
-          color="textDefault"
-          type="medium"
-          tid="AUTH.VERIFICATION.TEXT"
-          tvalue={{ type, login }}
-        />
-      </TitleContainer>
-      <GridStyled size="mod">
-        <GridElem size="input">
-          <FieldTextElem
-            name={CODE_VALUE_ENUM.CODE}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            title="AUTH.VERIFICATION.CODE"
-            value={getFieldValue(CODE_VALUE_ENUM.CODE)}
-            errorMessage={getFieldError(CODE_VALUE_ENUM.CODE)}
-            error={isFieldError(CODE_VALUE_ENUM.CODE)}
+    return (
+      <Form onSubmit={formik.handleSubmit}>
+        {isLoading && <LoaderElem />}
+        <TitleContainer>
+          <TextElem
+            size="heading"
+            type="bold"
+            color="textSecondary"
+            isMulishFont
+            tid="AUTH.SIGNUP.TITLE"
+            tvalue={{ type }}
           />
-          <ResendComponent email={login} />
-        </GridElem>
+          <TextElem
+            size="main"
+            color="textDefault"
+            type="medium"
+            tid="AUTH.VERIFICATION.TEXT"
+            tvalue={{ type, login }}
+          />
+        </TitleContainer>
+        <GridStyled size="mod">
+          <GridElem size="input">
+            <FieldTextElem
+              maxLength={5}
+              type="code"
+              name={CODE_VALUE_ENUM.CODE}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              title="AUTH.VERIFICATION.CODE"
+              value={getFieldValue(CODE_VALUE_ENUM.CODE)}
+              errorMessage={getFieldError(CODE_VALUE_ENUM.CODE)}
+              error={isFieldError(CODE_VALUE_ENUM.CODE)}
+            />
+            <ResendComponent email={login} />
+          </GridElem>
 
-        <ButtonElem
-          disabled={isSubmitDisabled()}
-          type="submit"
-          tid="AUTH.VERIFICATION.BUTTON"
-        />
-        {isError && <AlertActionElem text={errorMessage} />}
-      </GridStyled>
-    </Form>
-  );
-};
+          <ButtonElem
+            disabled={isSubmitDisabled()}
+            type="submit"
+            tid="AUTH.VERIFICATION.BUTTON"
+          />
+          {isError && <AlertActionElem text={errorMessage} />}
+        </GridStyled>
+      </Form>
+    );
+  };
 
 const GridStyled = styled(GridElem)`
   background-color: #ffffff;

@@ -16,6 +16,7 @@ import { TextElem } from '../text';
 import { PROPS_TYPE } from './constant';
 import { i18n } from '../../lib/lang';
 import CalendarIcon from '../../asset/svg/common/calendar.svg';
+import { VerificationCodeInputElem } from '../verification-code-input';
 
 export const Elem: React.FC<PROPS_TYPE> = ({
   title,
@@ -93,7 +94,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
           />
         )}
         <Content>
-          {type === 'phone' ? (
+          {type === 'phone' && (
             <PhoneInputCustom
               isSuccess={isSuccess}
               country={'ua'}
@@ -105,7 +106,9 @@ export const Elem: React.FC<PROPS_TYPE> = ({
                 name: name,
               }}
             />
-          ) : (
+          )}
+
+          {type !== 'phone' && type !== 'code' && (
             <>
               <CustomInput
                 isSuccess={isSuccess}
@@ -126,6 +129,16 @@ export const Elem: React.FC<PROPS_TYPE> = ({
               <div id="content" />
               <Icon ref={refIcon}>{icon && icon}</Icon>
             </>
+          )}
+
+          {type === 'code' && (
+            <VerificationCodeInputElem
+              length={maxLength}
+              loading={false}
+              onComplete={(code: string) =>
+                handleChange({ target: { name, value: code } })
+              }
+            />
           )}
 
           {errorContainer && (
@@ -211,17 +224,75 @@ const CustomInput = styled.input<{
   ${({ error }) =>
     error &&
     css`
-      /* border-color: ${({ theme }) => theme[COLOR_ENUM.ERROR]} !important; */
+      border-color: ${({ theme }) => theme[COLOR_ENUM.ERROR]} !important;
     `}
 
   ::-webkit-calendar-picker-indicator {
-    /* color: rgba(0, 0, 0, 0); */
     opacity: 1;
     display: block;
     background: url(${CalendarIcon}) no-repeat;
     width: 16px;
     height: 16px;
   }
+`;
+
+const FakeInput = styled.div`
+  padding: 16px 20px;
+  position: relative;
+  height: 53px;
+  font-size: ${({ theme }) => theme[SIZE_FONT_ENUM.INPUT]}px;
+  font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
+  color: ${({ theme }) => theme[COLOR_ENUM.TEXT_DISABLED]};
+  background: ${({ theme }) => theme[COLOR_ENUM.INPUT_DISABLED]};
+  line-height: 1em;
+  border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
+  width: 100%;
+  border: 1px dashed ${({ theme }) => theme[COLOR_ENUM.BORDER_DEFAULT]};
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  && > span {
+    width: calc(100% - 40px);
+    display: block;
+    overflow: hidden;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+`;
+
+const Content = styled.div`
+  position: relative;
+`;
+
+const ErrorContainer = styled.div`
+  height: 13.19px;
+  position: absolute;
+`;
+
+const Container = styled.div`
+  display: grid;
+  grid-gap: ${Spacing(3)};
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PRIMARY]};
+    -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) => theme[COLOR_ENUM.INPUT]}
+      inset;
+  }
+`;
+
+const Icon = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  height: max-content;
+  box-sizing: content-box;
+  z-index: 2;
 `;
 
 const PhoneInputCustom = styled(PhoneInput) <{ isSuccess: boolean }>`
@@ -267,67 +338,5 @@ const PhoneInputCustom = styled(PhoneInput) <{ isSuccess: boolean }>`
         color: ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
       }
     }
-  }
-`;
-
-const FakeInput = styled.div`
-  padding: 16px 20px;
-  position: relative;
-  height: 53px;
-  font-size: ${({ theme }) => theme[SIZE_FONT_ENUM.INPUT]}px;
-  font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
-  color: ${({ theme }) => theme[COLOR_ENUM.TEXT_DISABLED]};
-  background: ${({ theme }) => theme[COLOR_ENUM.INPUT_DISABLED]};
-  line-height: 1em;
-  border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
-  width: 100%;
-  border: 1px dashed ${({ theme }) => theme[COLOR_ENUM.BORDER_DEFAULT]};
-
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-
-  && > span {
-    width: calc(100% - 40px);
-    display: block;
-    overflow: hidden;
-    white-space: nowrap !important;
-    text-overflow: ellipsis !important;
-  }
-`;
-
-const Content = styled.div`
-  position: relative;
-`;
-
-const ErrorContainer = styled.div`
-  height: 13.19px;
-  position: absolute;
-`;
-
-const Container = styled.div`
-  display: grid;
-  grid-gap: ${Spacing(3)};
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-    -webkit-text-fill-color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PRIMARY]};
-    -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) => theme[COLOR_ENUM.INPUT]}
-      inset;
-  }
-`;
-
-const Icon = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  height: max-content;
-  box-sizing: content-box;
-  z-index: 2;
-  :hover {
-    opacity: ;
   }
 `;

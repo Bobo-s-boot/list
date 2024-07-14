@@ -37,6 +37,6 @@ export interface ACTION_ERROR_INTER {
   statusCode: string;
 }
 export const TIMER_CONFIG = {
-  minutes: 0,
-  seconds: 9,
+  minutes: 1,
+  seconds: 0,
 };
