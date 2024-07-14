@@ -89,7 +89,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
 };
 
 const Wrapper = styled.div`
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   display: flex;
   flex-direction: column;
   gap: ${Spacing(2)};

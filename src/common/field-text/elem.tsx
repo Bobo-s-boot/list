@@ -165,7 +165,7 @@ const CustomInput = styled.input<{
   iconSize: number;
   isSuccess: boolean;
 }>`
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   cursor: pointer;
   :focus-visible {
     outline: none;
@@ -296,7 +296,7 @@ const Icon = styled.div`
 `;
 
 const PhoneInputCustom = styled(PhoneInput) <{ isSuccess: boolean }>`
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   && div {
     display: none;
   }

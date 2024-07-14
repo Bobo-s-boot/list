@@ -40,22 +40,22 @@ export const Elem: React.FC<{
   isMulishFont,
   style = {},
 }) => {
-  return (
-    <Text
-      color={color}
-      size={size}
-      type={type}
-      lineHeight={lineHeight}
-      lineThrought={lineThrought}
-      oneLine={oneLine}
-      className={className}
-      style={style}
-      isMulishFont={isMulishFont}
-    >
-      {tid ? i18n.t(tid, tvalue) : children}
-    </Text>
-  );
-};
+    return (
+      <Text
+        color={color}
+        size={size}
+        type={type}
+        lineHeight={lineHeight}
+        lineThrought={lineThrought}
+        oneLine={oneLine}
+        className={className}
+        style={style}
+        isMulishFont={isMulishFont}
+      >
+        {tid ? i18n.t(tid, tvalue) : children}
+      </Text>
+    );
+  };
 
 const Text = styled.span<{
   size?: SIZE_FONT_TYPE;
@@ -69,16 +69,16 @@ const Text = styled.span<{
   display: inline-block;
   text-align: top;
   ${({
-    size = SIZE_FONT_ENUM.DEFAULT,
-    color = COLOR_ENUM.DEFAULT,
-    type = SIZE_FONT_WEIGHT_ENUM.REGULAR,
-    lineHeight = false,
-    lineThrought = false,
-    oneLine = false,
-    isMulishFont,
-  }) => {
+  size = SIZE_FONT_ENUM.DEFAULT,
+  color = COLOR_ENUM.DEFAULT,
+  type = SIZE_FONT_WEIGHT_ENUM.REGULAR,
+  lineHeight = false,
+  lineThrought = false,
+  oneLine = false,
+  isMulishFont,
+}) => {
     return css`
-      font-family: ${isMulishFont ? 'Mulish' : 'Public Sans, sans-serif'};
+      font-family: ${isMulishFont ? 'Mulish' : 'Helvetica, sans-serif'};
       /* font-family: 'Helvetica'; */
 
       font-size: ${SIZE_FONT_DATA[size]}px;

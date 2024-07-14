@@ -55,7 +55,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
 
   const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props) => {
     return (
-      <components.DropdownIndicator {...props}>
+      <components.DropdownIndicator  {...props}>
         <IndicatorIcon />
       </components.DropdownIndicator>
     );
@@ -112,7 +112,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
 };
 
 const Container = styled.div`
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   display: grid;
   grid-gap: ${Spacing(3)};
 

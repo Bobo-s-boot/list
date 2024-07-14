@@ -114,6 +114,7 @@ export const Component: React.FC<{
                   isMulti
                   customComponents={{ MultiValueContainer: multiValueContainer }}
                 />
+
                 <FieldTimeInputElem
                   fieldValue={getFieldValue(FORM_VALUE_ENUM.TIME)}
                   name={FORM_VALUE_ENUM.TIME}
@@ -145,21 +146,20 @@ export const Component: React.FC<{
                     placeholder="OFFICE.CREATE.FORM.ORDER_CRYPTO_PLACEHOLDER"
                   />
                 </DoubleContainerElem>
-
-                <SelectElem
-                  value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-                  name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
-                  title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
-                  onChange={onChangeSelect}
-                  errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-                  error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-                  options={currencyOptions}
-                  closeMenuOnSelect={false}
-                  hideSelectedOptions={false}
-                  isMulti
-                  customComponents={{ MultiValueContainer: multiValueContainer }}
-                />
               </GridElem>
+              <SelectElem
+                value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
+                title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
+                onChange={onChangeSelect}
+                errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                options={currencyOptions}
+                closeMenuOnSelect={false}
+                hideSelectedOptions={false}
+                isMulti
+                customComponents={{ MultiValueContainer: multiValueContainer }}
+              />
 
               <DoubleContainerElem>
                 <ButtonStyled

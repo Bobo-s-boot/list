@@ -171,21 +171,22 @@ export const Component: React.FC<{
                     tid="OFFICE.CREATE.FORM.TRADE_CRYPTO"
                     placeholder="OFFICE.CREATE.FORM.ORDER_CRYPTO_PLACEHOLDER"
                   />
+                  <SelectElem
+                    value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                    name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
+                    title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
+                    onChange={onChangeSelect}
+                    errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                    error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                    options={currencyOptions}
+                    closeMenuOnSelect={false}
+                    hideSelectedOptions={false}
+                    isMulti
+                    customComponents={{
+                      MultiValueContainer: multiValueContainer,
+                    }}
+                  />
                 </DoubleContainerElem>
-
-                <SelectElem
-                  value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-                  name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
-                  title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
-                  onChange={onChangeSelect}
-                  errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-                  error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-                  options={currencyOptions}
-                  closeMenuOnSelect={false}
-                  hideSelectedOptions={false}
-                  isMulti
-                  customComponents={{ MultiValueContainer: multiValueContainer }}
-                />
               </GridElem>
 
               <DoubleContainerElem>
