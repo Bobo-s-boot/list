@@ -248,6 +248,7 @@ const FakeInput = styled.div`
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
   width: 100%;
   border: 1px dashed ${({ theme }) => theme[COLOR_ENUM.BORDER_DEFAULT]};
+  border-width: 3px;
   overflow: hidden;
   display: flex;
   align-items: center;
