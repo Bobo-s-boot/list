@@ -5,7 +5,6 @@ import { Spacing } from '../../theme';
 import { TabType } from './frame/type-tab';
 import { Search } from './frame/search';
 import { ButtonElem } from '../../common/button';
-// import { WEBINAR_CREATE_PAGE_PATH } from '../../page/webinar-item-create';
 import { ProjectSelect } from './frame/project-select';
 import { GridElem } from '../../common/grid';
 import { COLOR_ENUM } from '../../theme/color';
