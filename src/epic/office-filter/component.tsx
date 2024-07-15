@@ -11,6 +11,7 @@ import { GridElem } from '../../common/grid';
 import { COLOR_ENUM } from '../../theme/color';
 import plusIconDark from '../../asset/svg/button/plus.svg';
 import { OFFICE_CREATE_PAGE_PATH } from '../../page/office-create';
+import { OFFICE_FILTER_TYPE } from './constant';
 
 export const Component: React.FC<{
   project: string;
@@ -22,11 +23,14 @@ export const Component: React.FC<{
 }> = ({ project, setProject, setType, search, setSearch, type }) => {
   return (
     <Container>
-      <TabType type={type} setType={setType} />
+      <TabType
+        disabledTypes={[OFFICE_FILTER_TYPE.CRYPTO]}
+        type={type}
+        setType={(newType: OFFICE_FILTER_TYPE) => setType(newType)}
+      />
       <Flex spacing={3}>
         {/* <ProjectSelect setProject={setProject} project={project} /> */}
         <Search search={search} setSearch={setSearch} />
-
         <ButtonFixedContainer>
           <Link href={OFFICE_CREATE_PAGE_PATH}>
             <ButtonElem

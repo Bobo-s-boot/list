@@ -6,30 +6,41 @@ import { Spacing } from '../../../theme';
 import {
   SIZE_BORDER_RADIUS_DATA,
   SIZE_BORDER_RADIUS_ENUM,
+  SIZE_GRID_DATA,
+  SIZE_GRID_ENUM,
 } from '../../../theme/size';
 import { TextElem } from '../../../common/text';
 import { OFFICE_FILTER_TYPE } from '../constant';
 
 export const TabType: React.FC<{
-  type: string;
+  type: OFFICE_FILTER_TYPE;
   setType: Function;
-}> = ({ type, setType }) => {
-  const typeArr = [
+  disabledTypes?: OFFICE_FILTER_TYPE[];
+}> = ({ type, setType, disabledTypes = [] }) => {
+  const typeArr: OFFICE_FILTER_TYPE[] = [
     OFFICE_FILTER_TYPE.ALL,
     OFFICE_FILTER_TYPE.WORKING,
     OFFICE_FILTER_TYPE.NOT_WORKING,
     OFFICE_FILTER_TYPE.CRYPTO,
   ];
 
-  useEffect(() => setType(typeArr[0]), []);
+  useEffect(() => {
+    setType(typeArr[0]);
+  }, []);
+
   return (
     <Container>
-      {typeArr.map((item: string) => (
-        <TabItem active={type === item} onClick={() => setType(item)}>
+      {typeArr.map((item: OFFICE_FILTER_TYPE) => (
+        <TabItem
+          key={item}
+          disabled={disabledTypes.includes(item)}
+          active={type === item}
+          onClick={() => !disabledTypes.includes(item) && setType(item)}
+        >
           <TextElem
             tid={`OFFICE.LIST.FILTER.TAB.${item}`}
             color={type === item ? 'textSecondary' : 'textPrimary'}
-            size="tab"
+            size="small"
             type={type === item ? 'bold' : 'medium'}
           />
         </TabItem>
@@ -46,7 +57,7 @@ const Container = styled.div`
 
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
   gap: ${Spacing(2)};
-  @media screen and (width<800px) {
+  @media screen and (width < 800px) {
     overflow-y: auto;
 
     ::after {
@@ -60,9 +71,9 @@ const Container = styled.div`
   }
 `;
 
-const TabItem = styled.div<{ active: boolean }>`
+const TabItem = styled.div<{ active: boolean; disabled?: boolean }>`
   width: 100%;
-  padding: ${Spacing(4)} ${Spacing(4)};
+  padding: ${Spacing(3)} ${Spacing(4)};
   cursor: pointer;
   text-align: center;
 
@@ -73,7 +84,6 @@ const TabItem = styled.div<{ active: boolean }>`
   }
 
   background: transparent;
-
   border: 1px solid ${({ theme }) => theme[COLOR_ENUM.WHITE]};
 
   ${({ active }) =>
@@ -81,6 +91,8 @@ const TabItem = styled.div<{ active: boolean }>`
       ? css`
           border: unset !important;
           background: ${({ theme }) => theme[COLOR_ENUM.TAB]};
+          font-size: ${SIZE_GRID_DATA[SIZE_GRID_ENUM.INPUT]};
+          padding: ${Spacing(3)} ${Spacing(4)};
         `
       : css`
           :hover {
@@ -91,4 +103,20 @@ const TabItem = styled.div<{ active: boolean }>`
             }
           }
         `};
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      pointer-events: none;
+      cursor: not-allowed;
+      border: 1px solid ${({ theme }) => theme[COLOR_ENUM.CHIP_INACTIVE]};
+      border: dashed 3px ${({ theme }) => theme[COLOR_ENUM.CHIP_INACTIVE]};
+      border-style: dashed;
+      background: ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
+      font-size: ${SIZE_GRID_DATA[SIZE_GRID_ENUM.INPUT]};
+      padding: ${Spacing(3)} ${Spacing(4)};
+      :hover {
+        border: 1px solid ${({ theme }) => theme[COLOR_ENUM.CHIP_INACTIVE]};
+      }
+    `}
 `;
