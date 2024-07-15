@@ -16,7 +16,7 @@ export const CardComponent: React.FC<{
     <Card handleClick={() => handleClick(id)} wide control>
       <CardContent>
         <TextContainer>
-          <RadioElem titleTid={titleTid} active={active} />
+          <RadioElem gap={3} titleTid={titleTid} active={active} />
           <TextElem tid={infoTid} color="textThird" lineHeight />
         </TextContainer>
         <Img src={icon} />

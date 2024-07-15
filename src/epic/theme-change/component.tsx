@@ -8,14 +8,17 @@ export const Component: React.FC<{
   isSystem: boolean;
 }> = ({ handleClick, active, isSystem }) => {
   return (
-    <ToggleElem
-      checked={active}
-      handleClick={handleClick}
-      tid={
-        active
-          ? 'NAVIGATION.TAB_APP.THEME_DARK'
-          : 'NAVIGATION.TAB_APP.THEME_LIGHT'
-      }
-    />
+    <>
+      <ToggleElem
+        gap={3}
+        checked={active}
+        handleClick={handleClick}
+        tid={
+          active
+            ? 'NAVIGATION.TAB_APP.THEME_DARK'
+            : 'NAVIGATION.TAB_APP.THEME_LIGHT'
+        }
+      />
+    </>
   );
 };

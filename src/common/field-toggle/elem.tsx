@@ -22,7 +22,7 @@ export const Elem: React.FC<{
   tid: string;
   placeholder?: string;
   name?: string;
-}> = ({ handleClick = () => {}, checked, placeholder, tid, name }) => {
+}> = ({ handleClick = () => { }, checked, placeholder, tid, name }) => {
   const handleChange = (e: any) => {
     if (handleClick) {
       handleClick({ target: { name: name, value: !checked } });

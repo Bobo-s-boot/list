@@ -11,7 +11,8 @@ export const Elem: React.FC<{
   handleClick?: any;
   className?: string;
   name?: string;
-}> = ({ checked = false, tid, className, name, handleClick = () => {} }) => {
+  gap?: number;
+}> = ({ checked = false, tid, className, name, handleClick, gap = 0 }) => {
   const handleChange = (e: any) => {
     if (handleClick) {
       handleClick({ target: { name: name, value: !checked } });
@@ -19,7 +20,7 @@ export const Elem: React.FC<{
   };
 
   return (
-    <Container onClick={handleChange}>
+    <Container gap={gap} onClick={handleChange}>
       <Toggle
         checked={checked}
         className={className}
@@ -33,10 +34,10 @@ export const Elem: React.FC<{
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ gap?: number }>`
   display: flex;
-  gap: ${Spacing(3)};
   align-items: end;
+  gap: ${({ gap = 0 }) => Spacing(gap)};
 `;
 
 const Toggle = styled(IonToggle)`
