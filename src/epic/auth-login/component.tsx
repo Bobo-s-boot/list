@@ -101,7 +101,6 @@ export const Component: React.FC<{
               value={getFieldValue(FORM_VALUE_ENUM.PASSWORD)}
               errorMessage={getFieldError(FORM_VALUE_ENUM.PASSWORD)}
               error={isFieldError(FORM_VALUE_ENUM.PASSWORD)}
-              disabled={true}
             />
             <LinkElem
               justifySelf="end"
