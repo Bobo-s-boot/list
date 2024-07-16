@@ -36,7 +36,7 @@ export const View: React.FC<{
   );
 };
 
-const Container = styled(GridElem)<{ isActive: boolean }>`
+const Container = styled(GridElem) <{ isActive: boolean }>`
   padding: 18px;
   width: 100%;
   display: flex;
@@ -60,7 +60,7 @@ const Container = styled(GridElem)<{ isActive: boolean }>`
         background: ${({ theme }) => theme[COLOR_ENUM.TAB]};
 
         & > span {
-          font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
+          font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.BOLD]};
           color: ${({ theme }) => theme[COLOR_ENUM.TEXT_SECONDARY]};
         }
       `;
@@ -70,15 +70,15 @@ const Container = styled(GridElem)<{ isActive: boolean }>`
         :hover {
           background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
 
-          & > span {
-            color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]};
-          }
+        & > span {
+        color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]};
+      }
 
           .icon {
-            background-color: ${({ theme }) => theme[COLOR_ENUM.DEFAULT]};
+    background-color: ${({ theme }) => theme[COLOR_ENUM.DEFAULT]};
           }
         }
-      `;
+`;
     }
   }};
 `;
