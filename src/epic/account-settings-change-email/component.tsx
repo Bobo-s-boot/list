@@ -36,64 +36,64 @@ export const Component: React.FC<{
   isError,
   errorMessage,
 }) => {
-  return (
-    <ContentContainerElem>
-      <FormElem onSubmit={formik.handleSubmit}>
-        {isLoading && <LoaderElem />}
-        <GridElem spacing={8}>
-          <TextElem
-            size="main"
-            type="semi-bold"
-            tid="SETTINGS.CHANGE_EMAIL.TITLE"
-          />
+    return (
+      <ContentContainerElem>
+        <FormElem onSubmit={formik.handleSubmit}>
+          {isLoading && <LoaderElem />}
           <GridElem spacing={4}>
+            <TextElem
+              size="medium"
+              type="semi-bold"
+              tid="SETTINGS.CHANGE_EMAIL.TITLE"
+            />
+            <GridElem spacing={4}>
+              <DoubleContainerElem>
+                <FieldTextElem
+                  title="SETTINGS.CHANGE_EMAIL.EMAIL"
+                  value={getFieldValue(FORM_VALUE_ENUM.EMAIL)}
+                  disabled
+                />
+              </DoubleContainerElem>
+
+              <DoubleContainerElem>
+                <FieldTextElem
+                  name={FORM_VALUE_ENUM.NEW_EMAIL}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  title="SETTINGS.CHANGE_EMAIL.NEW_EMAIL"
+                  value={getFieldValue(FORM_VALUE_ENUM.NEW_EMAIL)}
+                  errorMessage={getFieldError(FORM_VALUE_ENUM.NEW_EMAIL)}
+                  error={isFieldError(FORM_VALUE_ENUM.NEW_EMAIL)}
+                  type="email"
+                />
+                <FieldPasswordElem
+                  name={FORM_VALUE_ENUM.PASSWORD}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  title="SETTINGS.CHANGE_EMAIL.PASSWORD"
+                  value={getFieldValue(FORM_VALUE_ENUM.PASSWORD)}
+                  errorMessage={getFieldError(FORM_VALUE_ENUM.PASSWORD)}
+                  error={isFieldError(FORM_VALUE_ENUM.PASSWORD)}
+                />
+              </DoubleContainerElem>
+            </GridElem>
             <DoubleContainerElem>
-              <FieldTextElem
-                title="SETTINGS.CHANGE_EMAIL.EMAIL"
-                value={getFieldValue(FORM_VALUE_ENUM.EMAIL)}
-                disabled
+              <ButtonElem
+                disabled={isSubmitDisabled()}
+                type="add"
+                tid="SETTINGS.CHANGE_EMAIL.BUTTON"
               />
             </DoubleContainerElem>
 
-            <DoubleContainerElem>
-              <FieldTextElem
-                name={FORM_VALUE_ENUM.NEW_EMAIL}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                title="SETTINGS.CHANGE_EMAIL.NEW_EMAIL"
-                value={getFieldValue(FORM_VALUE_ENUM.NEW_EMAIL)}
-                errorMessage={getFieldError(FORM_VALUE_ENUM.NEW_EMAIL)}
-                error={isFieldError(FORM_VALUE_ENUM.NEW_EMAIL)}
-                type="email"
+            {isError && <AlertActionElem text={errorMessage} />}
+            {isSuccess && (
+              <AlertActionElem
+                type="success"
+                tid="SETTINGS.CHANGE_EMAIL.SUCCESS"
               />
-              <FieldPasswordElem
-                name={FORM_VALUE_ENUM.PASSWORD}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                title="SETTINGS.CHANGE_EMAIL.PASSWORD"
-                value={getFieldValue(FORM_VALUE_ENUM.PASSWORD)}
-                errorMessage={getFieldError(FORM_VALUE_ENUM.PASSWORD)}
-                error={isFieldError(FORM_VALUE_ENUM.PASSWORD)}
-              />
-            </DoubleContainerElem>
+            )}
           </GridElem>
-          <DoubleContainerElem>
-            <ButtonElem
-              disabled={isSubmitDisabled()}
-              type="add"
-              tid="SETTINGS.CHANGE_EMAIL.BUTTON"
-            />
-          </DoubleContainerElem>
-
-          {isError && <AlertActionElem text={errorMessage} />}
-          {isSuccess && (
-            <AlertActionElem
-              type="success"
-              tid="SETTINGS.CHANGE_EMAIL.SUCCESS"
-            />
-          )}
-        </GridElem>
-      </FormElem>
-    </ContentContainerElem>
-  );
-};
+        </FormElem>
+      </ContentContainerElem>
+    );
+  };

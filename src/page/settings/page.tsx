@@ -21,7 +21,7 @@ export const Page: React.FC<RouteComponentProps> = () => {
       <LayoutAppElem>
         {/* <HeaderContainer title="PROJECT.LIST.HEADER" size="default" /> */}
         <LayoutElem size="default">
-          <LayoutSectionElem spacing={8}>
+          <LayoutSectionElem spacing={6}>
             <TextElem
               tid="SETTINGS.HEADER"
               color="textSecondary"
