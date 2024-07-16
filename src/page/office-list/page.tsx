@@ -10,13 +10,14 @@ import { LayoutFooterElem } from '../../common/layout-footer';
 import { OfficeListContainer } from '../../epic/office-list';
 import { DesktopMenuAppContainer } from '../../epic/desktop-menu-app';
 import { TextElem } from '../../common/text';
+import { Spacing } from '../../theme';
 
 export const Page: React.FC = () => {
   return (
     <PageElem>
-      <LayoutAppElem>
+      <LayoutAppElem gap={`${Spacing(3)}`}>
         {/* <HeaderContainer title="PROJECT.LIST.HEADER" size="default" /> */}
-        <LayoutElem size="default">
+        <LayoutElem backgroundColor="white" size="default">
           <LayoutSectionElem spacing={5}>
             <TextElem
               tid="OFFICE.LIST.TITLE"

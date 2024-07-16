@@ -23,54 +23,58 @@ export const Elem: React.FC<{
   className?: string;
   oneColumn?: boolean;
   tab?: boolean;
+  gap?: string;
 }> = ({
   children,
   background = 'backgroundPrimary',
   className,
   oneColumn = false,
   tab = false,
+  gap,
 }) => {
-  const { state } = useSelector((s: any) => ({
-    state: s[THEME_MODULE_NAME],
-  }));
+    const { state } = useSelector((s: any) => ({
+      state: s[THEME_MODULE_NAME],
+    }));
 
-  // useEffect(() => {
-  //   if (Capacitor.isNativePlatform()) {
-  //     try {
-  //       StatusBar.setBackgroundColor({
-  //         color: `transparent`,
-  //       });
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
+    // useEffect(() => {
+    //   if (Capacitor.isNativePlatform()) {
+    //     try {
+    //       StatusBar.setBackgroundColor({
+    //         color: `transparent`,
+    //       });
+    //     } catch (e) {
+    //       console.log(e);
+    //     }
 
-  //     document
-  //       .querySelector('meta[name="theme-color"]')
-  //       ?.setAttribute('content', `transparent`);
-  //   }
-  // }, [background, state.type]);
-  const bg =
-    state.type === THEME_ENUM.LIGHT
-      ? LIGHT_COLOR_DATA[COLOR_ENUM.WHITE]
-      : DARK_COLOR_DATA[COLOR_ENUM.WHITE];
-  return (
-    <Background
-      background={bg}
-      className={className}
-      oneColumn={oneColumn}
-      tab={tab}
-      id="layoutApp1"
-    >
-      <div id="layoutApp" />
-      {children}
-    </Background>
-  );
-};
+    //     document
+    //       .querySelector('meta[name="theme-color"]')
+    //       ?.setAttribute('content', `transparent`);
+    //   }
+    // }, [background, state.type]);
+    const bg =
+      state.type === THEME_ENUM.LIGHT
+        ? LIGHT_COLOR_DATA[COLOR_ENUM.WHITE]
+        : DARK_COLOR_DATA[COLOR_ENUM.WHITE];
+    return (
+      <Background
+        background={bg}
+        className={className}
+        oneColumn={oneColumn}
+        tab={tab}
+        id="layoutApp1"
+        gap={gap}
+      >
+        <div id="layoutApp" />
+        {children}
+      </Background>
+    );
+  };
 
-const Background = styled(IonContent)<{
+const Background = styled(IonContent) <{
   background?: string;
   oneColumn?: boolean;
   tab: boolean;
+  gap?: string;
 }>`
   width: 100%;
   height: 100%;
@@ -81,14 +85,14 @@ const Background = styled(IonContent)<{
     `;
   }}
 
-  ${({ oneColumn, tab }) => {
+  ${({ oneColumn, tab, gap }) => {
     if (!oneColumn) {
       return css`
         ::part(scroll) {
           display: grid;
           background-color: ${({ theme }) =>
-            theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
-
+          theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
+          column-gap: ${gap};
           grid-template-columns: 270px auto;
           grid-template-rows: ${tab ? '162px' : '92px'} auto;
           padding-bottom: ${Spacing(10)};

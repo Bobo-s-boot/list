@@ -15,7 +15,7 @@ export const Page: React.FC = () => {
     <PageElem>
       <LayoutAppElem>
         {/* <HeaderContainer title="PROJECT.LIST.HEADER" size="default" /> */}
-        <LayoutElem size="default">
+        <LayoutElem backgroundColor='transparent' size="default">
           <LayoutSectionElem spacing={5}>
             <ProjectListContainer />
           </LayoutSectionElem>

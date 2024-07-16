@@ -47,61 +47,61 @@ export const Component: React.FC<{
   isError,
   errorMessage,
 }) => {
-  const [formVisible, setFormVisible] = useState(false);
-  return (
-    <>
-      {formVisible ? (
-        <FormElem onSubmit={formik.handleSubmit}>
-          {isLoading && <LoaderElem />}
-          <ContentContainerElem>
-            <GridElem spacing={5}>
-              <TitleContainer>
-                <TextElem
-                  tid="PROJECT.CREATE.TITLE"
-                  type="semi-bold"
-                  size="main"
-                />
-                <CloseIcon
-                  onClick={() => setFormVisible(false)}
-                  style={{ cursor: 'pointer' }}
-                />
-              </TitleContainer>
-              <DoubleContainerElem>
-                <FieldTextElem
-                  name={FORM_VALUE_ENUM.NAME}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  title="PROJECT.CREATE.FORM.NAME"
-                  value={getFieldValue(FORM_VALUE_ENUM.NAME)}
-                  errorMessage={getFieldError(FORM_VALUE_ENUM.NAME)}
-                  error={isFieldError(FORM_VALUE_ENUM.NAME)}
-                />
+    const [formVisible, setFormVisible] = useState(false);
+    return (
+      <>
+        {formVisible ? (
+          <FormElem onSubmit={formik.handleSubmit}>
+            {isLoading && <LoaderElem />}
+            <ContentContainerElem>
+              <GridElem spacing={5}>
+                <TitleContainer>
+                  <TextElem
+                    tid="PROJECT.CREATE.TITLE"
+                    type="semi-bold"
+                    size="main"
+                  />
+                  <CloseIcon
+                    onClick={() => setFormVisible(false)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </TitleContainer>
+                <DoubleContainerElem>
+                  <FieldTextElem
+                    name={FORM_VALUE_ENUM.NAME}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    title="PROJECT.CREATE.FORM.NAME"
+                    value={getFieldValue(FORM_VALUE_ENUM.NAME)}
+                    errorMessage={getFieldError(FORM_VALUE_ENUM.NAME)}
+                    error={isFieldError(FORM_VALUE_ENUM.NAME)}
+                  />
 
-                <ButtonStyled
-                  type="button"
-                  tid="PROJECT.CREATE.BUTTON"
-                  fill="solid"
-                  disabled={isSubmitDisabled()}
-                  iconRight={addIcon}
-                  iconSize="very_small"
-                  onClick={formik.handleSubmit}
-                />
-              </DoubleContainerElem>
+                  <ButtonStyled
+                    type="button"
+                    tid="PROJECT.CREATE.BUTTON"
+                    fill="solid"
+                    disabled={isSubmitDisabled()}
+                    iconRight={addIcon}
+                    iconSize="very_small"
+                    onClick={formik.handleSubmit}
+                  />
+                </DoubleContainerElem>
 
-              {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
-              {isSuccess && <AlertActionElem type="success" tid="Success" />}
-            </GridElem>
-          </ContentContainerElem>
-        </FormElem>
-      ) : (
-        <AddContainer onClick={() => setFormVisible(true)}>
-          <TextElem tid="PROJECT.CREATE.ADD" type="medium" size="main" />
-          <AddIconLarge />
-        </AddContainer>
-      )}
-    </>
-  );
-};
+                {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
+                {isSuccess && <AlertActionElem type="success" tid="Success" />}
+              </GridElem>
+            </ContentContainerElem>
+          </FormElem>
+        ) : (
+          <AddContainer onClick={() => setFormVisible(true)}>
+            <TextElem tid="PROJECT.CREATE.ADD" type="medium" size="main" />
+            <AddIconLarge />
+          </AddContainer>
+        )}
+      </>
+    );
+  };
 
 const ButtonStyled = styled(ButtonElem)`
   margin-top: 29px;
@@ -113,7 +113,7 @@ const TitleContainer = styled.div`
   align-items: center;
 `;
 
-const AddContainer = styled(TitleContainer)<{ disabled?: boolean }>`
+const AddContainer = styled(TitleContainer) <{ disabled?: boolean }>`
   padding: ${Spacing(5)};
   cursor: pointer;
   border: 2px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]};
@@ -121,6 +121,8 @@ const AddContainer = styled(TitleContainer)<{ disabled?: boolean }>`
   opacity: ${({ disabled }) => disabled && '0.4'};
   :hover {
     opacity: 0.8;
+  }
+    background-color: ${({ theme }) => theme[COLOR_ENUM.WHITE]};
   }
 `;
 

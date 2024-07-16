@@ -9,7 +9,7 @@ import {
   SIZE_BORDER_RADIUS_ENUM,
 } from '../../theme/size';
 import { Spacing } from '../../theme';
-import { COLOR_ENUM } from '../../theme/color';
+import { COLOR_ENUM, COLOR_TYPE } from '../../theme/color';
 
 export const Elem: React.FC<{
   children: ReactNode;
@@ -18,6 +18,7 @@ export const Elem: React.FC<{
   fullHeight?: boolean;
   className?: string;
   oneColumn?: boolean;
+  backgroundColor?: COLOR_TYPE;
 }> = ({
   children,
   size = 'small',
@@ -25,6 +26,7 @@ export const Elem: React.FC<{
   fullHeight = false,
   className,
   oneColumn = false,
+  backgroundColor,
 }) => {
     return (
       <Center
@@ -33,6 +35,7 @@ export const Elem: React.FC<{
         direction={direction}
         fullHeight={fullHeight}
         oneColumn={oneColumn}
+        backgroundColor={backgroundColor}
       >
         {children}
       </Center>
@@ -44,12 +47,15 @@ const Center = styled.div<{
   direction?: string;
   fullHeight: boolean;
   oneColumn?: boolean;
+  backgroundColor?: COLOR_TYPE;
 }>`
   display: flex;
   width: 100%;
   margin: 0 auto;
   padding: ${Spacing(6)};
-  background-color: ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
+  gap: ${Spacing(3)};
+  background-color: ${({ theme, backgroundColor }) =>
+    backgroundColor ? backgroundColor : theme[COLOR_ENUM.WHITE]};
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.CONTENT]}px;
 
   box-sizing: border-box;

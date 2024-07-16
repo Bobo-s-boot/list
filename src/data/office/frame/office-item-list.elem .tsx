@@ -129,6 +129,8 @@ const ContainerElem = styled.div`
   :hover {
     cursor: pointer;
     opacity: 0.8;
+    transition: opacity ${VALUE_TRANSITION_DATA[VALUE_TRANSITION_ENUM.HOVER]};
+    background-color: ${({ theme }) => theme[COLOR_ENUM.BORDER_DISABLED]};
   }
 `;
 
