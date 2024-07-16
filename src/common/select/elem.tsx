@@ -55,7 +55,7 @@ export const Elem: React.FC<PROPS_TYPE> = ({
 
   const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props) => {
     return (
-      <components.DropdownIndicator  {...props}>
+      <components.DropdownIndicator {...props}>
         <IndicatorIcon />
       </components.DropdownIndicator>
     );
@@ -235,13 +235,13 @@ const CustomSelect = styled(Select) <{
   & .Select__single-value {
     color: ${({ theme }) => theme[COLOR_ENUM.SELECT_TEXT_DEFAULT]};
     :hover {
-      color: ${({ theme }) => theme[COLOR_ENUM.SELECT_TEXT_HOVER]} !important;
+      color: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]} !important;
     }
     font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.INPUT]}px;
   }
   & .Select__placeholder {
     margin: 0;
-    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PRIMARY]};
+    color: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
     font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.INPUT]}px;
     font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
   }
@@ -292,7 +292,7 @@ const CustomSelect = styled(Select) <{
     height: 53;
   }
   & .Select__option:hover {
-    background-color: ${({ theme }) => theme[COLOR_ENUM.BORDER]};
+    background-color:${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
   }
   & .Select__option--is-selected {
     color: ${({ theme }) => theme[COLOR_ENUM.DEFAULT]};
