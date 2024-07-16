@@ -39,44 +39,45 @@ export const Component: React.FC<{
   errorMessage,
   close,
 }) => {
-  return (
-    <FormElem onSubmit={formik.handleSubmit}>
-      {isLoading && <LoaderElem />}
+    return (
+      <FormElem onSubmit={formik.handleSubmit}>
+        {isLoading && <LoaderElem />}
 
-      <GridElem spacing={5}>
-        <TitleContainer>
-          <TextElem tid="PROJECT.UPDATE.TITLE" type="semi-bold" size="main" />
-          <Icon src={closeIcon} onClick={() => close()} />
-        </TitleContainer>
-        <DoubleContainerElem>
-          <FieldTextElem
-            name={FORM_VALUE_ENUM.NAME}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            title="PROJECT.UPDATE.FORM.NAME"
-            value={getFieldValue(FORM_VALUE_ENUM.NAME)}
-            errorMessage={getFieldError(FORM_VALUE_ENUM.NAME)}
-            error={isFieldError(FORM_VALUE_ENUM.NAME)}
-          />
+        <GridElem spacing={5}>
+          <TitleContainer>
+            <TextElem tid="PROJECT.UPDATE.TITLE" type="semi-bold" size="main" />
+            <Icon src={closeIcon} onClick={() => close()} />
+          </TitleContainer>
+          <ButtonContainerStyled>
+            <FieldTextElem
+              name={FORM_VALUE_ENUM.NAME}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              title="PROJECT.UPDATE.FORM.NAME"
+              value={getFieldValue(FORM_VALUE_ENUM.NAME)}
+              errorMessage={getFieldError(FORM_VALUE_ENUM.NAME)}
+              error={isFieldError(FORM_VALUE_ENUM.NAME)}
+            />
 
-          <ButtonStyled
-            type="button"
-            tid="PROJECT.UPDATE.BUTTON"
-            fill="solid"
-            disabled={isSubmitDisabled()}
-            color="success"
-          />
-        </DoubleContainerElem>
+            <ButtonElem
+              type="button"
+              tid="PROJECT.UPDATE.BUTTON"
+              fill="solid"
+              disabled={isSubmitDisabled()}
+              color="success"
+            />
+          </ButtonContainerStyled>
 
-        {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
-        {isSuccess && <AlertActionElem type="success" tid="Success" />}
-      </GridElem>
-    </FormElem>
-  );
-};
+          {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
+          {isSuccess && <AlertActionElem type="success" tid="Success" />}
+        </GridElem>
+      </FormElem>
+    );
+  };
 
-const ButtonStyled = styled(ButtonElem)`
-  margin-top: 24px;
+const ButtonContainerStyled = styled(DoubleContainerElem)`
+  display: grid;
+  align-items: end;
 `;
 
 const TitleContainer = styled.div`

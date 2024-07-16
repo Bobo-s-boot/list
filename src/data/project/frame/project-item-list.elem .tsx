@@ -82,7 +82,6 @@ const Elem: React.FC<PROJECT_ITEM_DATA_INTER> = ({ id, name }) => {
                     <ModalItem onClick={handleUpdateVisible}>
                       <EditIcon />
                       <TextElem
-                        type="bold"
                         size="main"
                         color="textSecondary"
                         tid="PROJECT.UPDATE.MODAL.EDIT"
@@ -149,7 +148,7 @@ const ModalItem = styled.div`
   }
 
   :hover {
-    background: ${({ theme }) => theme[COLOR_ENUM.BORDER]};
+    background: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
     :last-child {
       svg {
         filter: ${({ theme }) => hexToFilter(theme[COLOR_ENUM.ERROR])};
@@ -163,7 +162,7 @@ const ModalItem = styled.div`
 `;
 const ModalElem = styled.div`
   z-index: 999;
-  background-color: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
+  background-color: ${({ theme }) => theme[COLOR_ENUM.WHITE]};
   top: 30px;
   right: 0;
   width: 180px;
