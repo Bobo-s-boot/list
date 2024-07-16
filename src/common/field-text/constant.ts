@@ -1,9 +1,11 @@
 export interface PROPS_TYPE {
   title?: string;
   error?: boolean;
+
   errorMessage?: string;
   onChange?: Function;
   onBlur?: Function;
+  onFocus?: Function;
   value?: any;
   name?: string;
   disabled?: boolean;

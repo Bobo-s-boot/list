@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import PhoneInput from 'react-phone-input-2';
 
@@ -37,9 +37,22 @@ export const Elem: React.FC<PROPS_TYPE> = ({
   errorContainer = true,
   autoFocus = false,
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
   const isSuccess = !!value && !error;
 
   const refIcon = useRef<HTMLDivElement>(null);
+
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = (e: any) => {
+    setIsFocused(false);
+    if (!e.target) e.target = {};
+    e.target.name = name;
+    e.target.value = e.target.value;
+    if (onBlur) {
+      onBlur(e);
+    }
+  };
+
   const handleChange = (e: any) => {
     if (type === 'phone') {
       if (e && onChange && e.length < 14) {
@@ -58,18 +71,8 @@ export const Elem: React.FC<PROPS_TYPE> = ({
     }
   };
 
-  const handleBlur = (e: any) => {
-    if (!e.target) e.target = {};
-
-    e.target.name = name;
-    e.target.value = e.target.value;
-
-    if (onBlur) {
-      onBlur(e);
-    }
-  };
-
   const iconSize = refIcon?.current?.clientWidth || 40;
+
   if (disabled) {
     return (
       <Container>
@@ -97,10 +100,13 @@ export const Elem: React.FC<PROPS_TYPE> = ({
           {type === 'phone' && (
             <PhoneInputCustom
               isSuccess={isSuccess}
+              isFocused={isFocused}
+              errorMessage={!!errorMessage}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
               country={'ua'}
               countryCodeEditable={false}
               onChange={handleChange}
-              onBlur={handleBlur}
               value={value}
               inputProps={{
                 name: name,
@@ -112,6 +118,9 @@ export const Elem: React.FC<PROPS_TYPE> = ({
             <>
               <CustomInput
                 isSuccess={isSuccess}
+                isFocused={isFocused}
+                errorMessage={!!errorMessage}
+                onFocus={handleFocus}
                 name={name}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -164,6 +173,8 @@ const CustomInput = styled.input<{
   type?: string;
   iconSize: number;
   isSuccess: boolean;
+  isFocused: boolean;
+  errorMessage: boolean;
 }>`
   font-family: 'Helvetica', sans-serif;
   cursor: pointer;
@@ -185,26 +196,18 @@ const CustomInput = styled.input<{
 
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
   width: 100%;
-  /* border: none;
-  outline: none; */
-
   transition: all 0.2s;
-
   border: 1px solid
-    ${({ theme, isSuccess }) =>
-    isSuccess
-      ? theme[COLOR_ENUM.BORDER_ACTIVE_SELECT]
-      : theme[COLOR_ENUM.BORDER_DEFAULT]};
-
-  &:hover {
-  }
-
-  &:focus-within {
-  }
-
-  ::placeholder {
-    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]};
-  }
+    ${({ theme, isSuccess, isFocused, errorMessage, value }) =>
+    errorMessage
+      ? theme[COLOR_ENUM.ERROR]
+      : isFocused
+        ? theme[COLOR_ENUM.BORDER]
+        : !value
+          ? theme[COLOR_ENUM.BORDER_DEFAULT]
+          : isSuccess
+            ? theme[COLOR_ENUM.BORDER_DEFAULT]
+            : theme[COLOR_ENUM.BORDER]};
 
   &:hover {
     color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]};
@@ -213,6 +216,10 @@ const CustomInput = styled.input<{
       display: none;
       color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]} !important;
     }
+  }
+
+  ::placeholder {
+    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]};
   }
 
   ::-webkit-outer-spin-button,
@@ -296,7 +303,11 @@ const Icon = styled.div`
   z-index: 2;
 `;
 
-const PhoneInputCustom = styled(PhoneInput) <{ isSuccess: boolean }>`
+const PhoneInputCustom = styled(PhoneInput) <{
+  isSuccess: boolean;
+  isFocused: boolean;
+  errorMessage: boolean;
+}>`
   font-family: 'Helvetica', sans-serif;
   && div {
     display: none;
@@ -322,10 +333,14 @@ const PhoneInputCustom = styled(PhoneInput) <{ isSuccess: boolean }>`
     outline: none;
 
     border: 1px solid
-      ${({ theme, isSuccess }) =>
-    isSuccess
-      ? theme[COLOR_ENUM.BORDER_ACTIVE_SELECT]
-      : theme[COLOR_ENUM.BORDER_DEFAULT]};
+      ${({ theme, isSuccess, isFocused, errorMessage }) =>
+    errorMessage
+      ? theme[COLOR_ENUM.ERROR]
+      : isFocused
+        ? theme[COLOR_ENUM.BORDER]
+        : isSuccess
+          ? theme[COLOR_ENUM.BORDER_DEFAULT]
+          : theme[COLOR_ENUM.BORDER]};
 
     ::placeholder {
       color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PLACEHOLDER]};
