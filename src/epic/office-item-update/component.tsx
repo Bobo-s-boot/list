@@ -204,15 +204,15 @@ export const Component: React.FC<{
                   iconSize="very_small"
                   onClick={formik.handleSubmit}
                 />
+                <SubmitContainer>
+                  <ButtonElem
+                    type="button"
+                    tid="OFFICE.UPDATE.BUTTON.UPDATE"
+                    disabled={isSubmitDisabled()}
+                    onClick={formik.handleSubmit}
+                  />
+                </SubmitContainer>
               </DoubleContainerElem>
-              <SubmitContainer>
-                <ButtonElem
-                  type="button"
-                  tid="OFFICE.UPDATE.BUTTON.UPDATE"
-                  disabled={isSubmitDisabled()}
-                  onClick={formik.handleSubmit}
-                />
-              </SubmitContainer>
             </FlexContainer>
             {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
             {isSuccess && <AlertActionElem type="success" tid="Success" />}
