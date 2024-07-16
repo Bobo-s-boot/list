@@ -26,18 +26,18 @@ export const Elem: React.FC<{
   className,
   oneColumn = false,
 }) => {
-  return (
-    <Center
-      className={className}
-      size={size}
-      direction={direction}
-      fullHeight={fullHeight}
-      oneColumn={oneColumn}
-    >
-      {children}
-    </Center>
-  );
-};
+    return (
+      <Center
+        className={className}
+        size={size}
+        direction={direction}
+        fullHeight={fullHeight}
+        oneColumn={oneColumn}
+      >
+        {children}
+      </Center>
+    );
+  };
 
 const Center = styled.div<{
   size: SIZE_LAYOUT_TYPE;
@@ -49,7 +49,7 @@ const Center = styled.div<{
   width: 100%;
   margin: 0 auto;
   padding: ${Spacing(6)};
-  background-color: ${({ theme }) => theme[COLOR_ENUM.WHITE]};
+  background-color: ${({ theme }) => theme[COLOR_ENUM.TRANSPARENT]};
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.CONTENT]}px;
 
   box-sizing: border-box;
