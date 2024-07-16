@@ -208,6 +208,7 @@ const CustomInput = styled.input<{
           : isSuccess
             ? theme[COLOR_ENUM.BORDER_DEFAULT]
             : theme[COLOR_ENUM.BORDER]};
+            
 
   &:hover {
     color: ${({ theme }) => theme[COLOR_ENUM.TEXT_ACTIVE]};
