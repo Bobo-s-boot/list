@@ -14,6 +14,7 @@ import { FieldPasswordElem } from '../../common/field-password';
 import { FormElem } from '../../common/form';
 import { ContentContainerElem } from '../../common/content-container';
 import { DoubleContainerElem } from '../../common/double-container';
+import styled from 'styled-components';
 
 export const Component: React.FC<{
   formik: FormikValues;
@@ -78,7 +79,7 @@ export const Component: React.FC<{
               </DoubleContainerElem>
             </GridElem>
             <DoubleContainerElem>
-              <ButtonElem
+              <ButtonElemRight
                 disabled={isSubmitDisabled()}
                 type="add"
                 tid="SETTINGS.CHANGE_EMAIL.BUTTON"
@@ -97,3 +98,8 @@ export const Component: React.FC<{
       </ContentContainerElem>
     );
   };
+
+const ButtonElemRight = styled(ButtonElem)`
+  grid-column: 2;
+  grid-row: 1;
+`;
