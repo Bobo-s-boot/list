@@ -21,6 +21,7 @@ export const Elem: React.FC<{
   disabled?: boolean;
   control?: boolean;
   className?: string;
+  backgoundColor?: string;
 }> = ({
   children,
   handleClick,
@@ -28,6 +29,7 @@ export const Elem: React.FC<{
   control = false,
   className,
   disabled = false,
+  backgoundColor,
 }) => {
     return (
       <Card
@@ -36,6 +38,7 @@ export const Elem: React.FC<{
         wide={wide}
         control={control}
         className={`${className} ${control && 'ion-activatable'} `}
+        backgoundColor={backgoundColor}
       >
         {children}
         {control && <IonRippleEffect />}
@@ -47,6 +50,7 @@ const Card = styled.div<{
   wide: boolean;
   control?: boolean;
   disabled?: boolean;
+  backgoundColor?: string;
 }>`
   padding: 20px;
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
@@ -65,7 +69,8 @@ const Card = styled.div<{
     `}
 
   &:not(:disabled) {
-    background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_PRIMARY]};
+    background-color: ${({ theme, backgoundColor }) =>
+    backgoundColor || theme[COLOR_ENUM.BUTTON_PRIMARY]};
     & > * > * {
       color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_TEXT]};
     }
