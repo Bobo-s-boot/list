@@ -241,7 +241,7 @@ const CustomSelect = styled(Select) <{
   }
   & .Select__placeholder {
     margin: 0;
-    color: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
+    color: ${({ theme }) => theme[COLOR_ENUM.TEXT_PRIMARY]};
     font-size: ${SIZE_FONT_DATA[SIZE_FONT_ENUM.INPUT]}px;
     font-weight: ${SIZE_FONT_WEIGHT_DATA[SIZE_FONT_WEIGHT_ENUM.MEDIUM]};
   }
@@ -250,7 +250,6 @@ const CustomSelect = styled(Select) <{
   }
   & .Select__indicator.Select__dropdown-indicator {
     /* width: 17px; */
-    color: #000;
     padding: 0;
     transition: all 0.2s;
     /* margin-top: ${Spacing(2)}; */
@@ -292,7 +291,7 @@ const CustomSelect = styled(Select) <{
     height: 53;
   }
   & .Select__option:hover {
-    background-color:${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
+    background-color: ${({ theme }) => theme[COLOR_ENUM.BACKGROUND_PRIMARY]};
   }
   & .Select__option--is-selected {
     color: ${({ theme }) => theme[COLOR_ENUM.DEFAULT]};
