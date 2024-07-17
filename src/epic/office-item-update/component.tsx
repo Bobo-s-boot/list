@@ -224,7 +224,7 @@ export const Component: React.FC<{
 
 const SubmitContainer = styled.div`
   display: flex;
-  max-width: ${Spacing(121)};
+  max-width: 100%;
 `;
 
 const FlexContainer = styled.div`
