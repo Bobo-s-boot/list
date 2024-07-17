@@ -91,7 +91,7 @@ export const Component: React.FC<{
           {isLoading && <LoaderElem />}
 
           <GridElem spacing={4}>
-            <TextElem size="medium" type="bold" tid={name} />
+            {/* <TextElem size="medium" type="bold" tid={name} /> */}
             <TabElem tabList={mockData} />
 
             <FlexContainer>
