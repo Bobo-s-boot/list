@@ -145,21 +145,23 @@ export const Component: React.FC<{
                     tid="OFFICE.CREATE.FORM.TRADE_CRYPTO"
                     placeholder="OFFICE.CREATE.FORM.ORDER_CRYPTO_PLACEHOLDER"
                   />
+                  <SelectElem
+                    value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                    name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
+                    title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
+                    onChange={onChangeSelect}
+                    errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                    error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
+                    options={currencyOptions}
+                    closeMenuOnSelect={false}
+                    hideSelectedOptions={false}
+                    isMulti
+                    customComponents={{
+                      MultiValueContainer: multiValueContainer,
+                    }}
+                  />
                 </DoubleContainerElem>
               </GridElem>
-              <SelectElem
-                value={getFieldValue(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-                name={FORM_VALUE_ENUM.DESIRED_CURRENCY}
-                title="OFFICE.CREATE.FORM.DESIRED_CURRENCY"
-                onChange={onChangeSelect}
-                errorMessage={getFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-                error={isFieldError(FORM_VALUE_ENUM.DESIRED_CURRENCY)}
-                options={currencyOptions}
-                closeMenuOnSelect={false}
-                hideSelectedOptions={false}
-                isMulti
-                customComponents={{ MultiValueContainer: multiValueContainer }}
-              />
 
               <DoubleContainerElem>
                 <ButtonStyled
@@ -176,15 +178,15 @@ export const Component: React.FC<{
                   iconSize="very_small"
                   onClick={formik.handleSubmit}
                 />
+                <SubmitContainer>
+                  <ButtonElem
+                    type="button"
+                    tid="OFFICE.UPDATE.BUTTON.UPDATE"
+                    disabled={isSubmitDisabled()}
+                    onClick={formik.handleSubmit}
+                  />
+                </SubmitContainer>
               </DoubleContainerElem>
-              <SubmitContainer>
-                <ButtonElem
-                  type="button"
-                  tid="OFFICE.UPDATE.BUTTON.UPDATE"
-                  disabled={isSubmitDisabled()}
-                  onClick={formik.handleSubmit}
-                />
-              </SubmitContainer>
             </FlexContainer>
 
             {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
@@ -197,7 +199,7 @@ export const Component: React.FC<{
 
 const SubmitContainer = styled.div`
   display: flex;
-  max-width: ${Spacing(121)};
+  max-width: 100%;
 `;
 
 const FlexContainer = styled.div`
