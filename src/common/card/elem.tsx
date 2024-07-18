@@ -22,6 +22,7 @@ export const Elem: React.FC<{
   control?: boolean;
   className?: string;
   backgoundColor?: string;
+  opacityOne?: number;
 }> = ({
   children,
   handleClick,
@@ -30,6 +31,7 @@ export const Elem: React.FC<{
   className,
   disabled = false,
   backgoundColor,
+  opacityOne = 0.8,
 }) => {
     return (
       <Card
@@ -39,6 +41,7 @@ export const Elem: React.FC<{
         control={control}
         className={`${className} ${control && 'ion-activatable'} `}
         backgoundColor={backgoundColor}
+        opacityOne={opacityOne}
       >
         {children}
         {control && <IonRippleEffect />}
@@ -51,6 +54,7 @@ const Card = styled.div<{
   control?: boolean;
   disabled?: boolean;
   backgoundColor?: string;
+  opacityOne?: number;
 }>`
   padding: 20px;
   border-radius: ${SIZE_BORDER_RADIUS_DATA[SIZE_BORDER_RADIUS_ENUM.DEFAULT]}px;
@@ -78,7 +82,7 @@ const Card = styled.div<{
     &:hover {
       background-color: ${({ theme }) => theme[COLOR_ENUM.BUTTON_HOVER]};
       cursor: pointer;
-      opacity: 0.8;
+      opacity: ${({ opacityOne }) => opacityOne};
     }
   }
 `;

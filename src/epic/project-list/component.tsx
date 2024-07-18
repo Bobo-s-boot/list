@@ -9,6 +9,7 @@ import { ProjectItemElem } from '../../data/project/frame/project-item-list.elem
 import { PROJECT_ITEM_DATA_INTER } from '../../data/project/constant';
 import { SkeletonListElem } from '../../common/skeleton-list';
 import { ProjectItemCreateContainer } from '../project-item-create';
+import { COLOR_ENUM } from '../../theme/color';
 
 export const Component: React.FC<{
   data?: DATA_INTER;
@@ -30,7 +31,7 @@ export const Component: React.FC<{
             !data.isEmpty &&
             data?.list.map((item: PROJECT_ITEM_DATA_INTER) => (
               <React.Fragment key={item.id}>
-                <ProjectItemElem {...item} />
+                <ProjectItemElemStyled {...item} />
               </React.Fragment>
             ))}
         </GridElem>
@@ -45,4 +46,9 @@ const Container = styled.div`
 
 const ListContainer = styled(GridElem)`
   justify-items: center;
+`;
+const ProjectItemElemStyled = styled(ProjectItemElem)`
+  &:hover {
+    opacity: 1;
+  }
 `;

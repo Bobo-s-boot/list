@@ -65,7 +65,7 @@ const Elem: React.FC<PROJECT_ITEM_DATA_INTER> = ({ id, name }) => {
           />
         </ContentContainerElem>
       ) : (
-        <CardElem backgoundColor={COLOR_ENUM.WHITE}>
+        <CardElem opacityOne={1} backgoundColor={COLOR_ENUM.WHITE}>
           <Container>
             <TextElem
               tid="PROJECT.ITEM.NAME"
