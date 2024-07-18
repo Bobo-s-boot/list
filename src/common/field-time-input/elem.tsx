@@ -20,7 +20,7 @@ import { PROPS_TYPE } from './constant';
 import { TextElem } from '../text';
 
 export const Elem: React.FC<PROPS_TYPE> = ({
-  onChange = () => {},
+  onChange = () => { },
   title,
   fieldValue = ['00:00:00', '00:00:00'],
   ...props
@@ -75,10 +75,16 @@ const Container = styled.div`
   .ant-picker-panel {
     color: ${({ theme }) => theme[COLOR_ENUM.TEXT_SECONDARY]} !important;
     background-color: ${({ theme }) =>
-      theme[COLOR_ENUM.INPUT_ACTIVE]} !important;
+    theme[COLOR_ENUM.INPUT_ACTIVE]} !important;
     border-radius: ${SIZE_BORDER_RADIUS_DATA[
-      SIZE_BORDER_RADIUS_ENUM.DEFAULT
-    ]}px;
+  SIZE_BORDER_RADIUS_ENUM.DEFAULT
+  ]}px;
+  }
+  .ant-picker-suffix {
+    padding-right: 0px;
+  }
+  .ant-picker-clear {
+    padding-right: 9px;
   }
 
   .ant-picker-focused {
@@ -87,15 +93,15 @@ const Container = styled.div`
   .ant-picker-footer {
     color: ${({ theme }) => theme[COLOR_ENUM.TEXT_SECONDARY]} !important;
     background-color: ${({ theme }) =>
-      theme[COLOR_ENUM.INPUT_ACTIVE]} !important;
+    theme[COLOR_ENUM.INPUT_ACTIVE]} !important;
     border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]} !important;
   }
   .ant-picker-panel-layout {
     border: 1px solid ${({ theme }) => theme[COLOR_ENUM.BORDER]} !important;
     overflow: auto;
     border-radius: ${SIZE_BORDER_RADIUS_DATA[
-      SIZE_BORDER_RADIUS_ENUM.DEFAULT
-    ]}px;
+  SIZE_BORDER_RADIUS_ENUM.DEFAULT
+  ]}px;
     min-height: 53px !important;
   }
   .ant-picker-time-panel-cell-inner {
