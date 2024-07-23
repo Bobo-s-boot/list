@@ -29,13 +29,23 @@ import {
   AUTH_VERIFICATION_EMAIL_PAGE_PATH,
   AuthVerificationEmailPage,
 } from '../auth-verification-email';
-import { OFFICE_PAGE_PATH, OfficePage } from '../office-list';
-import { OFFICE_CREATE_PAGE_PATH, OfficeCreatePage } from '../office-create';
+// import { OFFICE_PAGE_PATH, OfficePage } from '../office-list';
+import { OFFICE_PAGE_PATH_TEST, OfficePageTest } from '../office-list-test';
+// import { OFFICE_CREATE_PAGE_PATH, OfficeCreatePage } from '../office-create';
 import {
-  OFFICE_ITEM_UPDATE_PAGE_PATH,
-  OfficeItemUpdatePage,
-} from '../office-update';
+  OFFICE_CREATE_PAGE_TEST_PATH,
+  OfficeCreatePageTest,
+} from '../office-create-test';
+// import {
+//   OFFICE_ITEM_UPDATE_PAGE_PATH,
+//   OfficeItemUpdatePage,
+// } from '../office-update';
+import {
+  OFFICE_ITEM_UPDATE_TEST_PAGE_PATH,
+  OfficeItemUpdateTestPage,
+} from '../office-update-test';
 import { TRANSACTIONS_PAGE_PATH, TransactionsPage } from '../transactions-list';
+import { from } from 'rxjs';
 
 export const Page: React.FC = () => {
   const state: STORE_INTER = useSelector((s) => s[AUTH_MODULE_NAME]);
@@ -51,21 +61,45 @@ export const Page: React.FC = () => {
           {isLogged() ? (
             <Switch>
               <Route path={SETTINGS_PAGE_PATH} component={SettingsPage} exact />
-              <Route path={OFFICE_PAGE_PATH} component={OfficePage} exact />
-              <Route path={TRANSACTIONS_PAGE_PATH} component={TransactionsPage} exact />
+              {/* <Route path={OFFICE_PAGE_PATH} component={OfficePage} exact /> */}
+
               <Route
-                path={OFFICE_CREATE_PAGE_PATH}
-                component={OfficeCreatePage}
+                path={OFFICE_PAGE_PATH_TEST}
+                component={OfficePageTest}
                 exact
               />
 
               <Route
+                path={TRANSACTIONS_PAGE_PATH}
+                component={TransactionsPage}
+                exact
+              />
+              {/* <Route
+                path={OFFICE_CREATE_PAGE_PATH}
+                component={OfficeCreatePage}
+                exact
+              /> */}
+
+              <Route
+                path={OFFICE_CREATE_PAGE_TEST_PATH}
+                component={OfficeCreatePageTest}
+                exact
+              />
+
+              {/* <Route
                 path={OFFICE_ITEM_UPDATE_PAGE_PATH}
                 component={OfficeItemUpdatePage}
+                exact
+              /> */}
+
+              <Route
+                path={OFFICE_ITEM_UPDATE_TEST_PAGE_PATH}
+                component={OfficeItemUpdateTestPage}
                 exact
               />
 
               <Route path={PROJECT_PAGE_PATH} component={ProjectPage} exact />
+
               <Route
                 path={AUTH_VERIFICATION_PHONE_PAGE_PATH}
                 component={AuthVerificationPhonePage}

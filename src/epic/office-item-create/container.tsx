@@ -51,6 +51,8 @@ export const Container: React.FC<{}> = ({}) => {
 
   const initialValues = {
     [FORM_VALUE_ENUM.NAME]: '',
+    [FORM_VALUE_ENUM.PRICE]: 0,
+    [FORM_VALUE_ENUM.DESCRIPTION]: '',
     [FORM_VALUE_ENUM.PHONE]: '',
     [FORM_VALUE_ENUM.ADDRESS]: '',
     [FORM_VALUE_ENUM.TIME]: ['00:00:00', '00:00:00'] as [string, string],

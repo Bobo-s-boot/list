@@ -28,19 +28,19 @@ export const Elem: React.FC<{
   oneColumn = false,
   backgroundColor,
 }) => {
-    return (
-      <Center
-        className={className}
-        size={size}
-        direction={direction}
-        fullHeight={fullHeight}
-        oneColumn={oneColumn}
-        backgroundColor={backgroundColor}
-      >
-        {children}
-      </Center>
-    );
-  };
+  return (
+    <Center
+      className={className}
+      size={size}
+      direction={direction}
+      fullHeight={fullHeight}
+      oneColumn={oneColumn}
+      backgroundColor={backgroundColor}
+    >
+      {children}
+    </Center>
+  );
+};
 
 const Center = styled.div<{
   size: SIZE_LAYOUT_TYPE;

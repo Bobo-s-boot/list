@@ -6,8 +6,6 @@ export const ACTION_TYPE = {
 
 export enum FORM_VALUE_ENUM {
   NAME = 'name',
-  PRICE = 'price',
-  DESCRIPTION = 'description',
   PHONE = 'phone',
   ADDRESS = 'address',
   DAYS = 'days',
@@ -18,14 +16,14 @@ export enum FORM_VALUE_ENUM {
   BREAK = 'break',
   IS_PAUSE = 'isPause',
   IS_BREAK = 'isBreak',
+  PRICE = 'price',
+  DESCRIPTION = 'description',
 }
 
 export type FORM_VALUE_TYPE = `${FORM_VALUE_ENUM}`;
 
 export interface FORM_VALUE_INTER {
   [FORM_VALUE_ENUM.NAME]: string;
-  [FORM_VALUE_ENUM.PRICE]: number;
-  [FORM_VALUE_ENUM.DESCRIPTION]: string;
   [FORM_VALUE_ENUM.PHONE]: string;
   [FORM_VALUE_ENUM.ADDRESS]: string;
   [FORM_VALUE_ENUM.DAYS]: DAYS_TYPE[];
@@ -34,6 +32,14 @@ export interface FORM_VALUE_INTER {
   [FORM_VALUE_ENUM.BREAK]: [string, string];
   [FORM_VALUE_ENUM.ORDER_CURRENCY]: boolean;
   [FORM_VALUE_ENUM.TRADE_CRYPTO]: boolean;
+  [FORM_VALUE_ENUM.DESCRIPTION]: string;
+  [FORM_VALUE_ENUM.PRICE]: number;
+}
+
+export interface ProductFormValues {
+  name: string;
+  price: number;
+  description: string;
 }
 
 export enum DAYS_ENUM {

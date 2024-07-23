@@ -47,6 +47,13 @@ export const API = {
   },
 };
 
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
+
 export interface ACTION_ERROR_INTER {
   error: string;
   message: string;

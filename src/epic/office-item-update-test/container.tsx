@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FormikValues, useFormik } from 'formik';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 import {
   ACTION_ERROR_INTER,
@@ -8,6 +8,7 @@ import {
   FORM_VALUE_INTER,
   FORM_VALUE_TYPE,
   MODULE_NAME,
+  Product,
 } from './constant';
 import { Component } from './component';
 import {
@@ -23,7 +24,7 @@ import { getData, updateData } from './action';
 import { OFFICE_ITEM_VALUE_INTER } from '../office-item-create';
 import { convert } from './convert';
 import { OFFICE_PAGE_PATH } from '../../page/office-list';
-import { Descriptions } from 'antd';
+import axios from 'axios';
 
 export const Container: React.FC<{
   officeId: string;
@@ -84,6 +85,36 @@ export const Container: React.FC<{
     onSubmit: (values: FORM_VALUE_INTER) => {
       action.mutate(values);
       return history.push(OFFICE_PAGE_PATH);
+    },
+  });
+
+  const { id } = useParams<{ id: string }>();
+
+  const { data: initialProduct } = useQuery<Product>(
+    ['product', id],
+    async () => {
+      const response = await axios.get<Product>(
+        `http://localhost:3001/products/${id}`,
+      );
+      return response.data;
+    },
+    { enabled: !!id },
+  );
+
+  const updateProduct = async (updatedProduct: Product) => {
+    const response = await axios.put<Product>(
+      `http://localhost:3001/product-update/${id}`, // Исправленный URL
+      updatedProduct,
+    );
+    return response.data;
+  };
+
+  const mutation = useMutation(updateProduct, {
+    onSuccess: async () => {
+      await query.invalidateQueries('products');
+    },
+    onError: (error) => {
+      console.error('Error updating product:', error);
     },
   });
 

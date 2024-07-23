@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { FormikValues, useFormik } from 'formik';
+import React from 'react';
 import { useHistory } from 'react-router';
 
 import {
@@ -7,8 +6,9 @@ import {
   FORM_VALUE_ENUM,
   FORM_VALUE_INTER,
   FORM_VALUE_TYPE,
-  MODULE_NAME,
+  ProductFormValues,
 } from './constant';
+
 import { Component } from './component';
 import {
   arrayLengthMax,
@@ -16,38 +16,26 @@ import {
   phoneUA,
   required,
 } from '../../lib/validation/service';
+import { FormikValues, useFormik } from 'formik';
 import { validation } from '../../lib/validation';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { OFFICE_LIST_MODULE_NAME } from '../office-list';
-import { getData, updateData } from './action';
-import { OFFICE_ITEM_VALUE_INTER } from '../office-item-create';
+import { useMutation, useQueryClient } from 'react-query';
+import { action as fetch } from './action';
 import { convert } from './convert';
+import { OFFICE_LIST_MODULE_NAME } from '../office-list';
 import { OFFICE_PAGE_PATH } from '../../page/office-list';
-import { Descriptions } from 'antd';
+import axios from 'axios';
 
-export const Container: React.FC<{
-  officeId: string;
-}> = ({ officeId }) => {
-  const query = useQueryClient();
+export const Container: React.FC<{}> = ({}) => {
   const history = useHistory();
-
-  const onChangeSelect = (name: string, values: any) => {
-    formik.setFieldValue(name, [...values]);
-  };
-
-  const response = useQuery(MODULE_NAME, () =>
-    getData(officeId).then((data: any) => data),
-  );
-
-  const data = convert(response?.data) as unknown as OFFICE_ITEM_VALUE_INTER;
-
-  const onSuccess = (d: any, values: any) => {
+  const query = useQueryClient();
+  const onSuccess = () => {
     query.invalidateQueries(OFFICE_LIST_MODULE_NAME);
+    formik.resetForm();
   };
-  const action = useMutation(
-    (values: FORM_VALUE_INTER) => updateData(officeId, values),
-    { onSuccess },
-  );
+
+  const action = useMutation((values: FORM_VALUE_INTER) => fetch(values), {
+    onSuccess,
+  });
 
   const config = {
     [FORM_VALUE_ENUM.NAME]: [required],
@@ -63,29 +51,24 @@ export const Container: React.FC<{
 
   const validate = (values: FormikValues) => validation(values, config);
 
-  const initialValues = {
-    [FORM_VALUE_ENUM.NAME]: data?.name || '',
-    [FORM_VALUE_ENUM.PRICE]: data?.price || 0,
-    [FORM_VALUE_ENUM.DESCRIPTION]: data?.description || '',
-    [FORM_VALUE_ENUM.PHONE]: data?.phone || '',
-    [FORM_VALUE_ENUM.ADDRESS]: data?.address || '',
-    [FORM_VALUE_ENUM.TIME]: data?.time || ['00:00:00', '00:00:00'],
-    [FORM_VALUE_ENUM.BREAK]: data?.break || ['00:00:00', '00:00:00'],
-    [FORM_VALUE_ENUM.TRADE_CRYPTO]: data?.isTradeCrypto || false,
-    [FORM_VALUE_ENUM.ORDER_CURRENCY]: data?.isOrderCurrency || false,
-    [FORM_VALUE_ENUM.DAYS]: data?.days || [],
-    [FORM_VALUE_ENUM.DESIRED_CURRENCY]: data?.desiredCurrency || [],
+  const initialValues: ProductFormValues = {
+    [FORM_VALUE_ENUM.NAME]: '',
+    [FORM_VALUE_ENUM.PRICE]: 0,
+    [FORM_VALUE_ENUM.DESCRIPTION]: '',
+
+    // [FORM_VALUE_ENUM.PHONE]: '',
+    // [FORM_VALUE_ENUM.ADDRESS]: '',
+    // [FORM_VALUE_ENUM.TIME]: ['00:00:00', '00:00:00'] as [string, string],
+    // [FORM_VALUE_ENUM.BREAK]: ['00:00:00', '00:00:00'] as [string, string],
+    // [FORM_VALUE_ENUM.TRADE_CRYPTO]: false,
+    // [FORM_VALUE_ENUM.ORDER_CURRENCY]: false,
+    // [FORM_VALUE_ENUM.DAYS]: [],
+    // [FORM_VALUE_ENUM.DESIRED_CURRENCY]: [],
   };
 
-  const formik: FormikValues = useFormik({
-    initialValues,
-    validate,
-    enableReinitialize: true,
-    onSubmit: (values: FORM_VALUE_INTER) => {
-      action.mutate(values);
-      return history.push(OFFICE_PAGE_PATH);
-    },
-  });
+  const onChangeSelect = (name: string, values: any) => {
+    formik.setFieldValue(name, [...values]);
+  };
 
   const isFieldError = (name: FORM_VALUE_TYPE): boolean => {
     return formik.errors[name] && formik.touched[name] ? true : false;
@@ -105,10 +88,6 @@ export const Container: React.FC<{
     if (action.isLoading) {
       return true;
     }
-
-    if (action.isSuccess) {
-      return true;
-    }
   };
 
   const isLoading = () => {
@@ -123,6 +102,12 @@ export const Container: React.FC<{
     }
   };
 
+  const isError = () => {
+    if (action.isError && !action.isLoading && getErrorMessage()) {
+      return true;
+    }
+  };
+
   const getErrorMessage = () => {
     const error: ACTION_ERROR_INTER = action.error as ACTION_ERROR_INTER;
     if (error) {
@@ -130,17 +115,38 @@ export const Container: React.FC<{
     }
   };
 
-  const isError = () => {
-    if (action.isError && !action.isLoading && getErrorMessage()) {
-      return true;
-    }
+  const getFieldValue = (name: FORM_VALUE_TYPE) => formik.values[name];
+
+  const queryClient = useQueryClient();
+
+  const createProduct = async (product: ProductFormValues) => {
+    const response = await axios.post(
+      'http://localhost:3001/product-create',
+      product,
+    );
+    return response.data;
   };
 
-  const getFieldValue = (name: FORM_VALUE_TYPE) => formik.values[name];
+  const mutation = useMutation(createProduct, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('products');
+    },
+    onError: (error) => {
+      console.error('Error creating product:', error);
+    },
+  });
+
+  const formik: FormikValues = useFormik({
+    initialValues,
+    validate,
+    onSubmit: (values: ProductFormValues) => {
+      mutation.mutate(values);
+      return history.push(OFFICE_PAGE_PATH);
+    },
+  });
 
   return (
     <Component
-      name={data?.name}
       isFieldError={isFieldError}
       getFieldError={getFieldError}
       isSubmitDisabled={isSubmitDisabled}

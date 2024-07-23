@@ -18,18 +18,19 @@ export interface PROPS_TYPE {
   errorContainer?: boolean;
   autoFocus?: boolean;
   type?:
-  | 'number'
-  | 'time'
-  | 'text'
-  | 'date'
-  | 'email'
-  | 'password'
-  | 'search'
-  | 'tel'
-  | 'url'
-  | 'week'
-  | 'month'
-  | 'datetime-local'
-  | 'phone'
-  | 'code';
+    | 'number'
+    | 'time'
+    | 'text'
+    | 'date'
+    | 'email'
+    | 'password'
+    | 'search'
+    | 'tel'
+    | 'url'
+    | 'week'
+    | 'month'
+    | 'datetime-local'
+    | 'phone'
+    | 'code'
+    | 'price';
 }
