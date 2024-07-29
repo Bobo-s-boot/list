@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FormikValues, useFormik } from 'formik';
 import { useHistory, useParams } from 'react-router';
 
@@ -11,24 +11,22 @@ import {
   Product,
 } from './constant';
 import { Component } from './component';
-import {
-  arrayLengthMax,
-  phoneOperator,
-  phoneUA,
-  required,
-} from '../../lib/validation/service';
+import { required } from '../../lib/validation/service';
 import { validation } from '../../lib/validation';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { OFFICE_LIST_MODULE_NAME } from '../office-list';
 import { getData, updateData } from './action';
 import { OFFICE_ITEM_VALUE_INTER } from '../office-item-create';
-import { convert } from './convert';
 import { OFFICE_PAGE_PATH } from '../../page/office-list';
 import axios from 'axios';
+import { convert } from '../project-item-create/convert';
+import { CRUD_ITEM_VALUE_INTER } from '../crud-item-create';
+import { CRUD_LIST_MODULE_NAME } from '../crud-projec-list';
+import { CRUD_PAGE_PATH } from '../../page/crud-list';
 
 export const Container: React.FC<{
-  officeId: string;
-}> = ({ officeId }) => {
+  CrudId: string;
+}> = ({ CrudId }) => {
   const query = useQueryClient();
   const history = useHistory();
 
@@ -37,29 +35,23 @@ export const Container: React.FC<{
   };
 
   const response = useQuery(MODULE_NAME, () =>
-    getData(officeId).then((data: any) => data),
+    getData(CrudId).then((data: any) => data),
   );
 
-  const data = convert(response?.data) as unknown as OFFICE_ITEM_VALUE_INTER;
+  const data = convert(response?.data) as unknown as CRUD_ITEM_VALUE_INTER;
 
   const onSuccess = (d: any, values: any) => {
-    query.invalidateQueries(OFFICE_LIST_MODULE_NAME);
+    query.invalidateQueries(CRUD_LIST_MODULE_NAME);
   };
   const action = useMutation(
-    (values: FORM_VALUE_INTER) => updateData(officeId, values),
+    (values: FORM_VALUE_INTER) => updateData(CrudId, values),
     { onSuccess },
   );
 
   const config = {
     [FORM_VALUE_ENUM.NAME]: [required],
-    [FORM_VALUE_ENUM.PHONE]: [required, phoneUA, phoneOperator],
-    [FORM_VALUE_ENUM.ADDRESS]: [required],
-    [FORM_VALUE_ENUM.TIME]: [required, arrayLengthMax(2)],
-    [FORM_VALUE_ENUM.BREAK]: [required, arrayLengthMax(2)],
-    [FORM_VALUE_ENUM.DAYS]: [required],
-    [FORM_VALUE_ENUM.DESIRED_CURRENCY]: [required],
-    [FORM_VALUE_ENUM.ORDER_CURRENCY]: [],
-    [FORM_VALUE_ENUM.TRADE_CRYPTO]: [],
+    [FORM_VALUE_ENUM.PRICE]: [required],
+    [FORM_VALUE_ENUM.DESCRIPTION]: [required],
   };
 
   const validate = (values: FormikValues) => validation(values, config);
@@ -68,14 +60,6 @@ export const Container: React.FC<{
     [FORM_VALUE_ENUM.NAME]: data?.name || '',
     [FORM_VALUE_ENUM.PRICE]: data?.price || 0,
     [FORM_VALUE_ENUM.DESCRIPTION]: data?.description || '',
-    [FORM_VALUE_ENUM.PHONE]: data?.phone || '',
-    [FORM_VALUE_ENUM.ADDRESS]: data?.address || '',
-    [FORM_VALUE_ENUM.TIME]: data?.time || ['00:00:00', '00:00:00'],
-    [FORM_VALUE_ENUM.BREAK]: data?.break || ['00:00:00', '00:00:00'],
-    [FORM_VALUE_ENUM.TRADE_CRYPTO]: data?.isTradeCrypto || false,
-    [FORM_VALUE_ENUM.ORDER_CURRENCY]: data?.isOrderCurrency || false,
-    [FORM_VALUE_ENUM.DAYS]: data?.days || [],
-    [FORM_VALUE_ENUM.DESIRED_CURRENCY]: data?.desiredCurrency || [],
   };
 
   const formik: FormikValues = useFormik({
@@ -84,37 +68,7 @@ export const Container: React.FC<{
     enableReinitialize: true,
     onSubmit: (values: FORM_VALUE_INTER) => {
       action.mutate(values);
-      return history.push(OFFICE_PAGE_PATH);
-    },
-  });
-
-  const { id } = useParams<{ id: string }>();
-
-  const { data: initialProduct } = useQuery<Product>(
-    ['product', id],
-    async () => {
-      const response = await axios.get<Product>(
-        `http://localhost:3001/products/${id}`,
-      );
-      return response.data;
-    },
-    { enabled: !!id },
-  );
-
-  const updateProduct = async (updatedProduct: Product) => {
-    const response = await axios.put<Product>(
-      `http://localhost:3001/product-update/${id}`, // Исправленный URL
-      updatedProduct,
-    );
-    return response.data;
-  };
-
-  const mutation = useMutation(updateProduct, {
-    onSuccess: async () => {
-      await query.invalidateQueries('products');
-    },
-    onError: (error) => {
-      console.error('Error updating product:', error);
+      return history.push(CRUD_PAGE_PATH);
     },
   });
 

@@ -30,20 +30,16 @@ import {
   AuthVerificationEmailPage,
 } from '../auth-verification-email';
 // import { OFFICE_PAGE_PATH, OfficePage } from '../office-list';
-import { OFFICE_PAGE_PATH_TEST, OfficePageTest } from '../office-list-test';
 // import { OFFICE_CREATE_PAGE_PATH, OfficeCreatePage } from '../office-create';
-import {
-  OFFICE_CREATE_PAGE_TEST_PATH,
-  OfficeCreatePageTest,
-} from '../office-create-test';
 // import {
 //   OFFICE_ITEM_UPDATE_PAGE_PATH,
 //   OfficeItemUpdatePage,
 // } from '../office-update';
-import {
-  OFFICE_ITEM_UPDATE_TEST_PAGE_PATH,
-  OfficeItemUpdateTestPage,
-} from '../office-update-test';
+
+import { CRUD_PAGE_PATH, CrudListPage } from '../crud-list';
+import { CRUD_CREATE_PAGE_PATH, CrudCreatePage } from '../crud-create';
+import { CRUD_UPDATE_PAGE_PATH, CrudItemUpdatePage } from '../crud-update';
+
 import { TRANSACTIONS_PAGE_PATH, TransactionsPage } from '../transactions-list';
 import { from } from 'rxjs';
 
@@ -63,11 +59,7 @@ export const Page: React.FC = () => {
               <Route path={SETTINGS_PAGE_PATH} component={SettingsPage} exact />
               {/* <Route path={OFFICE_PAGE_PATH} component={OfficePage} exact /> */}
 
-              <Route
-                path={OFFICE_PAGE_PATH_TEST}
-                component={OfficePageTest}
-                exact
-              />
+              <Route path={CRUD_PAGE_PATH} component={CrudListPage} exact />
 
               <Route
                 path={TRANSACTIONS_PAGE_PATH}
@@ -81,8 +73,8 @@ export const Page: React.FC = () => {
               /> */}
 
               <Route
-                path={OFFICE_CREATE_PAGE_TEST_PATH}
-                component={OfficeCreatePageTest}
+                path={CRUD_CREATE_PAGE_PATH}
+                component={CrudCreatePage}
                 exact
               />
 
@@ -93,8 +85,8 @@ export const Page: React.FC = () => {
               /> */}
 
               <Route
-                path={OFFICE_ITEM_UPDATE_TEST_PAGE_PATH}
-                component={OfficeItemUpdateTestPage}
+                path={CRUD_UPDATE_PAGE_PATH}
+                component={CrudItemUpdatePage}
                 exact
               />
 

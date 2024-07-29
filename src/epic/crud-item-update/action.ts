@@ -6,7 +6,6 @@ export const updateData = (id: string, payload: FORM_VALUE_INTER) => {
   return HttpRequest({
     method: API.UPDATE.TYPE,
     url: API.UPDATE.URL(id),
-    data: convertOfficeItemSend(payload),
   });
 };
 
