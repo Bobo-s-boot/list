@@ -8,50 +8,52 @@ import {
   DATA_INTER,
   MODULE_NAME,
 } from './constant';
+import { convertProjectList } from '../../data/project/convert';
 
 export const Container: React.FC<{}> = () => {
   const preFetch = useQuery(MODULE_NAME, action);
 
   const isLoading = () => {
-    return preFetch.isLoading || preFetch.isFetching;
+    if (preFetch.isLoading || preFetch.isFetching) {
+      return true;
+    }
   };
 
   const isSuccess = () => {
-    return preFetch.isSuccess && !preFetch.isFetching;
+    if (preFetch.isSuccess && !preFetch.isFetching && getData()) {
+      return true;
+    }
   };
 
   const isError = () => {
-    return preFetch.isError && !preFetch.isLoading && !!getErrorMessage();
+    if (preFetch.isError && !preFetch.isLoading && getErrorMessage()) {
+      return true;
+    }
   };
 
   const getErrorMessage = () => {
     const error: ACTION_ERROR_INTER = preFetch.error as ACTION_ERROR_INTER;
-    return error ? error.message : undefined;
+
+    if (error) {
+      return error.message;
+    }
   };
 
-  const getData = (): DATA_INTER[] | undefined => {
-    const data = preFetch.data as ACTION_RESPONSE_INTER;
-    return data ? data.data : undefined;
+  const getData = (): DATA_INTER | undefined => {
+    const data = preFetch.data as unknown as ACTION_RESPONSE_INTER;
+
+    if (data) {
+      return convertProjectList(data);
+    }
   };
 
   return (
-    <div className="products-list">
-      <h1>Products List</h1>
-      {isLoading() && <div>Loading...</div>}
-      {isError() && <div>Error fetching products: {getErrorMessage()}</div>}
-      {isSuccess() && getData() && getData()!.length > 0
-        ? getData()!
-            .reverse()
-            .map((product) => (
-              <Component
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                price={product.price}
-                description={product.description}
-              />
-            ))
-        : !isLoading() && !isError() && <div>No products available</div>}
-    </div>
+    <Component
+      data={getData()}
+      isLoading={isLoading()}
+      isError={isError()}
+      isSuccess={isSuccess()}
+      errorMessage={getErrorMessage()}
+    />
   );
 };

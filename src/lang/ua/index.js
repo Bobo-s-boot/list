@@ -12,6 +12,8 @@ import OFFICE from './office.json';
 
 import TRANSACTIONS from './transactions.json';
 
+import CRUD from './crud.json';
+
 export const UA = {
   translation: {
     VALIDATION,
@@ -25,5 +27,6 @@ export const UA = {
     PROJECT,
     OFFICE,
     TRANSACTIONS,
+    CRUD,
   },
 };

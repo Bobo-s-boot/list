@@ -1,14 +1,12 @@
 import React from 'react';
-
 import { RouteComponentProps } from 'react-router';
-
 import { LayoutSectionElem } from '../../common/layout-section';
 import { LayoutFooterElem } from '../../common/layout-footer';
 import { LayoutAppElem } from '../../common/layout-app';
 import { LayoutElem } from '../../common/layout';
 import { PageElem } from '../../common/page';
 import { DesktopMenuAppContainer } from '../../epic/desktop-menu-app';
-import { OfficeItemCreateContainer } from '../../epic/office-item-create';
+import { CrudItemCreateContainer } from '../../epic/crud-item-create';
 import { TextElem } from '../../common/text';
 
 export const Page: React.FC<RouteComponentProps> = () => {
@@ -18,13 +16,13 @@ export const Page: React.FC<RouteComponentProps> = () => {
         <LayoutElem size="default">
           <LayoutSectionElem spacing={8}>
             <TextElem
-              tid="OFFICE.CREATE.BUTTON.CREATE"
+              tid="CRUD.CREATE.BUTTON.CREATE"
               color="textSecondary"
               type="bold"
               size="title"
             />
             <LayoutSectionElem spacing={5}>
-              <OfficeItemCreateContainer />
+              <CrudItemCreateContainer />
             </LayoutSectionElem>
           </LayoutSectionElem>
         </LayoutElem>

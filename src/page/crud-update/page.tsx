@@ -7,7 +7,7 @@ import { LayoutAppElem } from '../../common/layout-app';
 import { LayoutElem } from '../../common/layout';
 import { PageElem } from '../../common/page';
 import { DesktopMenuAppContainer } from '../../epic/desktop-menu-app';
-import { OfficeItemUpdateContainer } from '../../epic/office-item-update';
+import { CrudItemCreateContainer } from '../../epic/crud-item-create';
 // import { HeaderContainer } from '../../epic/header';
 import { TextElem } from '../../common/text';
 
@@ -16,9 +16,7 @@ interface SessionItemPageProps
     officeId: string;
   }> {}
 
-export const Page: React.FC<SessionItemPageProps> = ({ match }) => {
-  const officeId = match.params.officeId;
-
+export const Page: React.FC<SessionItemPageProps> = () => {
   return (
     <PageElem>
       <LayoutAppElem>
@@ -26,13 +24,13 @@ export const Page: React.FC<SessionItemPageProps> = ({ match }) => {
         <LayoutElem size="default">
           <LayoutSectionElem spacing={5}>
             <TextElem
-              tid="OFFICE.UPDATE.TITLE"
+              tid="CRUD.UPDATE.TITLE"
               color="textSecondary"
               type="bold"
               size="title"
             />
 
-            <OfficeItemUpdateContainer officeId={officeId} />
+            <CrudItemCreateContainer />
           </LayoutSectionElem>
         </LayoutElem>
       </LayoutAppElem>

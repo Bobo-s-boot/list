@@ -10,18 +10,7 @@ import { ButtonElem } from '../../common/button';
 import { LoaderElem } from '../../common/loader';
 import { AlertActionElem } from '../../common/alert-action';
 import { FormElem } from '../../common/form';
-import { DoubleContainerElem } from '../../common/double-container';
-import { ContentContainerElem } from '../../common/content-container';
-import { SelectElem } from '../../common/select';
-import { FieldTimeInputElem } from '../../common/field-time-input';
-import { FieldToggleElem } from '../../common/field-toggle';
-import { daysOptions, currencyOptions } from '../office-item-create/constant';
-import addIcon from '../../asset/svg/common/add-small.svg';
-import { ToggleElem } from '../../common/toggle';
-import { TextElem } from '../../common/text';
 import { Spacing } from '../../theme';
-import { TabElem } from '../../common/tab';
-import { error } from 'console';
 
 export const Component: React.FC<{
   formik: FormikValues;
@@ -60,24 +49,6 @@ export const Component: React.FC<{
     return val;
   };
 
-  const mockData = [
-    {
-      tid: 'Settings',
-      path: 'office/update',
-      dynamicPath: '/dynamicPath1',
-    },
-    {
-      tid: 'Sessions',
-      path: '/settings',
-      dynamicPath: '/dynamicPath2',
-    },
-    {
-      tid: 'Profile',
-      path: '/settings',
-      dynamicPath: '/dynamicPath3',
-    },
-  ];
-
   return (
     <>
       <FormElem onSubmit={formik.handleSubmit}>
@@ -85,14 +56,13 @@ export const Component: React.FC<{
 
         <GridElem spacing={4}>
           {/* <TextElem size="medium" type="bold" tid={name} /> */}
-          <TabElem tabList={mockData} />
 
           <FlexContainer>
             <FieldTextElem
               name={FORM_VALUE_ENUM.NAME}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              title="OFFICE.CREATE.FORM.NAME"
+              title="CRUD.CREATE.FORM.NAME"
               value={getFieldValue(FORM_VALUE_ENUM.NAME)}
               errorMessage={getFieldError(FORM_VALUE_ENUM.NAME)}
               error={isFieldError(FORM_VALUE_ENUM.NAME)}
@@ -102,7 +72,7 @@ export const Component: React.FC<{
               name={FORM_VALUE_ENUM.PRICE}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              title="OFFICE.CREATE.FORM.PRICE"
+              title="CRUD.CREATE.FORM.PRICE"
               value={getFieldValue(FORM_VALUE_ENUM.PRICE)}
               errorMessage={getFieldError(FORM_VALUE_ENUM.PRICE)}
               error={isFieldError(FORM_VALUE_ENUM.PRICE)}
@@ -112,14 +82,16 @@ export const Component: React.FC<{
               name={FORM_VALUE_ENUM.DESCRIPTION}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              title="OFFICE.CREATE.FORM.DESCRIPTION"
+              title="CRUD.CREATE.FORM.DESCRIPTION"
               value={getFieldValue(FORM_VALUE_ENUM.DESCRIPTION)}
               errorMessage={getFieldError(FORM_VALUE_ENUM.DESCRIPTION)}
               error={isFieldError(FORM_VALUE_ENUM.DESCRIPTION)}
             />
           </FlexContainer>
           {isError && <AlertActionElem text={i18n.t(`${errorMessage}`)} />}
-          {isSuccess && <AlertActionElem type="success" tid="Success" />}
+          {isSuccess && (
+            <AlertActionElem type="success" tid="CRUD.RESULT.SUCCESS" />
+          )}
         </GridElem>
       </FormElem>
     </>
@@ -130,4 +102,14 @@ const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${Spacing(8)};
+  padding: ${Spacing(4)};
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  border-radius: ${Spacing(2)};
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
 `;

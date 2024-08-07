@@ -1,30 +1,27 @@
+import {
+  PROJECT_ITEM_LIST_DATA_INTER,
+  PROJECT_ITEM_LIST_DATA_RAW_INTER,
+} from '../../data/project/constant';
+
+export const MODULE_NAME = 'CRUD_PRODUCT_LIST';
+
+export const ACTION_TYPE = {
+  REQUEST_PENDING: `${MODULE_NAME}.REQUEST_PENDING`,
+};
+
 export const API = {
   TYPE: 'GET',
   URL: `http://localhost:3001/products`,
 };
 
-export const MODULE_NAME = 'products';
+export interface ACTION_RESPONSE_INTER
+  extends PROJECT_ITEM_LIST_DATA_RAW_INTER {}
 
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-}
+export interface DATA_INTER extends PROJECT_ITEM_LIST_DATA_INTER {}
 
 export interface ACTION_ERROR_INTER {
   error: string;
   message: string;
-  description: string;
-}
-
-export interface ACTION_RESPONSE_INTER {
-  data: Product[];
-}
-
-export interface DATA_INTER {
-  id: number;
-  name: string;
-  price: number;
+  messages: string[];
   description: string;
 }

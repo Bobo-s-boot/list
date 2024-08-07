@@ -2,6 +2,9 @@ import { i18n } from '../../lib/lang';
 
 export interface USER_ITEM_DATA_RAW_INTER {
   id: string;
+  name: string;
+  price: number;
+  description: string;
   createDate: string;
   email: string;
   phone: string;

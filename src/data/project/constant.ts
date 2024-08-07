@@ -2,8 +2,10 @@ import { USER_ITEM_DATA_RAW_INTER } from '../user/constant';
 
 export interface PROJECT_ITEM_DATA_RAW_INTER {
   id: string;
-  createDate: string;
   name: string;
+  price: number;
+  description: string;
+  createDate: string;
   owner: USER_ITEM_DATA_RAW_INTER;
 }
 
