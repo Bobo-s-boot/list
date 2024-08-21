@@ -33,7 +33,7 @@ export class CrudList {
   create: CrudCreateItem[];
 
   // Один лист до багатьох оновлених товарів
-  @OneToMany(() => CrudUpdateItem, (updateItem) => updateItem.lists)
+  @OneToMany(() => CrudUpdateItem, (updateItem) => updateItem.list)
   updateItem: CrudUpdateItem;
 
   @CreateDateColumn()

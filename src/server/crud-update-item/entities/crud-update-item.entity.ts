@@ -34,7 +34,7 @@ export class CrudUpdateItem {
   // одне оновлення товару на один лист
   @OneToOne(() => CrudList, (list) => list.updateItem)
   @JoinColumn({ name: 'list_id' })
-  lists: CrudList;
+  list: CrudList;
 
   @CreateDateColumn()
   createdAt: Date;
