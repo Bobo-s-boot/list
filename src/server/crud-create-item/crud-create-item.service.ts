@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCrudCreateItemDto } from './dto/create-crud-create-item.dto';
@@ -13,31 +13,32 @@ export class CrudCreateItemService {
   ) {}
 
   async create(createCrudCreateItemDto: CreateCrudCreateItemDto) {
-    const productExist = await this.newProductRepository.find({
+    const productExist = await this.newProductRepository.findOne({
       where: {
         name: createCrudCreateItemDto.name,
-        price: createCrudCreateItemDto.price,
         description: createCrudCreateItemDto.description,
+        price: createCrudCreateItemDto.price,
       },
     });
 
-    if (productExist)
-      throw new BadRequestException('This product alredy exist!');
+    if (productExist) {
+      throw new BadRequestException('This product already exists!');
+    }
 
-    const product = await this.newProductRepository.save({
-      name: createCrudCreateItemDto.name,
-      price: createCrudCreateItemDto.price,
-      description: createCrudCreateItemDto.description,
-    });
+    const product = await this.newProductRepository.save(
+      createCrudCreateItemDto,
+    );
 
     return { product };
   }
 
   async findOne(name: string) {
-    return await this.newProductRepository.findOne({
-      where: {
-        name,
-      },
+    const product = await this.newProductRepository.findOne({
+      where: { name },
     });
+
+    if (!product) throw new BadRequestException('This product not found!');
+
+    return product;
   }
 }

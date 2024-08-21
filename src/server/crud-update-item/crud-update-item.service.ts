@@ -17,18 +17,24 @@ export class CrudUpdateItemService {
   ) {}
 
   async create(createCrudUpdateItemDto: CreateCrudUpdateItemDto) {
-    const newItem = this.updateRepository.create(createCrudUpdateItemDto);
+    const existingItem = await this.updateRepository.findOne({
+      where: {
+        name: createCrudUpdateItemDto.name,
+      },
+    });
 
-    if (newItem)
+    if (existingItem) {
       throw new BadRequestException('This update has already been played!');
+    }
 
+    const newItem = this.updateRepository.create(createCrudUpdateItemDto);
     return await this.updateRepository.save(newItem);
   }
 
-  async findAll(id: number) {
+  async findAll() {
     return await this.updateRepository.find({
-      where: {
-        id,
+      order: {
+        createdAt: 'DESC',
       },
       relations: {
         create: true,
@@ -37,7 +43,9 @@ export class CrudUpdateItemService {
   }
 
   async findOne(id: number) {
-    const item = await this.updateRepository.findOne({ where: { id } });
+    const item = await this.updateRepository.findOne({
+      where: { id },
+    });
 
     if (!item) throw new NotFoundException('This product not found!');
 
@@ -48,12 +56,10 @@ export class CrudUpdateItemService {
     const item = await this.updateRepository.findOne({ where: { id } });
 
     if (!item) {
-      throw new NotFoundException('This product not update!');
-    } else {
-      await this.updateRepository.update(id, UpdateCrudUpdateItemDto);
+      throw new NotFoundException('This product not found!');
     }
 
-    return await this.updateRepository.findOne({ where: { id } });
+    return await this.updateRepository.update(id, updateCrudUpdateItemDto);
   }
 
   async remove(id: number) {

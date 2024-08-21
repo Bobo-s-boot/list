@@ -7,7 +7,7 @@ export class CreateCrudListDto {
 
   @IsNotEmpty()
   @IsNumber()
-  price: string;
+  price: number;
 
   @IsNotEmpty()
   @IsString()

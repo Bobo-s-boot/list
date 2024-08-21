@@ -2,7 +2,6 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
-  NotImplementedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -17,39 +16,32 @@ export class CrudListService {
     private readonly listRepository: Repository<CrudList>,
   ) {}
 
-  async create(createCrudListDto: CreateCrudListDto, id: number) {
+  async create(createCrudListDto: CreateCrudListDto) {
     const existingList = await this.listRepository.findOne({
       where: {
-        id,
         name: createCrudListDto.name,
       },
     });
 
     if (existingList) {
-      throw new BadRequestException('List with this name already exist!');
+      throw new BadRequestException('List with this name already exists!');
     }
 
-    const newList = this.listRepository.create({
-      ...createCrudListDto,
-      id,
-    });
+    const newList = this.listRepository.create(createCrudListDto);
 
     return await this.listRepository.save(newList);
   }
 
-  async findAll(id: number) {
-    const list = await this.listRepository.find({
-      where: {
-        id,
-      },
+  async findAll() {
+    const lists = await this.listRepository.find({
       order: {
         createdAt: 'DESC',
       },
     });
 
-    if (!list) throw new NotFoundException('This list not found!');
+    if (lists.length === 0) throw new NotFoundException('No lists found!');
 
-    return list;
+    return lists;
   }
 
   async findOne(id: number) {
@@ -77,7 +69,7 @@ export class CrudListService {
 
     if (!list) throw new NotFoundException('This list not found!');
 
-    return await this.listRepository.update(id, updateCrudListDto);
+    return this.listRepository.update(list, updateCrudListDto);
   }
 
   async remove(id: number) {

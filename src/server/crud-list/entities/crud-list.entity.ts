@@ -18,8 +18,8 @@ export class CrudList {
   @Column()
   name: string;
 
-  @Column()
-  price: string;
+  @Column('decimal')
+  price: number;
 
   @Column()
   description: string;
@@ -28,7 +28,7 @@ export class CrudList {
   isActive: boolean;
 
   // Один лист до багатьох створенних товарів
-  @OneToMany(() => CrudCreateItem, (createItem) => createItem.lists)
+  @OneToMany(() => CrudCreateItem, (createItem) => createItem.list)
   @JoinColumn({ name: 'product_id' })
   create: CrudCreateItem[];
 

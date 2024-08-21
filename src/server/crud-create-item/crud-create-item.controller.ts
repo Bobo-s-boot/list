@@ -8,6 +8,8 @@ import {
   Delete,
   UsePipes,
   ValidationPipe,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { CrudCreateItemService } from './crud-create-item.service';
 import { CreateCrudCreateItemDto } from './dto/create-crud-create-item.dto';
@@ -19,7 +21,19 @@ export class CrudCreateItemController {
 
   @Post()
   @UsePipes(new ValidationPipe())
-  create(@Body() createCrudCreateItemDto: CreateCrudCreateItemDto) {
-    return this.crudCreateItemService.create(createCrudCreateItemDto);
+  @HttpCode(HttpStatus.CREATED)
+  async create(@Body() createCrudCreateItemDto: CreateCrudCreateItemDto) {
+    try {
+      const createdItem = await this.crudCreateItemService.create(
+        createCrudCreateItemDto,
+      );
+      return { message: 'Item successfully created', data: createdItem };
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'Error creating item',
+        error: error.message,
+      };
+    }
   }
 }

@@ -9,6 +9,8 @@ import {
   UsePipes,
   ValidationPipe,
   Req,
+  HttpStatus,
+  HttpCode,
 } from '@nestjs/common';
 import { CrudUpdateItemService } from './crud-update-item.service';
 import { CreateCrudUpdateItemDto } from './dto/create-crud-update-item.dto';
@@ -20,13 +22,25 @@ export class CrudUpdateItemController {
 
   @Post()
   @UsePipes(new ValidationPipe())
-  create(@Body() createCrudUpdateItemDto: CreateCrudUpdateItemDto) {
-    return this.crudUpdateItemService.create(createCrudUpdateItemDto);
+  @HttpCode(HttpStatus.CREATED)
+  async create(@Body() createCrudUpdateItemDto: CreateCrudUpdateItemDto) {
+    try {
+      const createdUpdateItem = this.crudUpdateItemService.create(
+        createCrudUpdateItemDto,
+      );
+      return { message: 'Item successfuly update', data: createdUpdateItem };
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'Error uptating item',
+        error: error.message,
+      };
+    }
   }
 
   @Get()
-  findAll(@Req() req) {
-    return this.crudUpdateItemService.findAll(+req.product.id);
+  findAll() {
+    return this.crudUpdateItemService.findAll();
   }
 
   @Get(':id')

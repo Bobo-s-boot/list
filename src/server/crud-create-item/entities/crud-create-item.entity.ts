@@ -18,19 +18,17 @@ export class CrudCreateItem {
   @Column()
   name: string;
 
-  @Column()
-  price: string;
+  @Column('decimal')
+  price: number;
 
   @Column()
   description: string;
 
-  // багато створенних продуктів до одного листa ...
   @ManyToOne(() => CrudList, (list) => list.create, {
     onDelete: 'CASCADE',
   })
-  lists: CrudList;
+  list: CrudList;
 
-  // одне створення продукта до одного оновленяя продукта ...
   @OneToOne(() => CrudUpdateItem, (updateItem) => updateItem.create)
   updateItem: CrudUpdateItem;
 

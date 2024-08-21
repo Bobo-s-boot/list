@@ -29,7 +29,7 @@ export class CrudUpdateItem {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'product_id' })
-  create: CrudCreateItem[];
+  create: CrudCreateItem;
 
   // одне оновлення товару на один лист
   @OneToOne(() => CrudList, (list) => list.updateItem)
